@@ -1,0 +1,34 @@
+﻿<Window
+    x:Class="cour_classes.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:cour_classes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Grid x:Name="gridPrincipale">
+
+        <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="Pages"/>
+                <NavigationViewItem Content="Liste des produits" x:Name="iProduits" Icon="ProtectedDocument"/>
+                <NavigationViewItem Content="Statistiques" x:Name="iStatistiques" Icon="Calculator"/>
+
+                <NavigationViewItemSeparator />
+                <NavigationViewItemHeader Content="Importations"/>
+                <NavigationViewItem Content="CSV" x:Name="iCSV" Icon="Download"/>
+
+
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Déconnexion" x:Name="iDeconnexion" Icon="Switch" />
+                <NavigationViewItem Content="Aide" x:Name="iAide" Icon="Help" />
+            </NavigationView.FooterMenuItems>
+
+            <Frame x:Name="mainFrame" />
+        </NavigationView>
+    </Grid>
+
+</Window>

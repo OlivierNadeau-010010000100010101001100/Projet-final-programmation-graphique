@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "cour_classes (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "cour_classes (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
