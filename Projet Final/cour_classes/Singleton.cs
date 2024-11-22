@@ -24,7 +24,7 @@ namespace cour_classes
 
         public Singleton()
         {
-            con = new MySqlConnection("Server=cours.cegep3r.info;Database=420345ri_gr00001_2267192-olivier-nadeau;Uid=2267192;Pwd=2267192;");
+            con = new MySqlConnection("");
             liste = new ObservableCollection<Produit>();
             listeCategorie = new ObservableCollection<Categorie>();
         }
