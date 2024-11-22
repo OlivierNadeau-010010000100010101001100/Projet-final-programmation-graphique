@@ -1,5 +1,0 @@
-Auteur : Olivier Nadeau
-Nom Projet : Laboratoire 2
-But : Importer un fichier csv dans une base de donnée et trier ces données selon une diversité de filtrations
-
-Server=cours.cegep3r.info;Database=420345ri_gr00001_2267192-olivier-nadeau;Uid=2267192;Pwd=2267192;
