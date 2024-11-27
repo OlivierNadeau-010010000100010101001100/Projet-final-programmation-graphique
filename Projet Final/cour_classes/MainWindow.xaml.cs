@@ -69,34 +69,34 @@ namespace cour_classes
 
             Windows.Storage.StorageFile monFichier = await picker.PickSingleFileAsync();
 
-            if (monFichier != null)
-            {
-                // J'ai du commenter pour éviter que la BD s'écrase lors qu'un nouveau fichier csv est ajouter dans la BD
-                //Singleton.getInstance().toutSupprimerBD();
+            //if (monFichier != null)
+            //{
+            //    // J'ai du commenter pour éviter que la BD s'écrase lors qu'un nouveau fichier csv est ajouter dans la BD
+            //    //Singleton.getInstance().toutSupprimerBD();
 
-                var lignes = await Windows.Storage.FileIO.ReadLinesAsync(monFichier);
+            //    var lignes = await Windows.Storage.FileIO.ReadLinesAsync(monFichier);
 
 
-                foreach(var produit in lignes)
-                {
-                    var v = produit.Split(";");
+            //    foreach(var produit in lignes)
+            //    {
+            //        var v = produit.Split(";");
 
-                    List<Produit> liste = new List<Produit>();
+            //        List<Produit> liste = new List<Produit>();
 
-                    // Convertir le string prix en double
-                    double prix;
-                    if (double.TryParse(v[1], out prix))
-                    {
-                        liste.Add(new Produit( v[0], prix, v[2]));
-                    }
+            //        // Convertir le string prix en double
+            //        double prix;
+            //        if (double.TryParse(v[1], out prix))
+            //        {
+            //            liste.Add(new Produit( v[0], prix, v[2]));
+            //        }
                     
-                    Singleton.getInstance().setProduit(liste);
-                }
+            //        Singleton.getInstance().setProduit(liste);
+            //    }
 
 
 
 
-            }
+            //}
         }
 
     }
