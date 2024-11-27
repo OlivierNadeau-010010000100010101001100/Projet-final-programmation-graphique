@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace cour_classes
 {
-    class Categorie
+    internal class Categorie
     {
+        int categorie_id;
+        string categorie_nom;
 
-        string nom;
-        int nbr_produit;
-
-
-        public Categorie(string nom, int nbr_produit)
+        public Categorie(int categorie_id, string categorie_nom)
         {
-            this.nom = nom;
-            this.nbr_produit = nbr_produit;
+            this.categorie_id = categorie_id;
+            this.categorie_nom = categorie_nom;
         }
 
-        public string Nom_categorie { get => nom; set => nom = value; }
-        public int Nbr_produit { get => nbr_produit; set => nbr_produit = value; }
+        public int Categorie_id { get => categorie_id; set => categorie_id = value; }
 
+        public string Categorie_nom { get => categorie_nom; set => categorie_nom = value; }
     }
 }
