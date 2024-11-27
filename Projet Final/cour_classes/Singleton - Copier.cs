@@ -13,6 +13,7 @@ namespace cour_classes
     internal class Singleton
     {
         MySqlConnection con;
+        ObservableCollection<Produit> liste;
         ObservableCollection<Categorie> listeCategorie;
         static Singleton instance = null;
 
