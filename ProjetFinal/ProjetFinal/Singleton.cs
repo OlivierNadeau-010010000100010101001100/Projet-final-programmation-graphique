@@ -59,13 +59,50 @@ namespace ProjetFinal
             }
         }
 
-
         public bool getConnectionUser()
         {
             return true;
         }
-        
 
+        public List<Categorie> GetAllCategories()
+        {
+            List<Categorie> categories = new List<Categorie>();
+
+
+            MySqlConnection conn = new MySqlConnection(connectionQuery);
+            try
+                {
+
+                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM categorie", conn);
+                    conn.Open();
+                    MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                    while (mySqlDataReader.Read())
+                    {
+                        var categorie = new Categorie
+                        {
+                            categorie_id = mySqlDataReader.GetInt32(0),
+                            categorie_nom = mySqlDataReader.GetString(1)
+                        };
+                        categories.Add(categorie);
+                    }
+                    conn.Close();
+
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
+                    _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                    _messageErreur.Visibility = Visibility.Visible;
+
+                    Console.WriteLine(ex.Message);
+                }
+            
+            return categories;
+        }
 
 
     }

@@ -26,6 +26,7 @@ namespace ProjetFinal
         public PageStatistiques()
         {
             this.InitializeComponent();
+            OnLoad();
             Singleton.Instance().SetMessageErreur(MessageErreur);
 
 
@@ -36,9 +37,23 @@ namespace ProjetFinal
             
                 Singleton.Instance().TestConnection();
                 
+            
 
 
 
+        }
+
+        private void OnLoad()
+        {
+            try
+            {
+                var liste = Singleton.Instance().GetAllCategories();
+                categorieList.ItemsSource = liste;
+            }
+            catch (Exception ex) 
+            {
+                MessageErreur.Text = $"Erreur lors du chargement: {ex.Message}";
+            }
         }
     }
 }
