@@ -13,7 +13,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Pages"/>
                 <NavigationViewItem Content="Liste des produits" x:Name="iProduits" Icon="ProtectedDocument"/>
-                <NavigationViewItem Content="Statistiques" x:Name="iStatistiques" Icon="Calculator" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Statistiques" x:Name="iStat" Icon="Calculator"/>
 
                 <NavigationViewItemSeparator />
                 <NavigationViewItemHeader Content="Importations"/>
