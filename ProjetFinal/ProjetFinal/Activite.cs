@@ -8,10 +8,9 @@ namespace ProjetFinal
 {
     internal class Activite
     {
-        string nom_activitee;
-        int categorie_id_fk, cout_organisation_client, prix_vente, activite_id;
+        public string nom_activitee, categorie_activite;
+        public int categorie_id_fk, cout_organisation_client, prix_vente, activite_id;
 
-        public string categorie_activite {get; set;}
 
         public Activite()
         {
@@ -36,5 +35,7 @@ namespace ProjetFinal
         public int Cout_organisation_client { get => cout_organisation_client; set => cout_organisation_client = value; }
 
         public int Prix_vente { get => prix_vente; set => prix_vente = value; }
+
+        public string Categorie_activite { get => categorie_activite; set => categorie_activite = value; }
     }
 }

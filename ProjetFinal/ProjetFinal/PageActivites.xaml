@@ -71,7 +71,7 @@
                                 <Run Text=" $" />
                                 </TextBlock>
 
-                                <TextBlock x:Name="categorie_produit" Text="{x:Bind categorie_activite, Mode=OneWay}" FontSize="15" />
+                                <TextBlock x:Name="categorie_produit" Text="{x:Bind Categorie_activite, Mode=OneWay}" FontSize="15" />
                             </StackPanel>
 
                             <!--<Button Tag="{Binding}" x:Name="suppression_produit" Content="Supprimer" Width="100" Height="30" Margin="5" VerticalAlignment="Center" Click="Suppression_Click" />-->

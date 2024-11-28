@@ -118,6 +118,7 @@ namespace ProjetFinal
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM activites", conn);
                 conn.Open();
                 MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+                var categoriesDictionary = GetCategoriesDictionary();
 
                 while (mySqlDataReader.Read())
                 {
@@ -128,22 +129,13 @@ namespace ProjetFinal
                         Categorie_id_fk = mySqlDataReader.GetInt32(2),
                         Cout_organisation_client = mySqlDataReader.GetInt32(3),
                         Prix_vente = mySqlDataReader.GetInt32(4),
-                        categorie_activite = "test"
+                        Categorie_activite = categoriesDictionary.ContainsKey(mySqlDataReader.GetInt32(2)) ? categoriesDictionary[mySqlDataReader.GetInt32(2)] : "Invalide"
 
 
 
                     };
 
-                    //MySqlCommand categoryCmd = new MySqlCommand("SELECT nom_categorie FROM categorie WHERE categorie_id = @Categorie_id", conn);
-                    //categoryCmd.Parameters.AddWithValue("@Categorie_id", activite.Categorie_id_fk);
-
-                    //// Execute the query for category name
-                    //MySqlDataReader categoryReader = categoryCmd.ExecuteReader();
-                    //if (categoryReader.Read())
-                    //{
-                    //    activite.categorie_activite = categoryReader.GetString(0); // Get category name
-                    //}
-                    //categoryReader.Close();
+                    
 
 
 
@@ -174,6 +166,35 @@ namespace ProjetFinal
             return activites;
         }
 
+        public Dictionary<int, string> GetCategoriesDictionary()
+        {
+            Dictionary<int, string> categories = new Dictionary<int, string>();
+
+            MySqlConnection conn = new MySqlConnection(connectionQuery);
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT categorie_id, nom_categorie FROM categorie", conn);
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    categories.Add(reader.GetInt32(0), reader.GetString(1));
+                }
+            }
+            catch (Exception ex)
+            {
+                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
+                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                _messageErreur.Visibility = Visibility.Visible;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return categories;
+        }
 
     }
 }
