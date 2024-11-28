@@ -37,8 +37,8 @@ namespace ProjetFinal
                 case "iProduits":
                     mainFrame.Navigate(typeof(MainWindow));
                     break;
-                case "iStatistiques":
-                    mainFrame.Navigate(typeof(MainWindow));
+                case "iStat":
+                    mainFrame.Navigate(typeof(Statistiques));
                     break;
                 case "iCSV":
                     mainFrame.Navigate(typeof(MainWindow));
