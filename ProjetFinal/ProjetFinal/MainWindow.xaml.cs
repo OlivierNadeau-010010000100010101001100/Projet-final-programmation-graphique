@@ -26,8 +26,8 @@ namespace ProjetFinal
     {
         public MainWindow()
         {
-            ifConnected();
             this.InitializeComponent();
+            ifConnected();
             
             
 
@@ -62,9 +62,14 @@ namespace ProjetFinal
 
         private void ifConnected()
         {
-            Singleton.Instance().getConnectionUser();
+            bool connected;
+            connected = Singleton.Instance().getConnectionUser();
 
-            testVisibility.Visibility = Visibility.Visible;
+
+            if (connected == true)
+            {
+                testVisibility.Visibility = Visibility.Visible;
+            }
         }
     }
 }
