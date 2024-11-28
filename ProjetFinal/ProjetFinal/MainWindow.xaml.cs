@@ -28,9 +28,25 @@ namespace ProjetFinal
             this.InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void nav_view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            var item = args.SelectedItem as NavigationViewItem;
+
+            switch (item.Name)
+            {
+                case "iProduits":
+                    mainFrame.Navigate(typeof(MainWindow));
+                    break;
+                case "iStatistiques":
+                    mainFrame.Navigate(typeof(MainWindow));
+                    break;
+                case "iCSV":
+                    mainFrame.Navigate(typeof(MainWindow));
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }
