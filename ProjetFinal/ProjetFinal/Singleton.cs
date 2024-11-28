@@ -17,11 +17,12 @@ namespace ProjetFinal
         static Singleton instance = null;
         private TextBlock _messageErreur;
 
-        public string conn { get; private set; }
+        public string connectionQuery { get; private set; }
 
         private Singleton()
         {
-            conn = "Server=cours.cegep3r.info;Database=420345ri_gr00002_2011835-dylann-palardy;Uid=2011835;Pwd=2011835;";
+            connectionQuery = "Server=cours.cegep3r.info;Database=a2024_420335ri_eq8;Uid=2011835;Pwd=2011835;";
+            
         }
 
         public static Singleton Instance()
@@ -38,7 +39,30 @@ namespace ProjetFinal
             _messageErreur = messageErreur;
         }
 
+        public void TestConnection()
+        {
+            MySqlConnection conn = null;  
+            try
+            {
+                conn = new MySqlConnection(connectionQuery);
+                conn.Open();
+                _messageErreur.Text = "Reussi";
+            }
+            catch (Exception ex)
+            {
+                _messageErreur.Text = ex.Message;  
+            }
+            finally
+            {
+                    conn.Close();
+            }
+        }
 
+
+        public bool getConnectionUser()
+        {
+            return true;
+        }
         
 
 
