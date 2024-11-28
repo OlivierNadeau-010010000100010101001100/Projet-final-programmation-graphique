@@ -15,10 +15,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Stretch">
             <ComboBox Margin="5" Width="200" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" x:Name="categorie_combo_box">
 
-                <!--La manière comment j'ai créer la catégorie Ne me permet pas d'aller chercher toutes les caétogire automatiquements-->
+                --><!--La manière comment j'ai créer la catégorie Ne me permet pas d'aller chercher toutes les caétogire automatiquements--><!--
 
                 <x:String>Tous les produits</x:String>
                 <x:String>Salle de bain</x:String>
@@ -47,7 +47,7 @@
             TextChanged="prix_max_TextChanged"
         />
             <TextBlock Margin="5">$</TextBlock>
-        </StackPanel>
+        </StackPanel>-->
 
 
         <ListView x:Name="LVliste" Grid.Row="1">
