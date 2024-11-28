@@ -34,11 +34,11 @@ namespace ProjetFinal
 
             switch (item.Name)
             {
-                case "iProduits":
-                    mainFrame.Navigate(typeof(MainWindow));
+                case "iActivite":
+                    mainFrame.Navigate(typeof(PageActivites));
                     break;
                 case "iStat":
-                    mainFrame.Navigate(typeof(Statistiques));
+                    mainFrame.Navigate(typeof(PageStatistiques));
                     break;
                 case "iCSV":
                     mainFrame.Navigate(typeof(MainWindow));
