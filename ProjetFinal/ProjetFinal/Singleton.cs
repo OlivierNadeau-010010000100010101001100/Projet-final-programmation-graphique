@@ -107,6 +107,54 @@ namespace ProjetFinal
                 return categories;
         }
 
+        public List<Activite> GetAllActivites()
+        {
+            List<Activite> activites = new List<Activite>();
+
+
+            MySqlConnection conn = new MySqlConnection(connectionQuery);
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM activites", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                while (mySqlDataReader.Read())
+                {
+                    var activite = new Activite
+                    {
+                        Activite_id = mySqlDataReader.GetInt32(0),
+                        Nom_activite = mySqlDataReader.GetString(1),
+                        Categorie_id_fk = mySqlDataReader.GetInt32(2),
+                        Cout_organisation_client = mySqlDataReader.GetInt32(3),
+                        Prix_vente = mySqlDataReader.GetInt32(4)
+
+
+                    };
+                    activites.Add(activite);
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
+                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                _messageErreur.Visibility = Visibility.Visible;
+
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return activites;
+        }
+
 
     }
 }
