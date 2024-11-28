@@ -25,7 +25,20 @@ namespace ProjetFinal
     {
         public PageUser()
         {
+
             this.InitializeComponent();
+
+
+        }
+
+        private void connection_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deconnection_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
