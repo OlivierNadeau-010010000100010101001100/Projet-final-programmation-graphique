@@ -8,5 +8,6 @@ namespace ProjetFinal
 {
     internal class Singleton
     {
+
     }
 }
