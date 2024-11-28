@@ -63,6 +63,8 @@ namespace ProjetFinal
         private void ifConnected()
         {
             Singleton.Instance().getConnectionUser();
+
+            testVisibility.Visibility = Visibility.Visible;
         }
     }
 }
