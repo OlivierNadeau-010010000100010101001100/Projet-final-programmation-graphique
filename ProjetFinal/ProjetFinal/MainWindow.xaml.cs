@@ -26,8 +26,10 @@ namespace ProjetFinal
     {
         public MainWindow()
         {
+            ifConnected();
             this.InitializeComponent();
-
+            
+            
 
         }
 
@@ -56,6 +58,11 @@ namespace ProjetFinal
                     break;
             }
 
+        }
+
+        private void ifConnected()
+        {
+            Singleton.Instance().getConnectionUser();
         }
     }
 }
