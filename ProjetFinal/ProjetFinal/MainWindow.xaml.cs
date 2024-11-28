@@ -27,6 +27,8 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
+
+
         }
 
         private void nav_view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -45,6 +47,9 @@ namespace ProjetFinal
                     mainFrame.Navigate(typeof(PageUser));
                     break;
                 case "iUser":
+                    mainFrame.Navigate(typeof(PageUser));
+                    break;
+                case "Settings":
                     mainFrame.Navigate(typeof(PageUser));
                     break;
                 default:

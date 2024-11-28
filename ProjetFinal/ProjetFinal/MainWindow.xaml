@@ -11,19 +11,21 @@
 
         <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItemHeader Content="Pages"/>
+                <NavigationViewItemHeader Content="Navigation"/>
                 <NavigationViewItem Content="Liste Activitées" x:Name="iActivite" Icon="Library"/>
                 <NavigationViewItem Content="Statistiques" x:Name="iStat" Icon="Calculator"/>
 
+                <NavigationViewItemHeader Content="Espace Administrateur"/>
                 <NavigationViewItemSeparator />
                 <NavigationViewItemHeader Content="Importations"/>
                 <NavigationViewItem Content="CSV" x:Name="iCSV" Icon="Download"/>
+                <NavigationViewItem Content="CSV" Icon="Upload"/>
+                <NavigationViewItem Content="CSV" Icon="People"/>
 
 
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Utilisateur" x:Name="iUser" Icon="People" />
-                <NavigationViewItem Content="Aide" x:Name="iAide" Icon="Help" />
             </NavigationView.FooterMenuItems>
 
             <Frame x:Name="mainFrame" />
