@@ -20,9 +20,20 @@ namespace ProjetFinal
 {
     public sealed partial class ModalConnection : ContentDialog
     {
+        public String Nom_utilisateur { get; set; }
+        public String Mot_de_passe { get; set; }
+
+        bool close = false;
+
         public ModalConnection()
         {
             this.InitializeComponent();
+        }
+
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Nom_utilisateur = tbx_utilisateur.Text;
+            Mot_de_passe = tbx_password.Password;
         }
     }
 }
