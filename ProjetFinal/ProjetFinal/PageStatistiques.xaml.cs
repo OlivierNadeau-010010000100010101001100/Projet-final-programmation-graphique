@@ -26,8 +26,19 @@ namespace ProjetFinal
         public PageStatistiques()
         {
             this.InitializeComponent();
-            Singleton.Instance().TestConnection();
             Singleton.Instance().SetMessageErreur(MessageErreur);
+
+
+        }
+
+        private void testButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+                Singleton.Instance().TestConnection();
+                
+
+
+
         }
     }
 }

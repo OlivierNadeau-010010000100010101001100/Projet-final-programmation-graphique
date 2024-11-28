@@ -45,10 +45,12 @@ namespace ProjetFinal
             try
             {
                 conn.Open();
+                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 _messageErreur.Text = "Reussi";
             }
             catch (Exception ex)
             {
+                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
                 _messageErreur.Text = $"{ex.Message}";  
             }
             finally

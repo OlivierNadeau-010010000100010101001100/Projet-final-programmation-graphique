@@ -10,7 +10,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock>page stats</TextBlock>
+        
         <TextBlock x:Name="MessageErreur" />
+        <Button x:Name="testButton" Click="testButton_Click">TEST CONNECTION</Button>
     </Grid>
 </Page>
