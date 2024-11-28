@@ -11,6 +11,11 @@ namespace ProjetFinal
         string nom_activitee;
         int categorie_id_fk, cout_organisation_client, prix_vente, activite_id;
 
+        public Activite()
+        {
+
+        }
+
         public Activite(int activite_id, string nom_activitee, int categorie_id_fk, int cout_organisation_client, int prix_vente)
         {
             this.activite_id = activite_id;

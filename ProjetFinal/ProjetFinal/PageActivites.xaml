@@ -50,7 +50,9 @@
         </StackPanel>-->
 
 
-        <ListView x:Name="LVliste" Grid.Row="1">
+        <TextBlock x:Name="MessageErreur" />
+        
+        <ListView x:Name="LVactivite" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal" />
@@ -59,11 +61,12 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Activite">
-                    <Border Width="450" Height="100" BorderThickness="2" BorderBrush="Blue" Margin="5">
+                    <Border Width="450" Height="100" BorderThickness="2" BorderBrush="Green" Margin="5">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5" Width="300">
                                 <TextBlock x:Name="nom_activite" Text="{x:Bind Nom_activite, Mode=OneWay}" FontWeight="Bold" FontSize="19" />
                                 <TextBlock FontWeight="Bold" FontSize="19">
+                                <Run Text="Prix par personnes : " />
                                 <Run Text="{x:Bind Prix_vente, Mode=OneWay}" />
                                 <Run Text=" $" />
                                 </TextBlock>

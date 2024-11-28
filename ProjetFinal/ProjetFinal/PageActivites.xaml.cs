@@ -25,7 +25,23 @@ namespace ProjetFinal
     {
         public PageActivites()
         {
+            
             this.InitializeComponent();
+            OnLoad();
+            Singleton.Instance().SetMessageErreur(MessageErreur);
+        }
+
+        private void OnLoad()
+        {
+            try
+            {
+                var liste = Singleton.Instance().GetAllActivites();
+                LVactivite.ItemsSource = liste;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur.Text = $"Erreur lors du chargement: {ex.Message}";
+            }
         }
     }
 }
