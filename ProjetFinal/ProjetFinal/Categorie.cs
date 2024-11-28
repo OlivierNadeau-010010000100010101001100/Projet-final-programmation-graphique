@@ -9,8 +9,8 @@ namespace ProjetFinal
 {
     internal class Categorie
     {
-        public int categorie_id {  get; set; }
-        public string categorie_nom { get; set; }
+        int categorie_id;
+        string categorie_nom;
 
 
         public Categorie() 
