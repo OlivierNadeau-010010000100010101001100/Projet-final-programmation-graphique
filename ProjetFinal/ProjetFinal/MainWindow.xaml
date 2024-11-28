@@ -20,7 +20,7 @@
                 <NavigationViewItemHeader Content="Importations"/>
                 <NavigationViewItem Content="CSV" x:Name="iCSV" Icon="Download"/>
                 <NavigationViewItem Content="CSV" Icon="Upload"/>
-                <NavigationViewItem Content="CSV" Icon="People"/>
+                <NavigationViewItem Content="Test de visuel" x:Name="testVisibility" Icon="People" Visibility="Collapsed"/>
 
 
             </NavigationView.MenuItems>
