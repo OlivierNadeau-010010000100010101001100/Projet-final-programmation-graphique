@@ -12,7 +12,9 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Statistiques.xaml" />
+    <None Remove="PageActivites.xaml" />
+    <None Remove="PageStatistiques.xaml" />
+    <None Remove="PageUser.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +42,17 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Statistiques.xaml">
+    <Page Update="PageUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageStatistiques.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageActivites.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
