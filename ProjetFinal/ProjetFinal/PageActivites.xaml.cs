@@ -37,6 +37,7 @@ namespace ProjetFinal
             {
                 var liste = Singleton.Instance().GetAllActivites();
                 LVactivite.ItemsSource = liste;
+
             }
             catch (Exception ex)
             {

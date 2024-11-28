@@ -127,10 +127,29 @@ namespace ProjetFinal
                         Nom_activite = mySqlDataReader.GetString(1),
                         Categorie_id_fk = mySqlDataReader.GetInt32(2),
                         Cout_organisation_client = mySqlDataReader.GetInt32(3),
-                        Prix_vente = mySqlDataReader.GetInt32(4)
+                        Prix_vente = mySqlDataReader.GetInt32(4),
+                        categorie_activite = "test"
+
 
 
                     };
+
+                    //MySqlCommand categoryCmd = new MySqlCommand("SELECT nom_categorie FROM categorie WHERE categorie_id = @Categorie_id", conn);
+                    //categoryCmd.Parameters.AddWithValue("@Categorie_id", activite.Categorie_id_fk);
+
+                    //// Execute the query for category name
+                    //MySqlDataReader categoryReader = categoryCmd.ExecuteReader();
+                    //if (categoryReader.Read())
+                    //{
+                    //    activite.categorie_activite = categoryReader.GetString(0); // Get category name
+                    //}
+                    //categoryReader.Close();
+
+
+
+
+
+
                     activites.Add(activite);
                 }
 

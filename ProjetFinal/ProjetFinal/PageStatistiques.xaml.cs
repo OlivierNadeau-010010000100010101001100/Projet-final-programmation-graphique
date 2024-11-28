@@ -53,6 +53,7 @@ namespace ProjetFinal
             catch (Exception ex) 
             {
                 MessageErreur.Text = $"Erreur lors du chargement: {ex.Message}";
+                MessageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
             }
         }
     }

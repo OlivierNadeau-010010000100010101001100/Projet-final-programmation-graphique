@@ -11,6 +11,8 @@ namespace ProjetFinal
         string nom_activitee;
         int categorie_id_fk, cout_organisation_client, prix_vente, activite_id;
 
+        public string categorie_activite {get; set;}
+
         public Activite()
         {
 
