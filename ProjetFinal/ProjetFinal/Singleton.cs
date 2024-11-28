@@ -41,10 +41,10 @@ namespace ProjetFinal
 
         public void TestConnection()
         {
-            MySqlConnection conn = null;  
+            MySqlConnection conn = new MySqlConnection(connectionQuery);  
             try
             {
-                conn = new MySqlConnection(connectionQuery);
+                
                 conn.Open();
                 _messageErreur.Text = "Reussi";
             }
