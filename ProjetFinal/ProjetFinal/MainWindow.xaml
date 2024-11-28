@@ -7,7 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid x:Name="gridPrincipale">
+
+        <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="Pages"/>
+                <NavigationViewItem Content="Liste des produits" x:Name="iProduits" Icon="ProtectedDocument"/>
+                <NavigationViewItem Content="Statistiques" x:Name="iStatistiques" Icon="Calculator" Visibility="Collapsed"/>
+
+                <NavigationViewItemSeparator />
+                <NavigationViewItemHeader Content="Importations"/>
+                <NavigationViewItem Content="CSV" x:Name="iCSV" Icon="Download"/>
+
+
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Déconnexion" x:Name="iDeconnexion" Icon="Switch" />
+                <NavigationViewItem Content="Aide" x:Name="iAide" Icon="Help" />
+            </NavigationView.FooterMenuItems>
+
+            <Frame x:Name="mainFrame" />
+        </NavigationView>
+    </Grid>
 </Window>
