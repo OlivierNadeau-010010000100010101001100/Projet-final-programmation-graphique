@@ -12,5 +12,9 @@
 
     <Grid>
         <TextBlock>Page utilisateur</TextBlock>
+        <StackPanel>
+            <Button x:Name="deconnection" Click="deconnection_Click" Background="Red">Déconnexion</Button>
+            <Button x:Name="connection" Click="connection_Click" Background="Green">Connection</Button>
+        </StackPanel>
     </Grid>
 </Page>
