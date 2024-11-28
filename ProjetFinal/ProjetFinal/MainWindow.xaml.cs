@@ -27,6 +27,7 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(PageActivites));
             ifConnected();
             
             

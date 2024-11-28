@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.ModalConnection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    Title="Connexion"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ContentDialog.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="#C5C5C5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="#C5C5C5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+    </ContentDialog.Resources>
+
+    <StackPanel Margin="20">
+        <!-- Champ pour le nom d'utilisateur -->
+        <TextBox x:Name="tbx_utilisateur" PlaceholderText="Nom d'utilisateur" VerticalAlignment="Center"/>
+
+        <!-- Affichage d'erreur pour le matricule -->
+        <TextBlock x:Name="error_matricule" Margin="0,5" Text="Erreur : Matricule invalide" Visibility="Collapsed"/>
+
+        <!-- Champ pour le mot de passe -->
+        <PasswordBox x:Name="tbx_password" PlaceholderText="Mot de passe" VerticalAlignment="Center"/>
+
+    </StackPanel>
+
+    <ContentDialog.PrimaryButtonStyle>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
+    </ContentDialog.PrimaryButtonStyle>
+
+    <ContentDialog.SecondaryButtonStyle>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#F44336"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
+    </ContentDialog.SecondaryButtonStyle>
+</ContentDialog>
