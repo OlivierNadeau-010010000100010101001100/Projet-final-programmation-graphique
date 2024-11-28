@@ -71,37 +71,40 @@ namespace ProjetFinal
 
             MySqlConnection conn = new MySqlConnection(connectionQuery);
             try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM categorie", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                while (mySqlDataReader.Read())
                 {
-
-                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM categorie", conn);
-                    conn.Open();
-                    MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
-
-                    while (mySqlDataReader.Read())
+                    var categorie = new Categorie
                     {
-                        var categorie = new Categorie
-                        {
-                            categorie_id = mySqlDataReader.GetInt32(0),
-                            categorie_nom = mySqlDataReader.GetString(1)
-                        };
-                        categories.Add(categorie);
-                    }
-                    conn.Close();
-
-
-
+                        Categorie_id = mySqlDataReader.GetInt32(0),
+                        Categorie_nom = mySqlDataReader.GetString(1)
+                    };
+                    categories.Add(categorie);
                 }
-                catch (Exception ex)
-                {
 
-                    _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
-                    _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                    _messageErreur.Visibility = Visibility.Visible;
 
-                    Console.WriteLine(ex.Message);
-                }
-            
-            return categories;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
+                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                _messageErreur.Visibility = Visibility.Visible;
+
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+                return categories;
         }
 
 

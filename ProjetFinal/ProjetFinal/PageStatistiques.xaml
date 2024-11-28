@@ -19,8 +19,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Categorie">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding categorie_id}" Width="200" />
-                            <TextBlock Text="{Binding categorie_nom}" Width="100" />
+                            <TextBlock Text="{Binding Categorie_id}" Width="200" />
+                            <TextBlock Text="{Binding Categorie_nom}" Width="100" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
