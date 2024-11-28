@@ -5,13 +5,18 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cour_classes
+namespace ProjetFinal
 {
     internal class Categorie
     {
-        int categorie_id;
-        string categorie_nom;
+        public int categorie_id {  get; set; }
+        public string categorie_nom { get; set; }
 
+
+        public Categorie() 
+        {
+           
+        }
         public Categorie(int categorie_id, string categorie_nom)
         {
             this.categorie_id = categorie_id;

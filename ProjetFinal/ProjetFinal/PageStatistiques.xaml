@@ -10,8 +10,28 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        
-        <TextBlock x:Name="MessageErreur" />
         <Button x:Name="testButton" Click="testButton_Click">TEST CONNECTION</Button>
+        <TextBlock x:Name="MessageErreur" />
+
+
+        <StackPanel>
+            <ListView x:Name="categorieList" MaxHeight="500">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Categorie">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding categorie_id}" Width="200" />
+                            <TextBlock Text="{Binding categorie_nom}" Width="100" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+       
     </Grid>
+    
+        
+    
+
+    
+    
 </Page>
