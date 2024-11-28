@@ -18,8 +18,7 @@
                 <NavigationViewItemHeader Content="Espace Administrateur"/>
                 <NavigationViewItemSeparator />
                 <NavigationViewItemHeader Content="Importations"/>
-                <NavigationViewItem Content="CSV" x:Name="iCSV" Icon="Download"/>
-                <NavigationViewItem Content="CSV" Icon="Upload"/>
+                <NavigationViewItem Content="Exportation CSV" x:Name="iCSV" Icon="Upload"/>
                 <NavigationViewItem Content="Test de visuel" x:Name="testVisibility" Icon="People" Visibility="Collapsed"/>
 
 
