@@ -8,6 +8,13 @@ namespace ProjetFinal
 {
     internal class Singleton
     {
+        static Singleton instance = null;
 
+        public string conn {  get; private set; }
+
+        private Singleton() 
+        {
+            conn = 
+        }
     }
 }
