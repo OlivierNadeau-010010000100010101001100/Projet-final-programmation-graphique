@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -41,7 +42,10 @@ namespace ProjetFinal
                     mainFrame.Navigate(typeof(PageStatistiques));
                     break;
                 case "iCSV":
-                    mainFrame.Navigate(typeof(MainWindow));
+                    mainFrame.Navigate(typeof(PageUser));
+                    break;
+                case "iUser":
+                    mainFrame.Navigate(typeof(PageUser));
                     break;
                 default:
                     break;

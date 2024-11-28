@@ -22,7 +22,7 @@
 
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Utilisateur" x:Name="iDeconnexion" Icon="People" />
+                <NavigationViewItem Content="Utilisateur" x:Name="iUser" Icon="People" />
                 <NavigationViewItem Content="Aide" x:Name="iAide" Icon="Help" />
             </NavigationView.FooterMenuItems>
 
