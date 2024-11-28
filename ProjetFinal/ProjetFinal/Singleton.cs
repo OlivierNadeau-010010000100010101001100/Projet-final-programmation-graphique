@@ -44,13 +44,12 @@ namespace ProjetFinal
             MySqlConnection conn = new MySqlConnection(connectionQuery);  
             try
             {
-                
                 conn.Open();
                 _messageErreur.Text = "Reussi";
             }
             catch (Exception ex)
             {
-                _messageErreur.Text = ex.Message;  
+                _messageErreur.Text = $"{ex.Message}";  
             }
             finally
             {

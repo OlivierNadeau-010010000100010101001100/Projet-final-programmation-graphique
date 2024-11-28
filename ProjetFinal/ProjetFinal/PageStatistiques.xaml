@@ -11,5 +11,6 @@
 
     <Grid>
         <TextBlock>page stats</TextBlock>
+        <TextBlock x:Name="MessageErreur" />
     </Grid>
 </Page>
