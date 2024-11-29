@@ -39,7 +39,7 @@ namespace ProjetFinal
             string nomUtilisateur = Username.Text;   
             string mdp = Password.Password;          
 
-            if (Singleton.Instance().checkUserConn(nomUtilisateur, mdp))
+            if (Singleton.Instance().checkUserConn(nomUtilisateur, mdp, 0))
             {
 
                 MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);

@@ -196,12 +196,13 @@ namespace ProjetFinal
             return categories;
         }
 
-        public bool checkUserConn(string username, string password)
+        public bool checkUserConn(string username, string password, int value) //le checkbox qui check si cest admin ou pas change la value de 0 a 1
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) {
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
                 _messageErreur.Text = $"Il faut remplir les 2 champs";
                 return true;
-                
+
             }
 
 
@@ -209,7 +210,11 @@ namespace ProjetFinal
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT login(@username, @password)", conn); //fonction login que jai fait
+                string fonction = value == 1 ? "loginAdmin" : "login";
+
+                MySqlCommand cmd = new MySqlCommand($"SELECT {fonction}(@username, @password)", conn); //fonction login que jai fait
+
+
 
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
@@ -231,7 +236,7 @@ namespace ProjetFinal
             return true;
         }
 
-        
+
         public static void setUserConn(bool _isConnected)
         {
             isConnected = _isConnected;
