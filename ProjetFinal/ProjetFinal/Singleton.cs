@@ -201,16 +201,35 @@ namespace ProjetFinal
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) {
                 return true;
             }
-            
 
-            
-            return false;
+
+            MySqlConnection conn = new MySqlConnection(connectionQuery);
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT login(@username, @password), conn"); //fonction login que jai fait
+
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                conn.Open();
+
+                int resultat = Convert.ToInt32(cmd.ExecuteScalar());
+
+                if (resultat == 1) { 
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally { conn.Close(); }
+
+            return true;
         }
 
-        public bool checkUserConn()
-        {
-            return isConnected;
-        }
+        
         public static void setUserConn(bool _isConnected)
         {
             isConnected = _isConnected;
