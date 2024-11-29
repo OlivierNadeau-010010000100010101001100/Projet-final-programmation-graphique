@@ -40,12 +40,18 @@
     <StackPanel Margin="20">
         <!-- Champ pour le nom d'utilisateur -->
         <TextBox x:Name="tbx_utilisateur" PlaceholderText="Nom d'utilisateur" VerticalAlignment="Center"/>
-
-        <!-- Affichage d'erreur pour le matricule -->
         <TextBlock x:Name="error_matricule" Margin="0,5" Text="Erreur : Matricule invalide" Visibility="Collapsed"/>
+
+        
+        <ComboBox x:Name="TypeUtilisateur" Header="Choississez une catégorie" Margin="10" SelectedIndex="1">
+            <x:String>Utilisateur</x:String>
+            <x:String>Administrateur</x:String>
+        </ComboBox>
+        <TextBlock x:Name="error_type" Margin="0,5" Text="Erreur : Veuillez choisir un type d'utilisateur" Visibility="Collapsed"/>
 
         <!-- Champ pour le mot de passe -->
         <PasswordBox x:Name="tbx_password" PlaceholderText="Mot de passe" VerticalAlignment="Center"/>
+        <TextBlock x:Name="error_password" Margin="0,5" Text="Erreur : Mot de passe invalide" Visibility="Collapsed"/>
 
     </StackPanel>
 
