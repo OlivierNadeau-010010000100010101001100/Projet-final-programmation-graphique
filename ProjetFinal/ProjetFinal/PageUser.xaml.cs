@@ -37,9 +37,10 @@ namespace ProjetFinal
         private void Connection_Click(object sender, RoutedEventArgs e)
         {
             string nomUtilisateur = Username.Text;   
-            string mdp = Password.Password;          
+            string mdp = Password.Password;
+            int adminCheck = 0;
 
-            if (Singleton.Instance().checkUserConn(nomUtilisateur, mdp, 0))
+            if (Singleton.Instance().checkUserConn(nomUtilisateur, mdp, adminCheck))
             {
 
                 MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
