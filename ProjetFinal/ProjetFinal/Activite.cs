@@ -8,8 +8,8 @@ namespace ProjetFinal
 {
     internal class Activite
     {
-        public string nom_activitee, categorie_activite;
-        public int categorie_id_fk, cout_organisation_client, prix_vente, activite_id;
+        string nom_activitee, categorie_activite;
+        int categorie_id_fk, cout_organisation_client, prix_vente, activite_id;
 
 
         public Activite()
