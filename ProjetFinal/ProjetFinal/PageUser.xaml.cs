@@ -38,7 +38,7 @@ namespace ProjetFinal
         {
             string nomUtilisateur = Username.Text;   
             string mdp = Password.Password;
-            int adminCheck = 1;
+            int adminCheck = (IsAdminCheckBox.IsChecked == true) ? 1 : 0;
 
             if (Singleton.Instance().UserConnection(nomUtilisateur, mdp, adminCheck))
             {
@@ -66,6 +66,7 @@ namespace ProjetFinal
             deconnection.Visibility = Visibility.Visible;
             PasswordText.Visibility = Visibility.Collapsed;
             UsernameText.Visibility = Visibility.Collapsed;
+            IsAdminCheckBox.Visibility = Visibility.Collapsed;
         }
 
         private void IsDisconnected() 
@@ -76,6 +77,8 @@ namespace ProjetFinal
             deconnection.Visibility = Visibility.Collapsed;
             PasswordText.Visibility = Visibility.Visible;
             UsernameText.Visibility = Visibility.Visible;
+            IsAdminCheckBox.Visibility= Visibility.Visible;
+            IsAdminCheckBox.IsChecked = false;
             MessageConn.Text = "";
             Username.Text = "";
             Password.Password = "";

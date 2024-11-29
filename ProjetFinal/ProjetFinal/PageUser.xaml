@@ -17,6 +17,7 @@
             <TextBox x:Name="Username" Visibility="Visible" />
             <TextBlock x:Name="PasswordText" Text="Mot de passe" />
             <PasswordBox x:Name="Password" Visibility="Visible" />
+            <CheckBox x:Name="IsAdminCheckBox" Content="Se connecter en tant qu'admin" Visibility="Visible"/>
 
             <Button x:Name="connection" Click="Connection_Click" Background="Green" Visibility="Visible">Connection</Button>
             <Button x:Name="deconnection" Click="Deconnection_Click" Background="Red" Visibility="Collapsed">Déconnexion</Button>
