@@ -44,5 +44,16 @@ namespace ProjetFinal
                 MessageErreur.Text = $"Erreur lors du chargement: {ex.Message}";
             }
         }
+
+        private void LVactivite_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LVactivite.SelectedIndex != -1) 
+            {
+                var activite = (Activite)LVactivite.SelectedItem;
+                string nomActivite = activite.Nom_activite;
+                string categorieActivite = activite.Categorie_activite;
+                TextBlockTest.Text = $"{nomActivite} : {categorieActivite}";
+            }
+        }
     }
 }

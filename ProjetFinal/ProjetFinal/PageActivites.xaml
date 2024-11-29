@@ -9,7 +9,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    
+    
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -51,14 +54,17 @@
 
 
         <TextBlock x:Name="MessageErreur" />
+        <TextBlock x:Name="TextBlockTest"></TextBlock>
         
-        <ListView x:Name="LVactivite" Grid.Row="1">
+        <ListView x:Name="LVactivite" Grid.Row="1" SelectionChanged="LVactivite_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
 
+           
+            
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Activite">
                     <Border Width="450" Height="100" BorderThickness="2" BorderBrush="Green" Margin="5">

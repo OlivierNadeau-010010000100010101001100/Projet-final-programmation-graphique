@@ -173,7 +173,7 @@ namespace ProjetFinal
             MySqlConnection conn = new MySqlConnection(connectionQuery);
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT categorie_id, nom_categorie FROM categorie", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM GetCategorieDictionaire", conn); //j'ai cree une view 
                 conn.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
 
