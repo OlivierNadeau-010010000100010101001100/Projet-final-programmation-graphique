@@ -163,6 +163,11 @@ namespace ProjetFinal
         {
             _isConnected = isConnected;
         }
+
+        public static bool CheckConnection()
+        {
+            return _isConnected;
+        }
         /* ********************************************************** GESTION DES MESSAGES D'ERREURS **************************************************** */
 
         public void SetMessageErreur(TextBlock message)   //set le message qui sera envoye au visuel

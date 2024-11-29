@@ -83,7 +83,7 @@ namespace ProjetFinal
 
         private void CheckConnection()
         {
-            if (Singleton._isConnected)
+            if (Singleton.CheckConnection())
             {
                 IsConnected();
             }
