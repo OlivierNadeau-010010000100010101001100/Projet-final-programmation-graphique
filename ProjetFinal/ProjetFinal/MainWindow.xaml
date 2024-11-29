@@ -24,7 +24,7 @@
 
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Utilisateur" x:Name="iUser" Icon="People" />
+                <NavigationViewItem Content="Connection" x:Name="iUser" Icon="People" />
             </NavigationView.FooterMenuItems>
 
             <Frame x:Name="mainFrame" />

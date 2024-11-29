@@ -12,8 +12,9 @@ namespace ProjetFinal
 {
     internal class Singleton
     {
-        
-        public static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
+        public static event Action UserConnectionChange; //evenement qui refresh le nom d'utilisateur quand il est invoke
+        private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
+        private static string _username = string.Empty;
         static Singleton instance = null;
         private TextBlock _message; //gestion des messages et messages d'erreur
         private string _connectionQuery;
@@ -141,12 +142,21 @@ namespace ProjetFinal
                 cmd.Parameters.AddWithValue("@password", password);
                 conn.Open();
                 int resultat = Convert.ToInt32(cmd.ExecuteScalar());
-                if (resultat == 1)
+
+                if (resultat == 1 && value == 1)
                 {
+                    _username = username;
                     Message("Connection Réussi");
                     return false;
+
+                } else if(resultat == 1 && value == 0) { //si cest PAS un admin et que la session existe ca utilise la fonction nomUtilisateur pour retourner le nom de la personne
+                    cmd.CommandText = "SELECT nomUtilisateur(@id)"; 
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", username);
+                    string fullName = cmd.ExecuteScalar()?.ToString();
+                    _username = fullName;
+                    return false;
                 }
-                
             }
             catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
             finally { conn.Close(); }
@@ -159,14 +169,22 @@ namespace ProjetFinal
         {
             return true;
         }
+
         public static void SetUserConn(bool isConnected)    //change la connection pour vrai ou faux a travers l'instance du programme
         {
             _isConnected = isConnected;
+            _username = isConnected ? _username : "Connection";
+            UserConnectionChange.Invoke();  //invoque l'evenement pour refresh le nom d'utilisateur
         }
 
-        public static bool CheckConnection()
+        public static bool CheckConnection()    //verifie la connection 
         {
             return _isConnected;
+        }
+
+        public static string GetUsername()  //prends le username de la session
+        {
+            return _username;
         }
         /* ********************************************************** GESTION DES MESSAGES D'ERREURS **************************************************** */
 

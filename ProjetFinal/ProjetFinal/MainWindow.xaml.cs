@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -29,11 +30,14 @@ namespace ProjetFinal
             this.InitializeComponent();
             mainFrame.Navigate(typeof(PageActivites));
             ifConnected();
+            Singleton.UserConnectionChange += () => iUser.Content = Singleton.GetUsername();
             
             
 
         }
 
+
+       
         private void nav_view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = args.SelectedItem as NavigationViewItem;
