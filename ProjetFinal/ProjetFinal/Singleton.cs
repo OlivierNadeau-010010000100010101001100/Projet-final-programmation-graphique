@@ -13,7 +13,7 @@ namespace ProjetFinal
     internal class Singleton
     {
 
-
+        public static bool isConnected = false;
         static Singleton instance = null;
         private TextBlock _messageErreur;
 
@@ -194,6 +194,26 @@ namespace ProjetFinal
             }
 
             return categories;
+        }
+
+        public bool checkUserConn(string username, string password)
+        {
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) {
+                return true;
+            }
+            
+
+            
+            return false;
+        }
+
+        public bool checkUserConn()
+        {
+            return isConnected;
+        }
+        public static void setUserConn(bool _isConnected)
+        {
+            isConnected = _isConnected;
         }
 
     }

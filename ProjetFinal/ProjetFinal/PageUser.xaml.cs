@@ -27,18 +27,75 @@ namespace ProjetFinal
         {
 
             this.InitializeComponent();
+            checkConnection();
+
 
 
         }
 
-        private void connection_Click(object sender, RoutedEventArgs e)
+        private void Connection_Click(object sender, RoutedEventArgs e)
         {
+            string nomUtilisateur = Username.Text;   
+            string mdp = Password.Password;          
 
+            if (Singleton.Instance().checkUserConn(nomUtilisateur, mdp))
+            {
+
+                MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                MessageConn.Text = "Echec";
+                Singleton.setUserConn(false);
+            }
+            else
+            {
+                MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+                MessageConn.Text = "Reussi";
+                
+                Singleton.setUserConn(true);
+                isConnected();
+
+            }
         }
 
         private void deconnection_Click(object sender, RoutedEventArgs e)
         {
-
+            isDisconnected();
+            Singleton.setUserConn(false);
         }
+
+        private void isConnected()
+        {
+            Username.Visibility = Visibility.Collapsed;         //A regrouper plus tard dans le visuel pour juste avoir 1 seul visiblility change a faire
+            Password.Visibility = Visibility.Collapsed;
+            connection.Visibility = Visibility.Collapsed;
+            deconnection.Visibility = Visibility.Visible;
+            PasswordText.Visibility = Visibility.Collapsed;
+            UsernameText.Visibility = Visibility.Collapsed;
+        }
+
+        private void isDisconnected() 
+        {
+            Username.Visibility = Visibility.Visible;               //A regrouper plus tard dans le visuel pour juste avoir 1 seul visiblility change a faire
+            Password.Visibility = Visibility.Visible;
+            connection.Visibility = Visibility.Visible;
+            deconnection.Visibility = Visibility.Collapsed;
+            PasswordText.Visibility = Visibility.Visible;
+            UsernameText.Visibility = Visibility.Visible;
+            MessageConn.Text = "";
+            Username.Text = "";
+            Password.Password = "";
+        }
+
+        private void checkConnection()
+        {
+            if (Singleton.isConnected)
+            {
+                isConnected();
+            }
+            else
+            {
+                isDisconnected();
+            }
+        }
+
     }
 }

@@ -11,10 +11,16 @@
     >
 
     <Grid>
-        <TextBlock>Page utilisateur</TextBlock>
+        <TextBlock></TextBlock>
         <StackPanel>
-            <Button x:Name="deconnection" Click="deconnection_Click" Background="Red">Déconnexion</Button>
-            <Button x:Name="connection" Click="connection_Click" Background="Green">Connection</Button>
+            <TextBlock x:Name="UsernameText" Text="Nom utilisateur" />
+            <TextBox x:Name="Username" Visibility="Visible" />
+            <TextBlock x:Name="PasswordText" Text="Mot de passe" />
+            <PasswordBox x:Name="Password" Visibility="Visible" />
+
+            <Button x:Name="connection" Click="Connection_Click" Background="Green" Visibility="Visible">Connection</Button>
+            <Button x:Name="deconnection" Click="deconnection_Click" Background="Red" Visibility="Collapsed">Déconnexion</Button>
+            <TextBlock x:Name="MessageConn" />
         </StackPanel>
     </Grid>
 </Page>
