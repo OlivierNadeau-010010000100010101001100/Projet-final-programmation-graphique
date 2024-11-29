@@ -155,6 +155,7 @@ namespace ProjetFinal
                     cmd.Parameters.AddWithValue("@id", username);
                     string fullName = cmd.ExecuteScalar()?.ToString();
                     _username = fullName;
+                    Message("Connection Réussi");
                     return false;
                 }
             }
