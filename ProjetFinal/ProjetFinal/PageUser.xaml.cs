@@ -28,6 +28,7 @@ namespace ProjetFinal
 
             this.InitializeComponent();
             checkConnection();
+            Singleton.Instance().SetMessageErreur(MessageConn);
 
 
 
@@ -42,7 +43,7 @@ namespace ProjetFinal
             {
 
                 MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                MessageConn.Text = "Echec";
+                
                 Singleton.setUserConn(false);
             }
             else

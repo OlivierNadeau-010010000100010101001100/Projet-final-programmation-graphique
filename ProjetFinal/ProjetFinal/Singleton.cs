@@ -199,7 +199,9 @@ namespace ProjetFinal
         public bool checkUserConn(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) {
+                _messageErreur.Text = $"Il faut remplir les 2 champs";
                 return true;
+                
             }
 
 
@@ -207,22 +209,22 @@ namespace ProjetFinal
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT login(@username, @password), conn"); //fonction login que jai fait
+                MySqlCommand cmd = new MySqlCommand("SELECT login(@username, @password)", conn); //fonction login que jai fait
 
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 conn.Open();
-
                 int resultat = Convert.ToInt32(cmd.ExecuteScalar());
 
-                if (resultat == 1) { 
+                if (resultat == 1)
+                {
                     return false;
                 }
-                
+
             }
             catch (Exception ex)
             {
-
+                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
             }
             finally { conn.Close(); }
 
