@@ -19,7 +19,7 @@
             <PasswordBox x:Name="Password" Visibility="Visible" />
 
             <Button x:Name="connection" Click="Connection_Click" Background="Green" Visibility="Visible">Connection</Button>
-            <Button x:Name="deconnection" Click="deconnection_Click" Background="Red" Visibility="Collapsed">Déconnexion</Button>
+            <Button x:Name="deconnection" Click="Deconnection_Click" Background="Red" Visibility="Collapsed">Déconnexion</Button>
             <TextBlock x:Name="MessageConn" />
         </StackPanel>
     </Grid>

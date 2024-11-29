@@ -12,70 +12,48 @@ namespace ProjetFinal
 {
     internal class Singleton
     {
-
-        public static bool isConnected = false;
+        
+        public static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         static Singleton instance = null;
-        private TextBlock _messageErreur;
+        private TextBlock _message; //gestion des messages et messages d'erreur
+        private string _connectionQuery;
+        public static Singleton Instance() => instance ??= new Singleton();
 
-        public string connectionQuery { get; private set; }
+        /* ********************************************************** CONFIGURATION INITIALE **************************************************** */
 
         private Singleton()
         {
-            connectionQuery = "Server=cours.cegep3r.info;Database=a2024_420335ri_eq8;Uid=2011835;Pwd=2011835;";
-            
+            _connectionQuery = "Server=cours.cegep3r.info;Database=a2024_420335ri_eq8;Uid=2011835;Pwd=2011835;"; //connection a la base de donnée
         }
 
-        public static Singleton Instance()
+        private MySqlConnection Connection()    //Methode pour la connection DB
         {
-            if (instance == null)
-            {
-                instance = new Singleton();
-            }
-            return instance;
+            return new MySqlConnection(_connectionQuery);
         }
 
-        public void SetMessageErreur(TextBlock messageErreur)
+        public void TestConnection()    //Juste un test de connection
         {
-            _messageErreur = messageErreur;
-        }
-
-        public void TestConnection()
-        {
-            MySqlConnection conn = new MySqlConnection(connectionQuery);  
+            MySqlConnection conn = Connection();
             try
             {
                 conn.Open();
-                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
-                _messageErreur.Text = "Reussi";
+                Message("Reussi");
             }
-            catch (Exception ex)
-            {
-                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                _messageErreur.Text = $"{ex.Message}";  
-            }
-            finally
-            {
-                    conn.Close();
-            }
+            catch (Exception ex) { MessageErreur("", ex.Message); }
+            finally { conn.Close(); }
         }
 
-        public bool getConnectionUser()
+        /* ********************************************************** GESTION DES TABLES DE BASE DE DONNÉE **************************************************** */
+
+        public List<Categorie> GetAllCategories()   //vas chercher tout les categories et les mets dans une liste
         {
-            return true;
-        }
-
-        public List<Categorie> GetAllCategories()
-        {
-            List<Categorie> categories = new List<Categorie>();
-
-
-            MySqlConnection conn = new MySqlConnection(connectionQuery);
+            List<Categorie> categories = new();
+            var conn = Connection();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM categorie", conn);
+                MySqlCommand cmd = new("SELECT * FROM categorie", conn);
                 conn.Open();
                 MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
-
                 while (mySqlDataReader.Read())
                 {
                     var categorie = new Categorie
@@ -85,37 +63,41 @@ namespace ProjetFinal
                     };
                     categories.Add(categorie);
                 }
-
-
-
-
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
 
-                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
-                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                _messageErreur.Visibility = Visibility.Visible;
-
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-                return categories;
+            return categories;
         }
 
-        public List<Activite> GetAllActivites()
+        public Dictionary<int, string> GetCategoriesDictionary()    //cree un dictionaire pour mettre les id de categorie et leur nom ensemble
         {
-            List<Activite> activites = new List<Activite>();
-
-
-            MySqlConnection conn = new MySqlConnection(connectionQuery);
+            Dictionary<int, string> categories = new();
+            var conn = Connection();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM activites", conn);
+                MySqlCommand cmd = new("SELECT * FROM GetCategorieDictionaire", conn); //j'ai cree une view 
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    categories.Add(reader.GetInt32(0), reader.GetString(1));
+                }
+            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
+
+            return categories;
+        }
+
+        public List<Activite> GetAllActivites()     //vas chercher tout les actrivite et les mets dans une liste
+        {
+            List<Activite> activites = new();
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT * FROM activites", conn);
                 conn.Open();
                 MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
                 var categoriesDictionary = GetCategoriesDictionary();
@@ -130,117 +112,79 @@ namespace ProjetFinal
                         Cout_organisation_client = mySqlDataReader.GetInt32(3),
                         Prix_vente = mySqlDataReader.GetInt32(4),
                         Categorie_activite = categoriesDictionary.ContainsKey(mySqlDataReader.GetInt32(2)) ? categoriesDictionary[mySqlDataReader.GetInt32(2)] : "Invalide"
-
-
-
                     };
-
-                    
-
-
-
-
-
-
                     activites.Add(activite);
                 }
-
-
-
-
             }
-            catch (Exception ex)
-            {
-
-                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
-                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                _messageErreur.Visibility = Visibility.Visible;
-
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
 
             return activites;
         }
 
-        public Dictionary<int, string> GetCategoriesDictionary()
-        {
-            Dictionary<int, string> categories = new Dictionary<int, string>();
+        /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */
 
-            MySqlConnection conn = new MySqlConnection(connectionQuery);
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM GetCategorieDictionaire", conn); //j'ai cree une view 
-                conn.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    categories.Add(reader.GetInt32(0), reader.GetString(1));
-                }
-            }
-            catch (Exception ex)
-            {
-                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
-                _messageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                _messageErreur.Visibility = Visibility.Visible;
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return categories;
-        }
-
-        public bool checkUserConn(string username, string password, int value) //le checkbox qui check si cest admin ou pas change la value de 0 a 1
+        public bool UserConnection(string username, string password, int value) //la connection a l'usager, le "value" est pour savoir si cest un admin(1) ou un usager(0)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                _messageErreur.Text = $"Il faut remplir les 2 champs";
+                MessageErreur("Il faut remplir les 2 champs", "");
                 return true;
-
             }
-
-
-            MySqlConnection conn = new MySqlConnection(connectionQuery);
+            var conn = Connection();
 
             try
             {
                 string fonction = value == 1 ? "loginAdmin" : "login";
-
                 MySqlCommand cmd = new MySqlCommand($"SELECT {fonction}(@username, @password)", conn); //fonction login que jai fait
-
-
-
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 conn.Open();
                 int resultat = Convert.ToInt32(cmd.ExecuteScalar());
-
                 if (resultat == 1)
                 {
+                    Message("Connection Réussi");
                     return false;
                 }
-
+                
             }
-            catch (Exception ex)
-            {
-                _messageErreur.Text = $"Erreur base de donnée: {ex.Message}";
-            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
             finally { conn.Close(); }
 
+            MessageErreur("Nom d\'utilisateur ou mot de passe invalide", "");
             return true;
         }
 
-
-        public static void setUserConn(bool _isConnected)
+        public bool getConnectionUser() //???
         {
-            isConnected = _isConnected;
+            return true;
         }
+        public static void SetUserConn(bool isConnected)    //change la connection pour vrai ou faux a travers l'instance du programme
+        {
+            _isConnected = isConnected;
+        }
+        /* ********************************************************** GESTION DES MESSAGES D'ERREURS **************************************************** */
+
+        public void SetMessageErreur(TextBlock message)   //set le message qui sera envoye au visuel
+        {
+            _message = message;
+        }
+
+        public void Message(string message) //pour les messages positif VERT
+        {
+            _message.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+            _message.Text = message;
+            _message.Visibility = Visibility.Visible;
+        }
+
+        public void MessageErreur(string message, string erreur)    //pour les messages d'erreur ROUGE
+        {
+            _message.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+            _message.Text = $"{message} {erreur}";
+            _message.Visibility = Visibility.Visible;
+        }
+
+
 
     }
 }
