@@ -43,7 +43,9 @@ namespace ProjetFinal
             {
 
                 MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                
+                MessageConn.Text = "Nom d'utilisateur ou mot de passe invalide";
+                Password.Password = "";
+
                 Singleton.setUserConn(false);
             }
             else
