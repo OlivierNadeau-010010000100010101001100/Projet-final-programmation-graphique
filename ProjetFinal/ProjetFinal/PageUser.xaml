@@ -13,6 +13,8 @@
     <Grid>
         <TextBlock></TextBlock>
         <StackPanel>
+            <TextBlock x:Name="tbx_hello" Visibility="Collapsed"></TextBlock>
+            
             <TextBlock x:Name="UsernameText" Text="Nom utilisateur" />
             <TextBox x:Name="Username" Visibility="Visible" />
             <TextBlock x:Name="PasswordText" Text="Mot de passe" />

@@ -178,7 +178,7 @@ namespace ProjetFinal
             UserConnectionChange.Invoke();  //invoque l'evenement pour refresh le nom d'utilisateur
         }
 
-        public static bool CheckConnection()    //verifie la connection 
+        public static bool CheckConnection()    //retourne l'état de la connection 
         {
             return _isConnected;
         }
