@@ -130,7 +130,7 @@ namespace ProjetFinal
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageErreur("Il faut remplir les 2 champs", "");
-                return true;
+                return false;
             }
             var conn = Connection();
 
@@ -147,7 +147,7 @@ namespace ProjetFinal
                 {
                     _username = username;
                     Message("Connection Réussi");
-                    return false;
+                    return true;
 
                 } else if(resultat == 1 && value == 0) { //si cest PAS un admin et que la session existe ca utilise la fonction nomUtilisateur pour retourner le nom de la personne
                     cmd.CommandText = "SELECT nomUtilisateur(@id)"; 
@@ -156,19 +156,14 @@ namespace ProjetFinal
                     string fullName = cmd.ExecuteScalar()?.ToString();
                     _username = fullName;
                     Message("Connection Réussi");
-                    return false;
+                    return true;
                 }
             }
             catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
             finally { conn.Close(); }
 
             MessageErreur("Nom d\'utilisateur ou mot de passe invalide", "");
-            return true;
-        }
-
-        public bool getConnectionUser() //???
-        {
-            return true;
+            return false;
         }
 
         public static void SetUserConn(bool isConnected)    //change la connection pour vrai ou faux a travers l'instance du programme

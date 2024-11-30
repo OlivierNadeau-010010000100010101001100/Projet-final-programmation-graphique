@@ -9,6 +9,7 @@
     mc:Ignorable="d"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     Title="Connexion"
+    Closing="ContentDialog_Closing"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ContentDialog.Resources>

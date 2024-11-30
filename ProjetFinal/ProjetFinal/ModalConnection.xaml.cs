@@ -20,10 +20,10 @@ namespace ProjetFinal
 {
     public sealed partial class ModalConnection : ContentDialog
     {
-        public String Nom_utilisateur { get; set; }
-        public String Mot_de_passe { get; set; }
+        //public String Nom_utilisateur { get; set; }
+        //public String Mot_de_passe { get; set; }
 
-        bool close = false;
+        bool validation = false;
 
         public ModalConnection()
         {
@@ -36,5 +36,9 @@ namespace ProjetFinal
             Mot_de_passe = tbx_password.Password;
         }
 
+        private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+
+        }
     }
 }
