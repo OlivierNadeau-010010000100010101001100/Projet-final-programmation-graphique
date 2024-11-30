@@ -64,8 +64,8 @@ namespace ProjetFinal
                 case "iUser":
                     mainFrame.Navigate(typeof(PageUser));
                     break;
-                case "Settings":
-                    mainFrame.Navigate(typeof(PageUser));
+                case "iQuitter":
+                    Application.Current.Exit();
                     break;
                 default:
                     break;
@@ -76,6 +76,9 @@ namespace ProjetFinal
         public void ConnectionXamlVisibilityModifications()
         {
             string userType = Singleton.GetUserType();
+
+            // Une nouvelle variable a été créer dans le Singleton aisni qu'une fonction, si le user n'Est rien, cela veut dire qu'il a été déconnecté, si il est admin, cela veut dire qu'il voit les items de admins
+
             if (userType == "")
             {
                 HeaderAdmin.Visibility = Visibility.Collapsed;

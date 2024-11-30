@@ -89,7 +89,6 @@ namespace ProjetFinal
 
                 connection.Visibility = Visibility.Collapsed;
                 deconnection.Visibility = Visibility.Visible;
-
                 tbl_bonjour.Visibility = Visibility.Visible;
                 tbl_email.Visibility = Visibility.Visible;
                 

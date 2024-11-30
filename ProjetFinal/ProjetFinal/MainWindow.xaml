@@ -9,7 +9,7 @@
 
     <Grid x:Name="gridPrincipale">
 
-        <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged">
+        <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged" IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Navigation"/>
                 <NavigationViewItem Content="Liste Activitées" x:Name="iActivite" Icon="Library"/>
@@ -24,6 +24,7 @@
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Connection" x:Name="iUser" Icon="People" />
+                <NavigationViewItem Content="Quitter" x:Name="iQuitter" Icon="LeaveChat" />
             </NavigationView.FooterMenuItems>
 
             <Frame x:Name="mainFrame" />
