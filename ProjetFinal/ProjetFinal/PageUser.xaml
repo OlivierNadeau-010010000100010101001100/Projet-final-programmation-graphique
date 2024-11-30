@@ -13,14 +13,15 @@
     <Grid x:Name="grid_user">
         <TextBlock></TextBlock>
         <StackPanel>
-            <TextBlock x:Name="tbx_bonjour" Visibility="Collapsed"></TextBlock>
+            <TextBlock x:Name="tbl_bonjour" Visibility="Collapsed" FontSize="25">
+                <Run Text="Bonjour"></Run>
+                <Run Text=" test"></Run>
+                
+            </TextBlock>
+            <TextBlock x:Name="tbl_email">
+                <Run Text="test mail"></Run>
+            </TextBlock>
             
-            <TextBlock x:Name="UsernameText" Text="Nom utilisateur" />
-            <TextBox x:Name="Username" Visibility="Visible" />
-            <TextBlock x:Name="PasswordText" Text="Mot de passe" />
-            <PasswordBox x:Name="Password" Visibility="Visible" />
-            <CheckBox x:Name="IsAdminCheckBox" Content="Se connecter en tant qu'admin" Visibility="Visible"/>
-
             <Button x:Name="connection" Click="Connection_Click" Background="Green" Visibility="Visible">Connection</Button>
             <Button x:Name="deconnection" Click="Deconnection_Click" Background="Red" Visibility="Collapsed">Déconnexion</Button>
             <TextBlock x:Name="MessageConn" />

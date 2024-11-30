@@ -32,8 +32,23 @@ namespace ProjetFinal
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Nom_utilisateur = tbx_utilisateur.Text;
-            Mot_de_passe = tbx_password.Password;
+
+            string nomUtilisateur = tbx_utilisateur.Text;
+            string mdp = tbx_password.Password;
+            int combobox = user_type.SelectedIndex;
+
+            if (Singleton.Instance().UserConnection(nomUtilisateur, mdp, combobox))
+            {
+                // si l'utilisateur est conencté
+                Singleton.SetUserConn(true);
+            }
+            else
+            {
+                // s'il n'est pas connecté
+                tbx_password.Password = "";
+                Singleton.SetUserConn(false);
+            }
+
         }
 
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)

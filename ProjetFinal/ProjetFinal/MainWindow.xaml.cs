@@ -29,7 +29,7 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             mainFrame.Navigate(typeof(PageActivites));
-            ifConnected();
+            //ifConnected();
             Singleton.UserConnectionChange += () => iUser.Content = Singleton.GetUsername();
             
             
@@ -65,16 +65,16 @@ namespace ProjetFinal
 
         }
 
-        private void ifConnected()
-        {
-            bool connected;
-            connected = Singleton.Instance().getConnectionUser();
+        //private void ifConnected()
+        //{
+        //    bool connected;
+        //    connected = Singleton.Instance().getConnectionUser();
 
 
-            if (connected == true)
-            {
-                testVisibility.Visibility = Visibility.Visible;
-            }
-        }
+        //    if (connected == true)
+        //    {
+        //        testVisibility.Visibility = Visibility.Visible;
+        //    }
+        //}
     }
 }

@@ -47,20 +47,17 @@ namespace ProjetFinal
 
             var result = await modalconnection.ShowAsync();
 
-            //string nomUtilisateur = Username.Text;   
-            //string mdp = Password.Password;
-            //int adminCheck = (IsAdminCheckBox.IsChecked == true) ? 1 : 0;
 
-            //if (Singleton.Instance().UserConnection(nomUtilisateur, mdp, adminCheck))
-            //{
-            //    Password.Password = "";
-            //    Singleton.SetUserConn(false);
-            //}
-            //else
-            //{
-            //    Singleton.SetUserConn(true);
-            //    IsConnected();
-            //}
+            Singleton.CheckConnection();
+
+            if (Singleton.CheckConnection())
+            {
+                IsConnected();
+
+            } else
+            {
+
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -74,47 +71,22 @@ namespace ProjetFinal
 
         private void Deconnection_Click(object sender, RoutedEventArgs e)
         {
-            IsDisconnected();
             Singleton.SetUserConn(false);
+            ConnectionModifications(false);
         }
 
-        private void IsConnected()
+        private void ConnectionModifications(bool connection_affichage)
         {
-            Username.Visibility = Visibility.Collapsed;         //A regrouper plus tard dans le visuel pour juste avoir 1 seul visiblility change a faire
-            Password.Visibility = Visibility.Collapsed;
-            connection.Visibility = Visibility.Collapsed;
-            deconnection.Visibility = Visibility.Visible;
-            PasswordText.Visibility = Visibility.Collapsed;
-            UsernameText.Visibility = Visibility.Collapsed;
-            IsAdminCheckBox.Visibility = Visibility.Collapsed;
-        }
-
-        private void IsDisconnected() 
-        {
-            Username.Visibility = Visibility.Visible;               //A regrouper plus tard dans le visuel pour juste avoir 1 seul visiblility change a faire
-            Password.Visibility = Visibility.Visible;
-            connection.Visibility = Visibility.Visible;
-            deconnection.Visibility = Visibility.Collapsed;
-            PasswordText.Visibility = Visibility.Visible;
-            UsernameText.Visibility = Visibility.Visible;
-            IsAdminCheckBox.Visibility= Visibility.Visible;
-            IsAdminCheckBox.IsChecked = false;
-            MessageConn.Text = "";
-            Username.Text = "";
-            Password.Password = "";
-        }
-
-        private void CheckConnection()
-        {
-            if (Singleton.CheckConnection())
+            if (connection_affichage)
             {
-                IsConnected();
-            }
-            else
+                connection.Visibility = Visibility.Collapsed;
+                deconnection.Visibility = Visibility.Visible;
+            } else 
             {
-                IsDisconnected();
+                connection.Visibility = Visibility.Visible;
+                deconnection.Visibility = Visibility.Collapsed;
+                MessageConn.Text = "";
             }
         }
-
     }
 }

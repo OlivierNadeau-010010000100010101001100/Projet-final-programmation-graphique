@@ -12,7 +12,7 @@
     Closing="ContentDialog_Closing"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ContentDialog.Resources>
+    <!--<ContentDialog.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Height" Value="40"/>
@@ -36,27 +36,24 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Visibility" Value="Collapsed"/>
         </Style>
-    </ContentDialog.Resources>
+    </ContentDialog.Resources>-->
 
     <StackPanel Margin="20">
-        <!-- Champ pour le nom d'utilisateur -->
         <TextBox x:Name="tbx_utilisateur" PlaceholderText="Nom d'utilisateur" VerticalAlignment="Center"/>
-        <TextBlock x:Name="error_matricule" Margin="0,5" Text="Erreur : Matricule invalide" Visibility="Collapsed"/>
 
-        
-        <ComboBox x:Name="TypeUtilisateur" Header="Choississez une catégorie" Margin="10" SelectedIndex="1">
+        <PasswordBox x:Name="tbx_password" PlaceholderText="Mot de passe" VerticalAlignment="Center"/>
+
+        <ComboBox x:Name="user_type" Header="Choississez une catégorie" Margin="10" SelectedIndex="0">
             <x:String>Utilisateur</x:String>
             <x:String>Administrateur</x:String>
         </ComboBox>
-        <TextBlock x:Name="error_type" Margin="0,5" Text="Erreur : Veuillez choisir un type d'utilisateur" Visibility="Collapsed"/>
 
-        <!-- Champ pour le mot de passe -->
-        <PasswordBox x:Name="tbx_password" PlaceholderText="Mot de passe" VerticalAlignment="Center"/>
-        <TextBlock x:Name="error_password" Margin="0,5" Text="Erreur : Mot de passe invalide" Visibility="Collapsed"/>
+        <TextBlock x:Name="MessageConn" />
+
 
     </StackPanel>
 
-    <ContentDialog.PrimaryButtonStyle>
+    <!--<ContentDialog.PrimaryButtonStyle>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#4CAF50"/>
             <Setter Property="Foreground" Value="White"/>
@@ -74,5 +71,5 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
-    </ContentDialog.SecondaryButtonStyle>
+    </ContentDialog.SecondaryButtonStyle>-->
 </ContentDialog>
