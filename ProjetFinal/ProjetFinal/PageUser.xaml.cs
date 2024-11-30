@@ -47,9 +47,9 @@ namespace ProjetFinal
             var result = await modalconnection.ShowAsync();
 
 
-            Singleton.CheckConnection();
+            Singleton.GetUserConnection();
 
-            if (Singleton.CheckConnection())
+            if (Singleton.GetUserConnection())
             {
                 ConnectionModifications(true);
 
@@ -78,8 +78,13 @@ namespace ProjetFinal
         {
             if (connection_affichage)
             {
+                // Si la connection a bel et bien été établis, ont affiche les informations de l'utilisateur
+
                 connection.Visibility = Visibility.Collapsed;
                 deconnection.Visibility = Visibility.Visible;
+
+                tbl_bonjour.Visibility = Visibility.Visible;
+                tbl_email.Visibility = Visibility.Visible;
             } else 
             {
                 connection.Visibility = Visibility.Visible;

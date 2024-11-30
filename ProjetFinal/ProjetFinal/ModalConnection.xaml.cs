@@ -21,14 +21,12 @@ namespace ProjetFinal
 {
     public sealed partial class ModalConnection : ContentDialog
     {
-        //public String Nom_utilisateur { get; set; }
-        //public String Mot_de_passe { get; set; }
-
         bool validation = false;
 
         public ModalConnection()
         {
             this.InitializeComponent();
+            Singleton.Instance().SetMessageErreur(MessageConn);
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -58,13 +56,13 @@ namespace ProjetFinal
         {
             if (args.Result == ContentDialogResult.Primary)
             {
-                if (!validation)
+                if (Singleton.GetUserConnection())
                 {
-                    args.Cancel = true;
+                    args.Cancel = false;
                 }
                 else
                 {
-                    args.Cancel = false;
+                    args.Cancel = true;
                 }
             }
         }
