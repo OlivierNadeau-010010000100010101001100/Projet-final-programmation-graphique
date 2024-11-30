@@ -23,16 +23,24 @@ namespace ProjetFinal
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
+
     public sealed partial class MainWindow : Window
     {
+
+        // Pour pouvoir utiliser mainwindow partout dans toutes les autres pages
+        static MainWindow instance = null;
+        public static MainWindow Instance() => instance ??= new MainWindow();
+
         public MainWindow()
         {
             this.InitializeComponent();
+            ConnectionXamlVisibilityModifications();
             mainFrame.Navigate(typeof(PageActivites));
-            //ifConnected();
             Singleton.UserConnectionChange += () => iUser.Content = Singleton.GetUsername();
-            
-            
+            instance = this;
+
 
         }
 
@@ -65,16 +73,27 @@ namespace ProjetFinal
 
         }
 
-        //private void ifConnected()
-        //{
-        //    bool connected;
-        //    connected = Singleton.Instance().getConnectionUser();
+        public void ConnectionXamlVisibilityModifications()
+        {
+            string userType = Singleton.GetUserType();
+            if (userType == "")
+            {
+                HeaderAdmin.Visibility = Visibility.Collapsed;
+                iCsvActivities.Visibility = Visibility.Collapsed;
+                iCsvUsers.Visibility = Visibility.Collapsed;
 
+            } 
+            else if (userType == "admin")
+            {
+                HeaderAdmin.Visibility = Visibility.Visible;
+                iCsvActivities.Visibility= Visibility.Visible;
+                iCsvUsers.Visibility = Visibility.Visible;
 
-        //    if (connected == true)
-        //    {
-        //        testVisibility.Visibility = Visibility.Visible;
-        //    }
-        //}
+            }
+            else if (userType == "user")
+            {
+                HeaderAdmin.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

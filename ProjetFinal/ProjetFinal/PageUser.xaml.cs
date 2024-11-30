@@ -72,6 +72,12 @@ namespace ProjetFinal
         {
             Singleton.SetUserConn(false);
             ConnectionModifications(false);
+            Singleton.Instance().ResetUserType();
+            MainWindow.Instance().ConnectionXamlVisibilityModifications();
+
+            // Parties du xaml à mettre en hidden lorsque un user se déconnecte
+            xamlAffichageLorsqueDisconnected();
+
         }
 
         private void ConnectionModifications(bool connection_affichage)
@@ -79,19 +85,35 @@ namespace ProjetFinal
             if (connection_affichage)
             {
                 // Si la connection a bel et bien été établis, ont affiche les informations de l'utilisateur
+                nom_utilisateur_run.Text = Singleton.GetUsername();
 
                 connection.Visibility = Visibility.Collapsed;
                 deconnection.Visibility = Visibility.Visible;
 
                 tbl_bonjour.Visibility = Visibility.Visible;
                 tbl_email.Visibility = Visibility.Visible;
+                
+                MainWindow.Instance().ConnectionXamlVisibilityModifications();
 
             } else 
             {
-                connection.Visibility = Visibility.Visible;
-                deconnection.Visibility = Visibility.Collapsed;
+
+                xamlAffichageLorsqueDisconnected();
                 MessageConn.Text = "";
             }
+        }
+
+        private void xamlAffichageLorsqueDisconnected()
+        {
+            connection.Visibility = Visibility.Visible;
+            deconnection.Visibility = Visibility.Collapsed;
+            tbl_bonjour.Visibility = Visibility.Collapsed;
+            tbl_email.Visibility = Visibility.Collapsed;
+        }
+
+        private void xamlAffichageLorsqueConnected()
+        {
+
         }
     }
 }

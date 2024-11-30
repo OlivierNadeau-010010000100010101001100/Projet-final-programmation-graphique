@@ -15,11 +15,10 @@
                 <NavigationViewItem Content="Liste Activitées" x:Name="iActivite" Icon="Library"/>
                 <NavigationViewItem Content="Statistiques" x:Name="iStat" Icon="Calculator"/>
 
-                <NavigationViewItemHeader Content="Espace Administrateur" Visibility="Collapsed"/>
+                <NavigationViewItemHeader x:Name="HeaderAdmin" Content="Espace Administrateur" Visibility="Visible"/>
                 <NavigationViewItemSeparator />
-                <NavigationViewItemHeader Content="Importations"/>
-                <NavigationViewItem Content="Exportation CSV" x:Name="iCSV" Icon="Upload"/>
-                <NavigationViewItem Content="Test de visuel" x:Name="testVisibility" Icon="People" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Exportation CSV Activitées" x:Name="iCsvActivities" Icon="Upload" Visibility="Collapsed"/>
 
 
             </NavigationView.MenuItems>

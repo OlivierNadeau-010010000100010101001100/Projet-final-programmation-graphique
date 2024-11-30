@@ -10,21 +10,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
 
-    <Grid x:Name="grid_user">
-        <TextBlock></TextBlock>
-        <StackPanel>
+    <Grid x:Name="grid_user" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Spacing="10">
             <TextBlock x:Name="tbl_bonjour" Visibility="Collapsed" FontSize="25">
-                <Run Text="Bonjour"></Run>
-                <Run Text=" test"></Run>
-                
+            <Run Text="Bonjour " />
+            <Run Text="" x:Name="nom_utilisateur_run" />
             </TextBlock>
             <TextBlock x:Name="tbl_email" Visibility="Collapsed" FontSize="20">
-                <Run Text="test mail"></Run>
+            <Run Text="test mail" />
             </TextBlock>
-            
-            <Button x:Name="connection" Click="Connection_Click" Background="Green" Visibility="Visible">Connection</Button>
-            <Button x:Name="deconnection" Click="Deconnection_Click" Background="Red" Visibility="Collapsed">Déconnexion</Button>
-            <TextBlock x:Name="MessageConn" />
+            <TextBlock x:Name="MessageConn" Foreground="Red" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
+            <Button x:Name="connection" Click="Connection_Click" Background="Green" Visibility="Visible" Width="150">
+                Connexion
+            </Button>
+            <Button x:Name="deconnection" Click="Deconnection_Click" Background="Red" Visibility="Collapsed" Width="150">
+                Déconnexion
+            </Button>
         </StackPanel>
     </Grid>
+
 </Page>

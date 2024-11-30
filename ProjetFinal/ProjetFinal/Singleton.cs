@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.System;
 
 namespace ProjetFinal
 {
     internal class Singleton
     {
         public static event Action UserConnectionChange; //evenement qui refresh le nom d'utilisateur quand il est invoke
+        private static string _userType = "";
         private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         private static string _username = string.Empty;
         static Singleton instance = null;
@@ -146,6 +148,7 @@ namespace ProjetFinal
                 if (resultat == 1 && value == 1)
                 {
                     _username = username;
+                    _userType = "admin";
                     Message("Connection Réussi");
                     return true;
 
@@ -156,6 +159,7 @@ namespace ProjetFinal
                     string fullName = cmd.ExecuteScalar()?.ToString();
                     _username = fullName;
                     Message("Connection Réussi");
+                    _userType="user";
                     return true;
                 }
             }
@@ -181,6 +185,16 @@ namespace ProjetFinal
         public static string GetUsername()  //prends le username de la session
         {
             return _username;
+        }
+
+        public static string GetUserType() // prend le type du user de la session
+        {
+            return _userType;
+        }
+
+        public void ResetUserType() // modifie  le user à un "invité" dans le programme, comme cela quand qq1 se déconnecte, il ne voit plus la partie dédié aux users et admins
+        {
+            _userType = "";
         }
         /* ********************************************************** GESTION DES MESSAGES D'ERREURS **************************************************** */
 
