@@ -18,7 +18,7 @@
                 <Run Text=" test"></Run>
                 
             </TextBlock>
-            <TextBlock x:Name="tbl_email" Visibility="Collapsed">
+            <TextBlock x:Name="tbl_email" Visibility="Collapsed" FontSize="20">
                 <Run Text="test mail"></Run>
             </TextBlock>
             

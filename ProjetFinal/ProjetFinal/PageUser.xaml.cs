@@ -85,6 +85,7 @@ namespace ProjetFinal
 
                 tbl_bonjour.Visibility = Visibility.Visible;
                 tbl_email.Visibility = Visibility.Visible;
+
             } else 
             {
                 connection.Visibility = Visibility.Visible;
