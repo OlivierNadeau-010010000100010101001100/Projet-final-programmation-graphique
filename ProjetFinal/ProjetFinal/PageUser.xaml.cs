@@ -28,7 +28,6 @@ namespace ProjetFinal
         {
 
             this.InitializeComponent();
-            CheckConnection();
             Singleton.Instance().SetMessageErreur(MessageConn);
 
 
@@ -52,11 +51,11 @@ namespace ProjetFinal
 
             if (Singleton.CheckConnection())
             {
-                IsConnected();
+                ConnectionModifications(true);
 
             } else
             {
-
+                ConnectionModifications(false);
             }
         }
 

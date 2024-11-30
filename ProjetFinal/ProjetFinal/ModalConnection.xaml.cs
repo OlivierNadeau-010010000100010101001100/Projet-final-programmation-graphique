@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -41,17 +42,34 @@ namespace ProjetFinal
             {
                 // si l'utilisateur est conencté
                 Singleton.SetUserConn(true);
+                validation = true;
             }
             else
             {
                 // s'il n'est pas connecté
                 tbx_password.Password = "";
                 Singleton.SetUserConn(false);
+                validation = false;
             }
 
         }
 
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            if (args.Result == ContentDialogResult.Primary)
+            {
+                if (!validation)
+                {
+                    args.Cancel = true;
+                }
+                else
+                {
+                    args.Cancel = false;
+                }
+            }
+        }
+
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
 
         }
