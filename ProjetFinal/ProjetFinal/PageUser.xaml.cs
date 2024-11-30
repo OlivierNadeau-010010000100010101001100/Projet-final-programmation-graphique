@@ -34,22 +34,32 @@ namespace ProjetFinal
 
         }
 
-        private void Connection_Click(object sender, RoutedEventArgs e)
+        private async void Connection_Click(object sender, RoutedEventArgs e)
         {
-            string nomUtilisateur = Username.Text;   
-            string mdp = Password.Password;
-            int adminCheck = (IsAdminCheckBox.IsChecked == true) ? 1 : 0;
+            ModalConnection modalconnection = new ModalConnection();
 
-            if (Singleton.Instance().UserConnection(nomUtilisateur, mdp, adminCheck))
-            {
-                Password.Password = "";
-                Singleton.SetUserConn(false);
-            }
-            else
-            {
-                Singleton.SetUserConn(true);
-                IsConnected();
-            }
+            modalconnection.XamlRoot = grid_user.XamlRoot;
+
+            modalconnection.PrimaryButtonText = "Se connecter";
+            modalconnection.Title = "Page de connection";
+            modalconnection.CloseButtonText = "Annuler";
+
+            var result = await modalconnection.ShowAsync();
+
+            //string nomUtilisateur = Username.Text;   
+            //string mdp = Password.Password;
+            //int adminCheck = (IsAdminCheckBox.IsChecked == true) ? 1 : 0;
+
+            //if (Singleton.Instance().UserConnection(nomUtilisateur, mdp, adminCheck))
+            //{
+            //    Password.Password = "";
+            //    Singleton.SetUserConn(false);
+            //}
+            //else
+            //{
+            //    Singleton.SetUserConn(true);
+            //    IsConnected();
+            //}
         }
 
         private void Deconnection_Click(object sender, RoutedEventArgs e)
