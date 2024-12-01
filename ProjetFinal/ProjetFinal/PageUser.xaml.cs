@@ -39,6 +39,7 @@ namespace ProjetFinal
             {
                 xamlAffichageLorsqueConnected();
             } else
+            {
                 xamlAffichageLorsqueDisconnected();
             }
         }
