@@ -30,8 +30,17 @@ namespace ProjetFinal
             this.InitializeComponent();
             Singleton.Instance().SetMessageErreur(MessageConn);
 
+            VerificationConnection();
 
-
+        }
+        private void VerificationConnection()
+        {
+            if(Singleton.GetUserConnection())
+            {
+                xamlAffichageLorsqueConnected();
+            } else
+                xamlAffichageLorsqueDisconnected();
+            }
         }
 
         private async void Connection_Click(object sender, RoutedEventArgs e)
@@ -59,11 +68,11 @@ namespace ProjetFinal
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //protected void OnPropertyChanged(string propertyName) 
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
 
 
@@ -112,7 +121,10 @@ namespace ProjetFinal
 
         private void xamlAffichageLorsqueConnected()
         {
-
+            connection.Visibility = Visibility.Collapsed;
+            deconnection.Visibility = Visibility.Visible;
+            tbl_bonjour.Visibility = Visibility.Visible;
+            tbl_email.Visibility = Visibility.Visible;
         }
     }
 }
