@@ -29,7 +29,7 @@ namespace ProjetFinal
 
             this.InitializeComponent();
             Singleton.Instance().SetMessageErreur(MessageConn);
-
+            ConnectionModifications(Singleton.GetUserType(true));
 
 
         }
