@@ -49,7 +49,6 @@ namespace ProjetFinal
         private void nav_view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = args.SelectedItem as NavigationViewItem;
-
             switch (item.Name)
             {
                 case "iActivite":
@@ -58,8 +57,11 @@ namespace ProjetFinal
                 case "iStat":
                     mainFrame.Navigate(typeof(PageStatistiques));
                     break;
-                case "iCSV":
-                    mainFrame.Navigate(typeof(PageUser));
+                case "iCsvUsers":
+                    mainFrame.Navigate(typeof(PageExportationAdherent));
+                    break;
+                case "iCsvActivities":
+                    mainFrame.Navigate(typeof(PageExportationActivite));
                     break;
                 case "iUser":
                     mainFrame.Navigate(typeof(PageUser));
@@ -82,20 +84,39 @@ namespace ProjetFinal
             if (userType == "")
             {
                 HeaderAdmin.Visibility = Visibility.Collapsed;
+                HeaderUser.Visibility = Visibility.Collapsed;
+
+                ActiviteDeroulant.Visibility = Visibility.Collapsed;
+                SeanceDeroulant.Visibility = Visibility.Collapsed;
+                AdherentDeroulant.Visibility= Visibility.Collapsed;
+
                 iCsvActivities.Visibility = Visibility.Collapsed;
                 iCsvUsers.Visibility = Visibility.Collapsed;
+                iStat.Visibility = Visibility.Collapsed;
 
             } 
             else if (userType == "admin")
             {
                 HeaderAdmin.Visibility = Visibility.Visible;
+                HeaderUser.Visibility = Visibility.Visible;
+
+                ActiviteDeroulant.Visibility = Visibility.Visible;
+                SeanceDeroulant.Visibility = Visibility.Visible;
+                AdherentDeroulant.Visibility= Visibility.Visible;
+
                 iCsvActivities.Visibility= Visibility.Visible;
                 iCsvUsers.Visibility = Visibility.Visible;
+                iStat.Visibility= Visibility.Visible;
 
             }
             else if (userType == "user")
             {
-                HeaderAdmin.Visibility = Visibility.Collapsed;
+                HeaderUser.Visibility = Visibility.Visible;
+
+                
+
+                iCsvActivities.Visibility = Visibility.Collapsed;
+                iCsvUsers.Visibility = Visibility.Collapsed;
             }
         }
     }

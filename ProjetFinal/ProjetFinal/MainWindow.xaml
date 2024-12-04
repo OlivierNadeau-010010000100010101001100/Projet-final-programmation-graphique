@@ -12,18 +12,48 @@
         <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged" IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Navigation"/>
+                <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Liste Activitées" x:Name="iActivite" Icon="Library"/>
-                <NavigationViewItem Content="Statistiques" x:Name="iStat" Icon="Calculator"/>
 
-                <NavigationViewItemHeader x:Name="HeaderAdmin" Content="Espace Administrateur" Visibility="Visible"/>
-                <NavigationViewItemSeparator />
-                <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload" Visibility="Collapsed"/>
-                <NavigationViewItem Content="Exportation CSV Activitées" x:Name="iCsvActivities" Icon="Upload" Visibility="Collapsed"/>
+
+
+                <NavigationViewItemHeader x:Name="HeaderUser" Content="Espace Utilisateur" Visibility="Collapsed"/>
+                <NavigationViewItemSeparator x:Name="HeaderUserLine" Visibility="Collapsed" />
+                
+                <NavigationViewItemHeader x:Name="HeaderAdmin" Content="Espace Administrateur" Visibility="Collapsed"/>
+                <NavigationViewItemSeparator x:Name="HeaderAdminLine" Visibility="Collapsed" />
+                <NavigationViewItem Content="Statistiques" x:Name="iStat" Icon="Calculator" Visibility="Collapsed"/>
+                <NavigationViewItem x:Name="AdherentDeroulant" Content="Adhérent" Icon="People" Visibility="Collapsed">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem x:Name="ajoutAdherent" Content="Ajouter Adhérent" Icon="Add"/>
+                        <NavigationViewItem x:Name="modifAdherent" Content="Modifier Adhérent" Icon="Setting"/>
+                        <NavigationViewItem x:Name="suppAdherent" Content="Supprimer Adhérent" Icon="Delete"/>
+                        <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload"/>
+
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <NavigationViewItem x:Name="ActiviteDeroulant" Content="Activite" Icon="ReportHacked" Visibility="Collapsed">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem x:Name="ajoutActivitee" Content="Ajouter Activite" Icon="Add" ToolTipService.ToolTip="Mail"/>
+                        <NavigationViewItem Name="modifActivite" Content="Modifier Activite" Icon="Setting" ToolTipService.ToolTip="Calendar"/>
+                        <NavigationViewItem x:Name="suppActivite" Content="Supprimer Activite" Icon="Delete" ToolTipService.ToolTip="Calendar"/>
+                        <NavigationViewItem Content="Exportation CSV Activitées" x:Name="iCsvActivities" Icon="Upload"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <NavigationViewItem x:Name="SeanceDeroulant" Content="Seances" Icon="Calendar" Visibility="Collapsed">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem x:Name="ajoutSeances" Content="Ajouter Seances" Icon="Add"/>
+                        <NavigationViewItem Name="modifSeances" Content="Modifier Seances" Icon="Setting"/>
+                        <NavigationViewItem x:Name="suppSeances" Content="Supprimer Seances" Icon="Delete"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
 
 
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Connection" x:Name="iUser" Icon="People" />
+                <NavigationViewItem Content="Se Connecter" x:Name="iUser" Icon="People" />
                 <NavigationViewItem Content="Quitter" x:Name="iQuitter" Icon="LeaveChat" />
             </NavigationView.FooterMenuItems>
 
