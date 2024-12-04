@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="ProjetFinal.PageStatistiques"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,29 +8,40 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button x:Name="testButton" Click="testButton_Click">TEST CONNECTION</Button>
-        <TextBlock x:Name="MessageErreur" />
+    <Grid Margin="20">
+        <!-- Titre principal -->
+        <TextBlock Text="Statistiques de la base de données" 
+                   FontSize="24" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20" />
 
+        <!-- Nombre d'adhérents -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,40,10,10">
+            <Run Text="Le nombre d'adhérents : " FontWeight="SemiBold" />
+            <Run x:Name="affichageNbrAdherent" FontSize="18" Foreground="#0078D4" />
+        </TextBlock>
 
-        <StackPanel>
-            <ListView x:Name="categorieList" MaxHeight="500">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local:Categorie">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Categorie_id}" Width="200" />
-                            <TextBlock Text="{Binding Categorie_nom}" Width="100" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
-       
+        <!-- Nombre d'activités -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,80,10,10">
+            <Run Text="Le nombre d'activités : " FontWeight="SemiBold" />
+            <Run x:Name="affichageNbrActivites" FontSize="18" Foreground="#0078D4" />
+        </TextBlock>
+
+        <!-- Liste des catégories -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,120,10,10" FontWeight="SemiBold" FontSize="18">
+            Catégories d'activités :
+        </TextBlock>
+
+        <ListView x:Name="categorieList" MaxHeight="500" Margin="10,160,10,10" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Categorie">
+                    <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
+                        <TextBlock Text="{Binding Categorie_id}" Width="100" Padding="10" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Categorie_nom}" Width="250" Padding="10" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
-    
-        
-    
-
-    
-    
 </Page>

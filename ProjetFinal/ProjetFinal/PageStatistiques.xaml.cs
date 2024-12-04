@@ -26,35 +26,23 @@ namespace ProjetFinal
         public PageStatistiques()
         {
             this.InitializeComponent();
-            OnLoad();
-            Singleton.Instance().SetMessageErreur(MessageErreur);
-
-
+            GetData();
         }
 
         private void testButton_Click(object sender, RoutedEventArgs e)
         {
-            
                 Singleton.Instance().TestConnection();
-                
-            
-
-
-
         }
 
-        private void OnLoad()
+
+        public void GetData()
         {
-            try
-            {
-                var liste = Singleton.Instance().GetAllCategories();
-                categorieList.ItemsSource = liste;
-            }
-            catch (Exception ex) 
-            {
-                MessageErreur.Text = $"Erreur lors du chargement: {ex.Message}";
-                MessageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-            }
+            int nbrAdherent = Singleton.Instance().getNbrAdherent();
+            int nbrActivite = Singleton.Instance().getNbrActivites();
+
+            affichageNbrAdherent.Text = nbrAdherent.ToString();
+            affichageNbrActivites.Text = nbrActivite.ToString();
         }
+        
     }
 }

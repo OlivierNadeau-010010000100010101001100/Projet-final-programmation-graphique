@@ -125,6 +125,53 @@ namespace ProjetFinal
             return activites;
         }
 
+        public int getNbrAdherent()
+        {
+            int nbrAdherent = 0;
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT getNbrAdherents()", conn);
+                conn.Open();
+
+                nbrAdherent = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return nbrAdherent;
+        }
+
+        public int getNbrActivites()
+        {
+            int nbrActivites = 0;
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT getNbrActivites()", conn);
+                conn.Open();
+
+                nbrActivites = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return nbrActivites;
+        }
+
+
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */
 
         public bool UserConnection(string username, string password, int value) //la connection a l'usager, le "value" est pour savoir si cest un admin(1) ou un usager(0)
