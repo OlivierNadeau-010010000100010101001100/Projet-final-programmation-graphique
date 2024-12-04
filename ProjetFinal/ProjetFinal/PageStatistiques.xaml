@@ -33,12 +33,12 @@
             Catégories d'activités :
         </TextBlock>
 
-        <ListView x:Name="categorieList" MaxHeight="500" Margin="10,160,10,10" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
+        <ListView x:Name="LVcategorieList" MaxHeight="500" Margin="10,160,10,10" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Categorie">
                     <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
-                        <TextBlock Text="{Binding Categorie_id}" Width="100" Padding="10" VerticalAlignment="Center" />
-                        <TextBlock Text="{Binding Categorie_nom}" Width="250" Padding="10" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Categorie_id}" Width="100" VerticalAlignment="Center" />
+                        <TextBlock  Text="{Binding Categorie_nom}" Width="250" VerticalAlignment="Center" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

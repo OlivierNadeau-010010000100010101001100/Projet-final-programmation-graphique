@@ -29,12 +29,6 @@ namespace ProjetFinal
             GetData();
         }
 
-        private void testButton_Click(object sender, RoutedEventArgs e)
-        {
-                Singleton.Instance().TestConnection();
-        }
-
-
         public void GetData()
         {
             int nbrAdherent = Singleton.Instance().getNbrAdherent();
@@ -42,6 +36,8 @@ namespace ProjetFinal
 
             affichageNbrAdherent.Text = nbrAdherent.ToString();
             affichageNbrActivites.Text = nbrActivite.ToString();
+
+            LVcategorieList.ItemsSource = Singleton.Instance().GetAllActivites();
         }
         
     }
