@@ -240,9 +240,21 @@ namespace ProjetFinal
             finally { conn.Close(); }
         }
 
-        public void x()
+        public void SupprimerSeance(int seanceID)     //suppression de seance, a revoir pour gestion correctement
         {
+            var conn = Connection();
 
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM seance WHERE seance_id = @seance", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@seance", seanceID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
         }
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */
