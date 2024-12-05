@@ -202,7 +202,48 @@ namespace ProjetFinal
 
             return nbrActivites;
         }
+        
 
+
+        public void SupprimerActivite(int activiteID)     //suppression d'activite, a revoir pour gestion correctement
+        {
+                var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM activites WHERE activite_id = @activite", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@activite", activiteID);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+        }
+
+        public void SupprimerUsager(string usagerID)     //suppression d'usager, a revoir pour gestion correctement
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM adherents WHERE adherent_id = @usager", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@usager", usagerID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+            finally { conn.Close(); }
+        }
+
+        public void x()
+        {
+
+        }
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */
 
