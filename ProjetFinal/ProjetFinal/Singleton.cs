@@ -125,6 +125,9 @@ namespace ProjetFinal
             return activites;
         }
 
+
+
+
         public int getNbrAdherent()
         {
             int nbrAdherent = 0;
