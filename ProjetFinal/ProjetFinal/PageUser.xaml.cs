@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -126,6 +127,12 @@ namespace ProjetFinal
             deconnection.Visibility = Visibility.Visible;
             tbl_bonjour.Visibility = Visibility.Visible;
             tbl_email.Visibility = Visibility.Visible;
+        }
+
+        private async void ExportTest_Click(object sender, RoutedEventArgs e)
+        {
+            var activites = Singleton.Instance().GetAllActivites();
+            await Task.Run(() => Singleton.Instance().ExportationCSV(activites));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
+using MySqlX.XDevAPI;
 
 namespace ProjetFinal
 {
@@ -349,7 +350,34 @@ namespace ProjetFinal
             _message.Visibility = Visibility.Visible;
         }
 
+        /* ******************************************************************* EXPORTATION CSV ********************************************************** */
 
+
+        public async void ExportationCSV(List<Activite> activites)
+        {
+
+           
+                var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+                var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this); //erreur ici
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+                picker.SuggestedFileName = "test2";
+                picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".txt" });
+                picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+
+                //crée le fichier
+                Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+
+
+
+                // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, activites.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            
+           
+        }
 
     }
 }
