@@ -134,7 +134,7 @@ namespace ProjetFinal
                 MySqlCommand cmd = new("SELECT nom_activitee, COUNT(adherent_id_fk) AS nombre_participant FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nGROUP BY nom_activitee;", conn);
                 conn.Open();
                 MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
-                var categoriesDictionary = GetCategoriesDictionary();
+                var categoriesDictionary = GetCategoriesDictionary(); //??
 
                 while (mySqlDataReader.Read())
                 {
@@ -208,7 +208,7 @@ namespace ProjetFinal
         public void SupprimerActivite(int activiteID)     //suppression d'activite, a revoir pour gestion correctement
         {
                 var conn = Connection();
-
+                
             try
             {
                 MySqlCommand cmd = new("DELETE FROM activites WHERE activite_id = @activite", conn);
