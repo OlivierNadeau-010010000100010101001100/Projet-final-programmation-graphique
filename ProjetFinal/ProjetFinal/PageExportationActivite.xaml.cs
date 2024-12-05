@@ -5,8 +5,10 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,9 +30,32 @@ namespace ProjetFinal
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
 
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this); //erreur ici
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "test2";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".txt" });
+            picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+
+
+            //crée le fichier
+
+            
+
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            var activites = Singleton.Instance().GetAllActivites();
+
+
+
+
+            // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+
+            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, activites.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
         }
     }
 }
