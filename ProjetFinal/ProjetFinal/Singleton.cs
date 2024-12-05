@@ -125,6 +125,35 @@ namespace ProjetFinal
             return activites;
         }
 
+        public List<ActivitePersonne> GetAllNbrPersonneActivite()
+        {
+            List<ActivitePersonne> liste = new();
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT nom_activitee, COUNT(adherent_id_fk) AS nombre_participant FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nGROUP BY nom_activitee;", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+                var categoriesDictionary = GetCategoriesDictionary();
+
+                while (mySqlDataReader.Read())
+                {
+                    var activitePersonnes = new ActivitePersonne
+                    {
+                        Nom_Activite = mySqlDataReader.GetString(0),
+                        Nbr_personne = mySqlDataReader.GetInt32(1),
+                    };
+                    liste.Add(activitePersonnes);
+                }
+            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
+
+            return liste;
+        }
+
+
+
 
 
 

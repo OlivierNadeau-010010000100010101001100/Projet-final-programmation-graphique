@@ -38,6 +38,7 @@ namespace ProjetFinal
             affichageNbrActivites.Text = nbrActivite.ToString();
 
             LVcategorieList.ItemsSource = Singleton.Instance().GetAllActivites();
+            LVNbrPersonneActivite.ItemsSource = Singleton.Instance().GetAllNbrPersonneActivite();
         }
         
     }
