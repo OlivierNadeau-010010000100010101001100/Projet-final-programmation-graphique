@@ -17,6 +17,7 @@
     <None Remove="PageExportationActivite.xaml" />
     <None Remove="PageExportationAdherent.xaml" />
     <None Remove="PageStatistiques.xaml" />
+    <None Remove="PageSupprimerActivite.xaml" />
     <None Remove="PageSupprimerAdherent.xaml" />
     <None Remove="PageUser.xaml" />
   </ItemGroup>
@@ -45,6 +46,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageSupprimerActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageSupprimerAdherent.xaml">

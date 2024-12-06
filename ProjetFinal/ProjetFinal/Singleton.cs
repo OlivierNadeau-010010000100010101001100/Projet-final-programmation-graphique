@@ -299,13 +299,11 @@ namespace ProjetFinal
 
             try
             {
-                MySqlCommand cmd = new("DELETE FROM inscription_seance WHERE adherent_id_fk = @usager", conn);
+                MySqlCommand cmd = new("DELETE FROM adherents WHERE adherent_id = @usager", conn);
                 conn.Open();
                 cmd.Parameters.AddWithValue("@usager", usagerID);
                 cmd.ExecuteNonQuery();
-                cmd = new("DELETE FROM adherents WHERE adherent_id = @usager", conn);
-                cmd.Parameters.AddWithValue("@usager", usagerID);
-                cmd.ExecuteNonQuery();
+                
             }
             catch (Exception ex)
             {
