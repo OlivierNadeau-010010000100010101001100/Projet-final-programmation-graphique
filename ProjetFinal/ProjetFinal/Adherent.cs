@@ -36,7 +36,7 @@ namespace ProjetFinal
 
         public override string ToString()
         {
-            return $"{Adherent_id},{Adherent_nom},{Adherent_Prenom},{Adherent_adresse},{Adherent_date_naissance},{Adherent_age}";
+            return $"{Adherent_id};{Adherent_nom};{Adherent_Prenom};{Adherent_adresse};{Adherent_date_naissance};{Adherent_age}";
         }
 
     }
