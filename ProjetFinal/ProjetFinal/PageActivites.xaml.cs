@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -37,7 +38,6 @@ namespace ProjetFinal
             {
                 var liste = Singleton.Instance().GetAllActivites();
                 LVactivite.ItemsSource = liste;
-
             }
             catch (Exception ex)
             {
@@ -53,7 +53,10 @@ namespace ProjetFinal
                 string nomActivite = activite.Nom_activite;
                 string categorieActivite = activite.Categorie_activite;
                 TextBlockTest.Text = $"{nomActivite} : {categorieActivite}";
+                Frame.Navigate(typeof(PageSeanceDisponnibles), nomActivite);
             }
         }
+
+
     }
 }

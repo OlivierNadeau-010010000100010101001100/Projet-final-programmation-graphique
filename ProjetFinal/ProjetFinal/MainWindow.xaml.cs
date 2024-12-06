@@ -44,8 +44,6 @@ namespace ProjetFinal
 
         }
 
-
-       
         private void nav_view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = args.SelectedItem as NavigationViewItem;
