@@ -33,13 +33,15 @@ namespace ProjetFinal
         {
             int nbrAdherent = Singleton.Instance().getNbrAdherent();
             int nbrActivite = Singleton.Instance().getNbrActivites();
+            string prixMoyen = Singleton.Instance().getMoyennePrixClient();
 
             affichageNbrAdherent.Text = nbrAdherent.ToString();
             affichageNbrActivites.Text = nbrActivite.ToString();
+            affichagePrixMoyen.Text = prixMoyen.ToString();
 
             LVcategorieList.ItemsSource = Singleton.Instance().GetAllActivites();
             LVNbrPersonneActivite.ItemsSource = Singleton.Instance().GetAllNbrPersonneActivite();
-            LVTestAdherent.ItemsSource = Singleton.Instance().GetAllAdherents();
+
         }
         
     }

@@ -234,7 +234,46 @@ namespace ProjetFinal
 
             return nbrActivites;
         }
-        
+
+
+        public string getMoyennePrixClient()
+        {
+            string MoyennePrix = "";
+            var conn = Connection();  // Assurez-vous que Connection() crée une connexion valide.
+
+            try
+            {
+                // Exécution de la requête en appelant la fonction SQL "getMoyennePrix"
+                MySqlCommand cmd = new MySqlCommand("SELECT getMoyennePrix()", conn);
+                conn.Open();
+
+                // Utilisation de ExecuteScalar pour obtenir la première valeur de la colonne
+                var result = cmd.ExecuteScalar();
+
+                // Si le résultat est non null, on le convertit en string
+                if (result != null)
+                {
+                    MoyennePrix = result.ToString();
+                }
+                else
+                {
+                    MoyennePrix = "Aucune donnée";  // Si pas de résultat, on peut afficher un message par défaut
+                }
+            }
+            catch (Exception ex)
+            {
+                // En cas d'erreur, afficher un message d'erreur
+                MessageErreur("Erreur base de données:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
+            }
+
+            return MoyennePrix;
+        }
+
+
 
 
         public void SupprimerActivite(int activiteID)     //suppression d'activite, a revoir pour gestion correctement
