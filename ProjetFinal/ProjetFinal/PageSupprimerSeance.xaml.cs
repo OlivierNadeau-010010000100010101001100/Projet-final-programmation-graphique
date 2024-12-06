@@ -32,9 +32,27 @@ namespace ProjetFinal
 
         public void OnLoad()
         {
-            var seances = Singleton.Instance().GetSeancesDictionary();
+            LVTestSeance.ItemsSource = Singleton.Instance().GetAllSeances();
+        }
 
-            LVTestSeance.ItemsSource = seances.ToList();
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = (Button)sender;
+                var seance = (Seance)button.Tag;
+
+                if (seance != null)
+                {
+                    Singleton.Instance().SupprimerSeance(seance.Id);
+
+                    OnLoad();
+                }
+            }
+            catch (Exception ex)
+            {
+                TestMessage.Text = ex.Message;
+            }
         }
     }
 }

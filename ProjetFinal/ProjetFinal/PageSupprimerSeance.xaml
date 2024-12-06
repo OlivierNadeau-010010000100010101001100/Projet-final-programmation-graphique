@@ -14,14 +14,11 @@
         <ScrollViewer>
             <ListView x:Name="LVTestSeance" Grid.Row="8" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="local:Seance">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Key}" Width="200" />
-                            <TextBlock Text="{Binding Value.Date}" Width="100" />
-                            <TextBlock Text="{Binding Value.Heure}" Width="100" />
-                            <TextBlock Text="{Binding Value.NbrPlaces}" Width="100" />
-                            <TextBlock Text="{Binding Value.ActiviteIDFK}" Width="100" />
-                            
+                            <TextBlock Text="{Binding Id}" Width="200" />
+                            <TextBlock Text="{Binding Date}" Width="100" />
+                            <Button Content="Supprimer" Click="Button_Click" Tag="{Binding}" Width="100"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -127,9 +127,9 @@ namespace ProjetFinal
         }
 
 
-        public Dictionary<int, (string Date, string Heure, int NbrPlaces, int ActiviteIDFK)> GetSeancesDictionary()
+        public List<Seance> GetAllSeances()
         {
-            Dictionary<int, (string Date, string Heure, int NbrPlaces, int ActiviteIDFK)> seances = new();
+            List<Seance> seances = new();
             var conn = Connection();
             try
             {
@@ -139,10 +139,20 @@ namespace ProjetFinal
                 
                 while(reader.Read())
                 {
-                    seances.Add(reader.GetInt32(0), (Date: reader.GetDateTime(1).ToString("yyyy-MM-dd"), Heure: reader.GetString(2), NbrPlaces: reader.GetInt32(3), ActiviteIDFK: reader.GetInt32(4)));
+                    var seance = new Seance
+                    {
+                        Id = reader.GetInt32(0),
+                        Date = reader.GetDateTime(1).ToString("yyyy-MM-dd"),
+                        Heure = reader.GetString(2),
+                        NbrPlaces = reader.GetInt32(3),
+                        ActiviteID = reader.GetInt32(4),
+
+                    };
+                    seances.Add(seance);
                 }
             }
             catch { }
+            finally { conn.Close(); }
 
             return seances;
         }
@@ -206,32 +216,6 @@ namespace ProjetFinal
             return liste;
         }
 
-        public List<MoyenneRatingParActivite> GetAllRatingActivite()
-        {
-            List<MoyenneRatingParActivite> liste = new();
-            var conn = Connection();
-            //try
-            //{
-                MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
-                conn.Open();
-                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
-
-                while (mySqlDataReader.Read())
-                {
-                    var e = new MoyenneRatingParActivite
-                    {
-                        Nom_activite = mySqlDataReader.GetString(0),
-                        Rating_activite = mySqlDataReader.GetString(1),
-                    };
-                    liste.Add(e);
-                }
-            //}
-            //catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
-            //finally { conn.Close(); }
-
-            return liste;
-        }
-
 
 
 
@@ -282,6 +266,88 @@ namespace ProjetFinal
 
             return nbrActivites;
         }
+        
+
+
+        public void SupprimerActivite(int activiteID)     //suppression d'activite, a revoir pour gestion correctement
+        {
+                var conn = Connection();
+                
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM activites WHERE activite_id = @activite", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@activite", activiteID);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+        }
+
+        public void SupprimerUsager(string usagerID)     //suppression d'usager, a revoir pour gestion correctement
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM adherents WHERE adherent_id = @usager", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@usager", usagerID);
+                cmd.ExecuteNonQuery();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+            finally { conn.Close(); }
+        }
+
+        public void SupprimerSeance(int seanceID)     //suppression de seance, a revoir pour gestion correctement
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM seance WHERE seance_id = @seance", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@seance", seanceID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+        }
+
+        public List<MoyenneRatingParActivite> GetAllRatingActivite()
+        {
+            List<MoyenneRatingParActivite> liste = new();
+            var conn = Connection();
+            //try
+            //{
+            MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
+            conn.Open();
+            MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+            while (mySqlDataReader.Read())
+            {
+                var e = new MoyenneRatingParActivite
+                {
+                    Nom_activite = mySqlDataReader.GetString(0),
+                    Rating_activite = mySqlDataReader.GetString(1),
+                };
+                liste.Add(e);
+            }
+            //}
+            //catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            //finally { conn.Close(); }
+
+            return liste;
+        }
+
 
         public int getNbrRatingManquant()
         {
@@ -368,63 +434,6 @@ namespace ProjetFinal
         }
 
 
-
-
-        public void SupprimerActivite(int activiteID)     //suppression d'activite, a revoir pour gestion correctement
-        {
-                var conn = Connection();
-                
-            try
-            {
-                MySqlCommand cmd = new("DELETE FROM activites WHERE activite_id = @activite", conn);
-                conn.Open();
-                cmd.Parameters.AddWithValue("@activite", activiteID);
-                cmd.ExecuteNonQuery();
-            }
-            catch(Exception ex)
-            {
-                MessageErreur("Erreur base de donnée", ex.Message);
-            }
-        }
-
-        public void SupprimerUsager(string usagerID)     //suppression d'usager, a revoir pour gestion correctement
-        {
-            var conn = Connection();
-
-            try
-            {
-                MySqlCommand cmd = new("DELETE FROM adherents WHERE adherent_id = @usager", conn);
-                conn.Open();
-                cmd.Parameters.AddWithValue("@usager", usagerID);
-                cmd.ExecuteNonQuery();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageErreur("Erreur base de donnée", ex.Message);
-            }
-            finally { conn.Close(); }
-        }
-
-        public void SupprimerSeance(int seanceID)     //suppression de seance, a revoir pour gestion correctement
-        {
-            var conn = Connection();
-
-            try
-            {
-                MySqlCommand cmd = new("DELETE FROM seance WHERE seance_id = @seance", conn);
-                conn.Open();
-                cmd.Parameters.AddWithValue("@seance", seanceID);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageErreur("Erreur base de donnée", ex.Message);
-            }
-        }
-
-
-        
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */
 
