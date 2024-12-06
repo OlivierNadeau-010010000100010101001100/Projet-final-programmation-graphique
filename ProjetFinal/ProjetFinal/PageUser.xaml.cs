@@ -128,11 +128,5 @@ namespace ProjetFinal
             tbl_bonjour.Visibility = Visibility.Visible;
             tbl_email.Visibility = Visibility.Visible;
         }
-
-        private async void ExportTest_Click(object sender, RoutedEventArgs e)
-        {
-            var activites = Singleton.Instance().GetAllActivites();
-            await Task.Run(() => Singleton.Instance().ExportationCSV(activites));
-        }
     }
 }
