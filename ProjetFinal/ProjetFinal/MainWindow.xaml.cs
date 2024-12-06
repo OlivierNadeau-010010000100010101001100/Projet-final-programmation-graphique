@@ -75,6 +75,9 @@ namespace ProjetFinal
                 case "suppActivite":
                     mainFrame.Navigate(typeof(PageSupprimerActivite));
                     break;
+                case "suppSeances":
+                    mainFrame.Navigate(typeof(PageSupprimerSeance));
+                    break;
                 default:
                     break;
             }

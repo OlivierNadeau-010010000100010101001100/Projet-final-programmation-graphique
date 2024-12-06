@@ -126,6 +126,28 @@ namespace ProjetFinal
             return activites;
         }
 
+
+        public Dictionary<int, (string Date, string Heure, int NbrPlaces, int ActiviteIDFK)> GetSeancesDictionary()
+        {
+            Dictionary<int, (string Date, string Heure, int NbrPlaces, int ActiviteIDFK)> seances = new();
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT * FROM seance", conn);
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                
+                while(reader.Read())
+                {
+                    seances.Add(reader.GetInt32(0), (Date: reader.GetDateTime(1).ToString("yyyy-MM-dd"), Heure: reader.GetString(2), NbrPlaces: reader.GetInt32(3), ActiviteIDFK: reader.GetInt32(4)));
+                }
+            }
+            catch { }
+
+            return seances;
+        }
+
+
         public List<Adherent> GetAllAdherents()     //vas chercher tout les adherents et les mets dans une liste
         {
             List<Adherent> adherents = new();
