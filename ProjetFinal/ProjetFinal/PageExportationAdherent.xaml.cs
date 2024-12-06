@@ -26,7 +26,12 @@ namespace ProjetFinal
         public PageExportationAdherent()
         {
             this.InitializeComponent();
+           
         }
+
+
+        
+
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +50,7 @@ namespace ProjetFinal
 
             Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
 
-            var activites = Singleton.Instance().GetAllAdherent();
+            var adherents = Singleton.Instance().GetAllAdherents();
 
 
 
@@ -53,7 +58,7 @@ namespace ProjetFinal
             // La fonction ToString de la classe Client retourne: nom + ";" + prenom
             if (monFichier != null)
             {
-                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, activites.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, adherents.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
             }
         }
     }

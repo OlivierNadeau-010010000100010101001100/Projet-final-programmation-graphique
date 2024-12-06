@@ -126,16 +126,15 @@ namespace ProjetFinal
             return activites;
         }
 
-        public List<Adherent> GetAllAdherent()     //vas chercher tout les actrivite et les mets dans une liste
+        public List<Adherent> GetAllAdherents()     //vas chercher tout les adherents et les mets dans une liste
         {
-            List<Adherent> liste = new();
+            List<Adherent> adherents = new();
             var conn = Connection();
             try
             {
                 MySqlCommand cmd = new("SELECT * FROM adherents", conn);
                 conn.Open();
                 MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
-                var categoriesDictionary = GetCategoriesDictionary();
 
                 while (mySqlDataReader.Read())
                 {
@@ -145,16 +144,17 @@ namespace ProjetFinal
                         Adherent_nom = mySqlDataReader.GetString(1),
                         Adherent_Prenom = mySqlDataReader.GetString(2),
                         Adherent_adresse = mySqlDataReader.GetString(3),
-                        Adherent_date_naissance = mySqlDataReader.GetString(4),
-                        Adherent_age = mySqlDataReader.GetInt32(5),
+                        Adherent_date_naissance = mySqlDataReader.GetDateTime(4).ToString("yyyy-MM-dd"),
+                        Adherent_age = mySqlDataReader.IsDBNull(6) ? 0 : mySqlDataReader.GetInt32(6),
+
                     };
-                    liste.Add(adherent);
+                    adherents.Add(adherent);
                 }
             }
             catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
             finally { conn.Close(); }
 
-            return liste;
+            return adherents;
         }
 
         public List<ActivitePersonne> GetAllNbrPersonneActivite()

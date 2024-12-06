@@ -40,7 +40,7 @@ namespace ProjetFinal
 
         public override string ToString()
         {
-            return $"{Activite_id};{Nom_activite};{Categorie_id_fk};{Cout_organisation_client};{Prix_vente};{Categorie_activite}";
+            return $"{Activite_id},{Nom_activite},{Categorie_id_fk},{Cout_organisation_client},{Prix_vente},{Categorie_activite}";
         }
     }
 }

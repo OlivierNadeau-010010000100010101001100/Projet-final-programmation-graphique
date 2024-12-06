@@ -34,5 +34,10 @@ namespace ProjetFinal
 
         public int Adherent_age { get => age; set => age = value; }
 
+        public override string ToString()
+        {
+            return $"{Adherent_id},{Adherent_nom},{Adherent_Prenom},{Adherent_adresse},{Adherent_date_naissance},{Adherent_age}";
+        }
+
     }
 }
