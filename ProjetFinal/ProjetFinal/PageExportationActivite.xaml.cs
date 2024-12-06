@@ -34,7 +34,7 @@ namespace ProjetFinal
         {
             var picker = new Windows.Storage.Pickers.FileSavePicker();
 
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this); //erreur ici
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(MainWindow.Instance()); //erreur ici
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
             picker.SuggestedFileName = "test2";

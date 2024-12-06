@@ -31,7 +31,7 @@ namespace ProjetFinal
 
         // Pour pouvoir utiliser mainwindow partout dans toutes les autres pages
         static MainWindow instance = null;
-        public static MainWindow Instance() => instance ??= new MainWindow();
+        public static MainWindow Instance() => instance ??= new();
 
         public MainWindow()
         {
