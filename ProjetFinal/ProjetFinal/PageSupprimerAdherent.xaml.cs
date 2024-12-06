@@ -27,6 +27,7 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             OnLoad();
+            Singleton.Instance().SetMessageErreur(TestMessage);
         }
 
         public void OnLoad()
@@ -36,7 +37,22 @@ namespace ProjetFinal
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var button = (Button)sender;
+                var usager = (Adherent)button.Tag;
 
+                if(usager != null)
+                {
+                    Singleton.Instance().SupprimerUsager(usager.Adherent_id);
+
+                    OnLoad();
+                }
+            }
+            catch(Exception ex)
+            {
+                TestMessage.Text = ex.Message;                
+            }
         }
     }
 }
