@@ -184,6 +184,32 @@ namespace ProjetFinal
             return liste;
         }
 
+        public List<MoyenneRatingParActivite> GetAllRatingActivite()
+        {
+            List<MoyenneRatingParActivite> liste = new();
+            var conn = Connection();
+            //try
+            //{
+                MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                while (mySqlDataReader.Read())
+                {
+                    var e = new MoyenneRatingParActivite
+                    {
+                        Nom_activite = mySqlDataReader.GetString(0),
+                        Rating_activite = mySqlDataReader.GetString(1),
+                    };
+                    liste.Add(e);
+                }
+            //}
+            //catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            //finally { conn.Close(); }
+
+            return liste;
+        }
+
 
 
 
@@ -233,6 +259,52 @@ namespace ProjetFinal
             }
 
             return nbrActivites;
+        }
+
+        public int getNbrRatingManquant()
+        {
+            int nbrRatingManquant = 0;
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT getNbrRatingManquant()", conn);
+                conn.Open();
+
+                nbrRatingManquant = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return nbrRatingManquant;
+        }
+
+        public int getNbrSeancePasserDate()
+        {
+            int nbrSeancePAsserDate = 0;
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT getNbrSeancePasserDate()", conn);
+                conn.Open();
+
+                nbrSeancePAsserDate = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return nbrSeancePAsserDate;
         }
 
 
