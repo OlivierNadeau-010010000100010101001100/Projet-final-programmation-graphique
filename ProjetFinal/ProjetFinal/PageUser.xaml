@@ -31,7 +31,7 @@
             <Button x:Name="connection" Click="Connection_Click" Background="#28A745" Foreground="White" FontWeight="Bold" Visibility="Visible" Width="180" Height="40" BorderThickness="0" CornerRadius="5">
                 Connexion
             </Button>
-            <Button x:Name="ExportTest" Click="ExportTest_Click" Background="#28A745" Foreground="White" FontWeight="Bold" Visibility="Visible" Width="180" Height="40" BorderThickness="0" CornerRadius="5">TEST</Button>
+            
             <Button x:Name="deconnection" Click="Deconnection_Click" Background="#DC3545" Foreground="White" FontWeight="Bold" Visibility="Collapsed" Width="180" Height="40" BorderThickness="0" CornerRadius="5">
                 Déconnexion
             </Button>
