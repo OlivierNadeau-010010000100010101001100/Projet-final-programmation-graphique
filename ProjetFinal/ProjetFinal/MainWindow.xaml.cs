@@ -67,13 +67,13 @@ namespace ProjetFinal
                 case "iQuitter":
                     Application.Current.Exit();
                     break;
-                case "suppAdherent":
+                case "listeAdherent":
                     mainFrame.Navigate(typeof(PageSupprimerAdherent));
                     break;
-                case "suppActivite":
+                case "listeActivite":
                     mainFrame.Navigate(typeof(PageSupprimerActivite));
                     break;
-                case "suppSeances":
+                case "listeSeance":
                     mainFrame.Navigate(typeof(PageSupprimerSeance));
                     break;
                 case "ajoutAdherent":

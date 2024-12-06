@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="ProjetFinal.PageSeanceDisponnibles"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,53 +8,53 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="1*" ></RowDefinition>
-        </Grid.RowDefinitions>
-        
-        
-        
-        <Button Content="Retour" Click="Button_Click" x:Name="btn_retour" Grid.Row="0"></Button>
-        <TextBlock Grid.Row="1" x:Name="txt_block"></TextBlock>
+    <ScrollViewer>
 
-        <ListView x:Name="LVseances" Grid.Row="2">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+        <Grid Margin="20" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
 
+            
+            <TextBlock Text="Séances disponibles"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Grid.Row="0" 
+                   x:Name="txt_block"/>
 
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Seance">
-                    <Border Width="450" Height="100" BorderThickness="2" BorderBrush="Green" Margin="5">
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5" Width="300">
-                                <TextBlock x:Name="nom_activite" Text="{x:Bind Id, Mode=OneWay}" FontWeight="Bold" FontSize="19" />
-                                <TextBlock FontWeight="Bold" FontSize="19">
-                                    <Run Text="Prix par personnes : " />
-                                    <Run Text="{x:Bind NbrPlaces, Mode=OneWay}" />
-                                    <Run Text=" $" />
-                                </TextBlock>
+            <Button Grid.Row="1" Click="Button_Click">Retour</Button>
+            
+            <TextBlock Grid.Row="2" HorizontalAlignment="Left">
+                <Run Text="Séances disponibles : " FontWeight="SemiBold" />
+            </TextBlock>
 
-                            </StackPanel>
-
-                            <!--<Button Tag="{Binding}" x:Name="suppression_produit" Content="Supprimer" Width="100" Height="30" Margin="5" VerticalAlignment="Center" Click="Suppression_Click" />-->
+            <ListView x:Name="LVseances" Grid.Row="3" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Seance">
+                        <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
+                            <TextBlock Width="200" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="La date est : "></Run>
+                                <Run Text="{x:Bind Date}"></Run>
+                            </TextBlock>
+                            
+                            <TextBlock Width="200" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="Heure de la séance"></Run>
+                                <Run Text="{x:Bind Heure}"></Run>
+                            </TextBlock>
+                            <TextBlock Width="150" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="{x:Bind NbrPlaces}" />
+                                <Run Text=" places disponibles" />
+                            </TextBlock>
                         </StackPanel>
-                    </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+    </ScrollViewer>
 </Page>

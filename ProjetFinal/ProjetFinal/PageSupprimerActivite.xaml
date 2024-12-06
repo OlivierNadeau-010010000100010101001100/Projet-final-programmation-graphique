@@ -16,9 +16,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Activite">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Activite_id}" Width="200" />
-                            <TextBlock Text="{Binding Nom_activite}" Width="100" />
-                            <Button Content="Supprimer" Click="Button_Click" Tag="{Binding}" Width="100"/>
+                            <TextBlock Text="{Binding Activite_id}" Width="50" />
+                            <TextBlock Text="{Binding Nom_activite}" Width="200" />
+                            <Button x:Name="modification" Content="Modification" Click="modification_Click" Tag="{Binding}" Width="110"/>
+                            <Button Content="Suppression" Click="Button_Click" Tag="{Binding}" Width="100"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
