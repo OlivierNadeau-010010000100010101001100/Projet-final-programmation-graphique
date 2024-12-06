@@ -39,6 +39,7 @@ namespace ProjetFinal
 
             LVcategorieList.ItemsSource = Singleton.Instance().GetAllActivites();
             LVNbrPersonneActivite.ItemsSource = Singleton.Instance().GetAllNbrPersonneActivite();
+            LVTestAdherent.ItemsSource = Singleton.Instance().GetAllAdherent();
         }
         
     }

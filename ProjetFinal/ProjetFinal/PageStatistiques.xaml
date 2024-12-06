@@ -84,13 +84,30 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:ActivitePersonne">
                         <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
-                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
+                            <TextBlock Width="350" VerticalAlignment="Center" Foreground="Black">
                                 <Run Text="Nom de l'activite : "></Run>
                                 <Run Text="{Binding Nom_Activite}"></Run>             
                             </TextBlock>
-                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
+                            <TextBlock Width="350" VerticalAlignment="Center" Foreground="Black">
                                 <Run Text="Nombre de personnes inscrites : "></Run>
                                 <Run Text="{Binding Nbr_personne}"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView x:Name="LVTestAdherent" Grid.Row="8" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Adherent">
+                        <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
+                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
+                    <Run Text="Nom de l'activite : "></Run>
+                    <Run Text="{Binding Adherent_nom}"></Run>
+                            </TextBlock>
+                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
+                    <Run Text="Nombre de personnes inscrites : "></Run>
+                    <Run Text="{Binding Adherent_Prenom}"></Run>
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
