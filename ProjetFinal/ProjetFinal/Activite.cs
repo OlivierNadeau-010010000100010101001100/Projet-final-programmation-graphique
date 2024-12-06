@@ -37,5 +37,10 @@ namespace ProjetFinal
         public int Prix_vente { get => prix_vente; set => prix_vente = value; }
 
         public string Categorie_activite { get => categorie_activite; set => categorie_activite = value; }
+
+        public override string ToString()
+        {
+            return $"{Activite_id};{Nom_activite};{Categorie_id_fk};{Cout_organisation_client};{Prix_vente};{Categorie_activite}";
+        }
     }
 }
