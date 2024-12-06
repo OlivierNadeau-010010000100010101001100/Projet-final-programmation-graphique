@@ -13,16 +13,9 @@
             <ListView x:Name="LVTestAdherent" Grid.Row="8" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Adherent">
-                        <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
-                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
-                    <Run Text="Prenom : "></Run>
-                    <Run Text="{Binding Adherent_nom}"></Run>
-                            </TextBlock>
-                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
-                    <Run Text="Nom : "></Run>
-                    <Run Text="{Binding Adherent_Prenom}"></Run>
-                                
-                            </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Adherent_Prenom}" Width="200" />
+                            <TextBlock Text="{Binding Adherent_nom}" Width="100" />
                             <Button Content="Supprimer" Click="Button_Click" Tag="{Binding}" Width="100"/>
                         </StackPanel>
                     </DataTemplate>

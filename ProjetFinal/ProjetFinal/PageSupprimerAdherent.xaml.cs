@@ -33,5 +33,10 @@ namespace ProjetFinal
         {
             LVTestAdherent.ItemsSource = Singleton.Instance().GetAllAdherents();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
