@@ -35,7 +35,7 @@ namespace ProjetFinal
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(MainWindow.Instance());
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
-            picker.SuggestedFileName = "Liste Activitées";
+            picker.SuggestedFileName = "Liste Adherents";
             picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
 
 
@@ -45,7 +45,7 @@ namespace ProjetFinal
 
             Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
 
-            var activites = Singleton.Instance().GetAllActivites();
+            var activites = Singleton.Instance().GetAllAdherent();
 
 
 
