@@ -34,11 +34,10 @@ namespace ProjetFinal
         {
             var picker = new Windows.Storage.Pickers.FileSavePicker();
 
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(MainWindow.Instance()); //erreur ici
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(MainWindow.Instance());
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
-            picker.SuggestedFileName = "test2";
-            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".txt" });
+            picker.SuggestedFileName = "Liste Activitées";
             picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
 
 
@@ -54,8 +53,10 @@ namespace ProjetFinal
 
 
             // La fonction ToString de la classe Client retourne: nom + ";" + prenom
-
-            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, activites.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            if (monFichier != null)
+            {
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, activites.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            }
         }
     }
 }

@@ -126,6 +126,37 @@ namespace ProjetFinal
             return activites;
         }
 
+        public List<Adherent> GetAllAdherent()     //vas chercher tout les actrivite et les mets dans une liste
+        {
+            List<Adherent> liste = new();
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT * FROM adherents", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+                var categoriesDictionary = GetCategoriesDictionary();
+
+                while (mySqlDataReader.Read())
+                {
+                    var adherent = new Adherent
+                    {
+                        Adherent_id = mySqlDataReader.GetString(0),
+                        Adherent_nom = mySqlDataReader.GetString(1),
+                        Adherent_Prenom = mySqlDataReader.GetString(2),
+                        Adherent_adresse = mySqlDataReader.GetString(3),
+                        Adherent_date_naissance = mySqlDataReader.GetString(4),
+                        Adherent_age = mySqlDataReader.GetInt32(5),
+                    };
+                    liste.Add(adherent);
+                }
+            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
+
+            return liste;
+        }
+
         public List<ActivitePersonne> GetAllNbrPersonneActivite()
         {
             List<ActivitePersonne> liste = new();
