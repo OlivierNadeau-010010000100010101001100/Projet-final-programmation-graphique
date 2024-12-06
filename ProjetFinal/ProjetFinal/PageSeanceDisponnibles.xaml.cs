@@ -47,6 +47,8 @@ namespace ProjetFinal
                 string nomActivite = e.Parameter.ToString();
                 // Utiliser nomActivite dans votre logique ici
                 txt_block.Text = $"Nom de l'activité: {nomActivite}";
+                LVseances.ItemsSource =  Singleton.Instance().GetSeanceCliquer(nomActivite);
+
             }
 
            

@@ -322,15 +322,55 @@ namespace ProjetFinal
             }
         }
 
+        public List<Seance> GetSeanceCliquer(string nom_activite)
+        {
+            List<Seance> liste = new();
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("SELECT seance_id, date_seance, heure_seance, nbrPlaceDispo, activite_id_fk FROM seance\r\nINNER JOIN a2024_420335ri_eq8.activites a on seance.activite_id_fk = a.activite_id\r\nWHERE nom_activitee = @nom_activite", conn);
+
+                cmd.Parameters.AddWithValue("@nom_activite", nom_activite);
+
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                while (mySqlDataReader.Read())
+                {
+                    var e = new Seance
+                    {
+                        Id = mySqlDataReader.GetInt32(0),
+                        Date = mySqlDataReader.GetDateTime(1).ToString("yyyy-MM-dd"),
+                        Heure = mySqlDataReader.GetString(2),
+                        NbrPlaces = mySqlDataReader.GetInt32(3),
+                        ActiviteID = mySqlDataReader.GetInt32(4),
+                    };
+                    liste.Add(e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return liste;
+        }
+
+
         public List<MoyenneRatingParActivite> GetAllRatingActivite()
         {
             List<MoyenneRatingParActivite> liste = new();
             var conn = Connection();
-            //try
-            //{
-            MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
-            conn.Open();
-            MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+            try
+            {
+                MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
 
             while (mySqlDataReader.Read())
             {
@@ -341,9 +381,9 @@ namespace ProjetFinal
                 };
                 liste.Add(e);
             }
-            //}
-            //catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
-            //finally { conn.Close(); }
+            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
 
             return liste;
         }
