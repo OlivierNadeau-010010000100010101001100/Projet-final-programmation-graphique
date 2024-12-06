@@ -206,6 +206,32 @@ namespace ProjetFinal
             return liste;
         }
 
+        public List<MoyenneRatingParActivite> GetAllRatingActivite()
+        {
+            List<MoyenneRatingParActivite> liste = new();
+            var conn = Connection();
+            //try
+            //{
+                MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                while (mySqlDataReader.Read())
+                {
+                    var e = new MoyenneRatingParActivite
+                    {
+                        Nom_activite = mySqlDataReader.GetString(0),
+                        Rating_activite = mySqlDataReader.GetString(1),
+                    };
+                    liste.Add(e);
+                }
+            //}
+            //catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            //finally { conn.Close(); }
+
+            return liste;
+        }
+
 
 
 
@@ -256,7 +282,92 @@ namespace ProjetFinal
 
             return nbrActivites;
         }
-        
+
+        public int getNbrRatingManquant()
+        {
+            int nbrRatingManquant = 0;
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT getNbrRatingManquant()", conn);
+                conn.Open();
+
+                nbrRatingManquant = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return nbrRatingManquant;
+        }
+
+        public int getNbrSeancePasserDate()
+        {
+            int nbrSeancePAsserDate = 0;
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT getNbrSeancePasserDate()", conn);
+                conn.Open();
+
+                nbrSeancePAsserDate = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return nbrSeancePAsserDate;
+        }
+
+
+        public string getMoyennePrixClient()
+        {
+            string MoyennePrix = "";
+            var conn = Connection();  // Assurez-vous que Connection() crée une connexion valide.
+
+            try
+            {
+                // Exécution de la requête en appelant la fonction SQL "getMoyennePrix"
+                MySqlCommand cmd = new MySqlCommand("SELECT getMoyennePrix()", conn);
+                conn.Open();
+
+                // Utilisation de ExecuteScalar pour obtenir la première valeur de la colonne
+                var result = cmd.ExecuteScalar();
+
+                // Si le résultat est non null, on le convertit en string
+                if (result != null)
+                {
+                    MoyennePrix = result.ToString();
+                }
+                else
+                {
+                    MoyennePrix = "Aucune donnée";  // Si pas de résultat, on peut afficher un message par défaut
+                }
+            }
+            catch (Exception ex)
+            {
+                // En cas d'erreur, afficher un message d'erreur
+                MessageErreur("Erreur base de données:", ex.Message);
+            }
+            finally
+            {
+                conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
+            }
+
+            return MoyennePrix;
+        }
+
+
 
 
         public void SupprimerActivite(int activiteID)     //suppression d'activite, a revoir pour gestion correctement
