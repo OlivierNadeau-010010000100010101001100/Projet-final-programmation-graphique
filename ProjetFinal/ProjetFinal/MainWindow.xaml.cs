@@ -78,6 +78,9 @@ namespace ProjetFinal
                 case "suppSeances":
                     mainFrame.Navigate(typeof(PageSupprimerSeance));
                     break;
+                case "ajoutAdherent":
+                    mainFrame.Navigate(typeof(PageAjoutAdherent));
+                    break;
                 default:
                     break;
             }

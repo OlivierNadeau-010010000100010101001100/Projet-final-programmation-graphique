@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="ProjetFinal.PageAjoutAdherent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    
+        <StackPanel>
+        <TextBlock x:Name="MessageErreur"/>
+        <TextBox x:Name="TextPrenom" PlaceholderText="Prenom" />
+            <TextBox x:Name="TextNom" PlaceholderText="Nom" />
+            <TextBox x:Name="TextAdresse" PlaceholderText="Adresse" />
+            <DatePicker x:Name="TextDate" />
+
+        <Button x:Name="Confirmer" Click="Confirmer_Click">Confirmer</Button>
+            <Button x:Name="Annuler" Click="Annuler_Click">Annuler</Button>
+        </StackPanel>
+       
+
+       
+
+    
+</Page>

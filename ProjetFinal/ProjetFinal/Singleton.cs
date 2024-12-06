@@ -433,6 +433,23 @@ namespace ProjetFinal
             return MoyennePrix;
         }
 
+        public void AjoutAdherent()
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("", conn);
+                conn.Open();
+
+                //cmd.Parameters.AddWithValue("@", );
+
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+        }
 
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */
