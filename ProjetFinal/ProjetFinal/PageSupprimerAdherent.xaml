@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="ProjetFinal.PageSupprimerAdherent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ScrollViewer>
+            <ListView x:Name="LVTestAdherent" Grid.Row="8" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Adherent">
+                        <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
+                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
+                    <Run Text="Prenom : "></Run>
+                    <Run Text="{Binding Adherent_nom}"></Run>
+                            </TextBlock>
+                            <TextBlock Width="500" VerticalAlignment="Center" Foreground="Black">
+                    <Run Text="Nom : "></Run>
+                    <Run Text="{Binding Adherent_Prenom}"></Run>
+                                
+                            </TextBlock>
+                            <Button Content="Supprimer" Click="Button_Click" Tag="{Binding}" Width="100"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</Page>

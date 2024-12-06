@@ -69,6 +69,9 @@ namespace ProjetFinal
                 case "iQuitter":
                     Application.Current.Exit();
                     break;
+                case "suppAdherent":
+                    mainFrame.Navigate(typeof(PageSupprimerAdherent));
+                    break;
                 default:
                     break;
             }
