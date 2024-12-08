@@ -575,6 +575,28 @@ namespace ProjetFinal
 
         }
 
+        public bool AjoutSeance(string date, string heure, int places, int fk_id)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("INSERT INTO seance (date_seance, heure_seance, nbrPlaceDispo, activite_id_fk) \r\nVALUES (@date, @heure, @places, @fk_id)", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@heure", heure);
+                cmd.Parameters.AddWithValue("@places", places);
+                cmd.Parameters.AddWithValue("@fk_id", fk_id);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+        }
+
 
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */

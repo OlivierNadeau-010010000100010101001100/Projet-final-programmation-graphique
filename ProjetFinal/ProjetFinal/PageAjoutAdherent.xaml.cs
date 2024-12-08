@@ -32,6 +32,8 @@ namespace ProjetFinal
             Singleton.Instance().SetMessageErreur(MessageErreur);
         }
 
+       
+
         private void Confirmer_Click(object sender, RoutedEventArgs e)
         {
             MessageErreur.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);

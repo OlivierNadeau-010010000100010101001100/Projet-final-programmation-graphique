@@ -84,10 +84,13 @@ namespace ProjetFinal
                 case "ajoutActivitee":
                     mainFrame.Navigate(typeof(PageAjoutActivite));
                     break;
+                case "ajoutSeances":
+                    mainFrame.Navigate(typeof(PageAjoutSeance));
+                    break;
                 default:
                     break;
             }
-
+            
         }
         
         public void ConnectionXamlVisibilityModifications()
