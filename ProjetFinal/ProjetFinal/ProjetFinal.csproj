@@ -18,10 +18,14 @@
     <None Remove="PageAjoutAdherent.xaml" />
     <None Remove="PageExportationActivite.xaml" />
     <None Remove="PageExportationAdherent.xaml" />
+
     <None Remove="PageGestionActivite.xaml" />
     <None Remove="PageGestionUsager.xaml" />
     <None Remove="PageModifierActivite.xaml" />
     <None Remove="PageModifierAdherent.xaml" />
+
+    <None Remove="PageSeanceDisponnibles.xaml" />
+
     <None Remove="PageStatistiques.xaml" />
     <None Remove="PageSupprimerSeance.xaml" />
     <None Remove="PageUser.xaml" />
@@ -53,6 +57,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+
     <Page Update="PageModifierActivite.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -69,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageModifierAdherent.xaml">
+
+    <Page Update="PageSeanceDisponnibles.xaml">
+
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

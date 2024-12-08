@@ -26,16 +26,19 @@
                 <NavigationViewItem x:Name="AdherentDeroulant" Content="Adhérent" Icon="People" Visibility="Collapsed">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem x:Name="ajoutAdherent" Content="Ajouter Adhérent" Icon="Add"/>
-                        <NavigationViewItem x:Name="gestionAdherent" Content="Gestion Adhérent" Icon="Delete"/>
-                        <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload"/>
 
+                        <NavigationViewItem x:Name="gestionAdherent" Content="Gestion Adhérent" Icon="Delete"/>
+
+                        <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
 
                 <NavigationViewItem x:Name="ActiviteDeroulant" Content="Activite" Icon="ReportHacked" Visibility="Collapsed">
                     <NavigationViewItem.MenuItems>
+
                         <NavigationViewItem x:Name="ajoutActivitee" Content="Ajouter Activite" Icon="Add" ToolTipService.ToolTip="Mail"/>
                         <NavigationViewItem x:Name="gestionActivite" Content="Gestion Activite" Icon="Delete" ToolTipService.ToolTip="Calendar"/>
+
                         <NavigationViewItem Content="Exportation CSV Activitées" x:Name="iCsvActivities" Icon="Upload"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
@@ -43,8 +46,7 @@
                 <NavigationViewItem x:Name="SeanceDeroulant" Content="Seances" Icon="Calendar" Visibility="Collapsed">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem x:Name="ajoutSeances" Content="Ajouter Seances" Icon="Add"/>
-                        <NavigationViewItem Name="modifSeances" Content="Modifier Seances" Icon="Setting"/>
-                        <NavigationViewItem x:Name="suppSeances" Content="Supprimer Seances" Icon="Delete"/>
+                        <NavigationViewItem x:Name="listeSeance" Content="Liste des séances" Icon="List"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
 

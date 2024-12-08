@@ -44,8 +44,6 @@ namespace ProjetFinal
 
         }
 
-
-       
         private void nav_view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = args.SelectedItem as NavigationViewItem;
@@ -69,13 +67,15 @@ namespace ProjetFinal
                 case "iQuitter":
                     Application.Current.Exit();
                     break;
+
                 case "gestionAdherent":
                     mainFrame.Navigate(typeof(PageGestionUsager));
                     break;
                 case "gestionActivite":
                     mainFrame.Navigate(typeof(PageGestionActivite));
+
                     break;
-                case "suppSeances":
+                case "listeSeance":
                     mainFrame.Navigate(typeof(PageSupprimerSeance));
                     break;
                 case "ajoutAdherent":
