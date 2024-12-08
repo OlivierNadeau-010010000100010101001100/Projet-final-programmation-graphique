@@ -130,6 +130,7 @@ namespace ProjetFinal
         public List<Seance> GetAllSeances()
         {
             List<Seance> seances = new();
+            var activites = GetAllActivites();
             var conn = Connection();
             try
             {
@@ -146,6 +147,7 @@ namespace ProjetFinal
                         Heure = reader.GetString(2),
                         NbrPlaces = reader.GetInt32(3),
                         ActiviteID = reader.GetInt32(4),
+                        NomActivite = activites.FirstOrDefault(a => a.Activite_id == reader.GetInt32(4))?.Nom_activite ?? "Inconnu"
 
                     };
                     seances.Add(seance);
@@ -548,6 +550,7 @@ namespace ProjetFinal
                 MessageErreur("", ex.Message);
                 return false;
             }
+            finally { conn.Close(); }
 
         }
 
@@ -572,6 +575,7 @@ namespace ProjetFinal
                 MessageErreur("", ex.Message);
                 return false;
             }
+            finally { conn.Close(); }
 
         }
 
@@ -595,8 +599,33 @@ namespace ProjetFinal
                 MessageErreur("", ex.Message);
                 return false;
             }
+            finally { conn.Close(); }
         }
 
+        public bool ModifierSeance(int id, string date, string heure, int places, int idfk)
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("UPDATE seance SET date_seance = @date, heure_seance = @heure, nbrPlaceDispo = @places, activite_id_fk = @idfk WHERE seance_id = @id", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@heure", heure);
+                cmd.Parameters.AddWithValue("@places", places);
+                cmd.Parameters.AddWithValue("@idfk", idfk);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
 
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */

@@ -14,6 +14,8 @@ namespace ProjetFinal
         public int NbrPlaces { get; set; }
         public int ActiviteID { get; set; }
 
+        public string NomActivite { get; set; }
+
         public Seance() { }
 
         public Seance(int id, string date, string heure, int nbrPlaces, int activiteID)
@@ -27,7 +29,7 @@ namespace ProjetFinal
 
         public override string ToString()
         {
-            return $"Seance {Id}, Date: {Date}, Heure: {Heure}, NbrPlaces: {NbrPlaces}, ActiviteID: {ActiviteID}";
+            return $"Seance {Id}, Date: {Date}, Heure: {Heure}, NbrPlaces: {NbrPlaces}, ActiviteID: {ActiviteID}, Nom Activité: {NomActivite}";
         }
     }
 }

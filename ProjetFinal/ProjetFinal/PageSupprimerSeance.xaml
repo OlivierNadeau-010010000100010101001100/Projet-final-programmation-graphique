@@ -17,12 +17,21 @@
                     <DataTemplate x:DataType="local:Seance">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Id}" Width="200" />
+                            <TextBlock Text="{Binding NomActivite}" Width="200" />
                             <TextBlock Text="{Binding Date}" Width="100" />
-                            <Button Content="Supprimer" Click="Button_Click" Tag="{Binding}" Width="100"/>
+                            <Button Content="Modifier" Click="Button_Modifier" Tag="{Binding}" Width="100"/>
+                            <Button Content="Supprimer" Click="Button_Supprimer" Tag="{Binding}" Width="100"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
+
+        <ContentDialog x:Name="ConfirmerSupprimer" Title="Confirmer la supression" PrimaryButtonText="Supprimer"
+                       SecondaryButtonText="Annuler" PrimaryButtonClick="Confirmation_Button"  SecondaryButtonClick="Cancel_Button">
+            <TextBlock x:Name="ConfirmationMessage" Text="Êtes-vous certain de vouloir supprimer cette seance?" />
+        </ContentDialog>
     </Grid>
+    
+    
 </Page>

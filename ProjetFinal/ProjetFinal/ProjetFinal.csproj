@@ -24,6 +24,7 @@
     <None Remove="PageGestionUsager.xaml" />
     <None Remove="PageModifierActivite.xaml" />
     <None Remove="PageModifierAdherent.xaml" />
+    <None Remove="PageModifierSeance.xaml" />
     <None Remove="PageSeanceDisponnibles.xaml" />
     <None Remove="PageStatistiques.xaml" />
     <None Remove="PageSupprimerSeance.xaml" />
@@ -49,6 +50,12 @@
 
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="PageModifierSeance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

@@ -23,6 +23,8 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageSupprimerSeance : Page
     {
+
+        private Seance selectionSeance;
         public PageSupprimerSeance()
         {
             this.InitializeComponent();
@@ -35,7 +37,25 @@ namespace ProjetFinal
             LVTestSeance.ItemsSource = Singleton.Instance().GetAllSeances();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Supprimer(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = (Button)sender;
+                selectionSeance = (Seance)button.Tag;
+
+                if (selectionSeance != null)
+                {
+                    _ = ConfirmerSupprimer.ShowAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                TestMessage.Text = ex.Message;
+            }
+        }
+
+        private void Button_Modifier(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -44,15 +64,27 @@ namespace ProjetFinal
 
                 if (seance != null)
                 {
-                    Singleton.Instance().SupprimerSeance(seance.Id);
-
-                    OnLoad();
+                    this.Frame.Navigate(typeof(PageModifierSeance), seance);
                 }
             }
             catch (Exception ex)
             {
                 TestMessage.Text = ex.Message;
             }
+        }
+
+        private void Confirmation_Button(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            {
+                Singleton.Instance().SupprimerSeance(selectionSeance.Id);
+                OnLoad();
+            }
+        }
+
+
+        private void Cancel_Button(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            selectionSeance = null;
         }
     }
 }
