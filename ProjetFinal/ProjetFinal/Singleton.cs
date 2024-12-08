@@ -15,7 +15,7 @@ namespace ProjetFinal
     internal class Singleton
     {
         public static event Action UserConnectionChange; //evenement qui refresh le nom d'utilisateur quand il est invoke
-        private static string _userType = "";
+        private static string _userType = "admin";
         private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         private static string _username = string.Empty;
         static Singleton instance = null;
@@ -433,23 +433,108 @@ namespace ProjetFinal
             return MoyennePrix;
         }
 
-        public void AjoutAdherent()
+        public bool AjoutAdherent(string prenom, string nom, string adresse, string date, string mdp)
         {
             var conn = Connection();
             try
             {
-                MySqlCommand cmd = new("", conn);
+                MySqlCommand cmd = new("INSERT INTO Adherents (nom_adherent, prenom_adherent, adresse_adherent, date_naissance_adherent, adherent_mot_de_passe)\r\nVALUES (@nom, @prenom, @adresse, @date, @mdp)", conn);
                 conn.Open();
 
-                //cmd.Parameters.AddWithValue("@", );
+                cmd.Parameters.AddWithValue("@nom", nom);
+                cmd.Parameters.AddWithValue("@prenom", prenom);
+                cmd.Parameters.AddWithValue("@adresse", adresse);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@mdp", mdp);
 
                 cmd.ExecuteNonQuery();
+                return true;
             }
             catch(Exception ex)
             {
-                MessageErreur("Erreur base de donnée", ex.Message);
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
+
+        public bool ModifierAdherent(string id, string prenom, string nom, string adresse, string date)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("UPDATE adherents SET date_naissance_adherent = @date, prenom_adherent = @prenom, nom_adherent = @nom, adresse_adherent = @adresse WHERE adherent_id = @id;", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@nom", nom);
+                cmd.Parameters.AddWithValue("@prenom", prenom);
+                cmd.Parameters.AddWithValue("@adresse", adresse);
+                cmd.Parameters.AddWithValue("@date", date);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool AjoutActivite(string nom, int prixOrganisation, int prixClient, int fkCategorie)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("INSERT INTO activites (nom_activitee, categorie_id_fk, cout_organisation_client, prix_vente)\r\nVALUES (@nom, @fkCategorie, @prixOrganisation, @prixClient)", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@nom", nom);
+                cmd.Parameters.AddWithValue("@fkCategorie", fkCategorie);
+                cmd.Parameters.AddWithValue("@prixOrganisation", prixOrganisation);
+                cmd.Parameters.AddWithValue("@prixClient", prixClient);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+
+        }
+
+        public bool ModifierActivite(int id, string nom, int prixOrganisation, int prixClient, int fkCategorie)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("UPDATE activites SET nom_activitee = @nom, categorie_id_fk = @fkCategorie, cout_organisation_client = @prixOrganisation, prix_vente = @prixClient WHERE activite_id = @id", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@nom", nom);
+                cmd.Parameters.AddWithValue("@fkCategorie", fkCategorie);
+                cmd.Parameters.AddWithValue("@prixOrganisation", prixOrganisation);
+                cmd.Parameters.AddWithValue("@prixClient", prixClient);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+
+        }
+
 
 
         /* ********************************************************** GESTION DES CONNECTIONS UTILISATEURS **************************************************** */

@@ -69,11 +69,11 @@ namespace ProjetFinal
                 case "iQuitter":
                     Application.Current.Exit();
                     break;
-                case "suppAdherent":
-                    mainFrame.Navigate(typeof(PageSupprimerAdherent));
+                case "gestionAdherent":
+                    mainFrame.Navigate(typeof(PageGestionUsager));
                     break;
-                case "suppActivite":
-                    mainFrame.Navigate(typeof(PageSupprimerActivite));
+                case "gestionActivite":
+                    mainFrame.Navigate(typeof(PageGestionActivite));
                     break;
                 case "suppSeances":
                     mainFrame.Navigate(typeof(PageSupprimerSeance));
@@ -81,12 +81,15 @@ namespace ProjetFinal
                 case "ajoutAdherent":
                     mainFrame.Navigate(typeof(PageAjoutAdherent));
                     break;
+                case "ajoutActivitee":
+                    mainFrame.Navigate(typeof(PageAjoutActivite));
+                    break;
                 default:
                     break;
             }
 
         }
-
+        
         public void ConnectionXamlVisibilityModifications()
         {
             string userType = Singleton.GetUserType();

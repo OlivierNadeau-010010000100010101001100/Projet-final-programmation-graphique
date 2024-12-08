@@ -10,12 +10,20 @@
 
     
         <StackPanel>
-        <TextBlock x:Name="MessageErreur"/>
+        <TextBlock x:Name="MessageErreur" Foreground="Red"/>
+        <TextBlock Text="Prenom"/>
         <TextBox x:Name="TextPrenom" PlaceholderText="Prenom" />
-            <TextBox x:Name="TextNom" PlaceholderText="Nom" />
-            <TextBox x:Name="TextAdresse" PlaceholderText="Adresse" />
-            <DatePicker x:Name="TextDate" />
-
+        <TextBlock Text="Nom"/>
+        <TextBox x:Name="TextNom" PlaceholderText="Nom" />
+        <TextBlock Text="Mot de passe"/>
+        <TextBox x:Name="Password" PlaceholderText="Mot de passe"/>
+        <TextBlock Text="Confirmation mot de passe"/>
+        <TextBox x:Name="PasswordConf" PlaceholderText="Confirmation mot de passe"/>
+        <TextBlock Text="Adresse"/>
+        <TextBox x:Name="TextAdresse" PlaceholderText="Adresse" />
+        <TextBlock Text="Date de naissance"/>
+        <DatePicker x:Name="TextDate" />
+        
         <Button x:Name="Confirmer" Click="Confirmer_Click">Confirmer</Button>
             <Button x:Name="Annuler" Click="Annuler_Click">Annuler</Button>
         </StackPanel>

@@ -26,8 +26,7 @@
                 <NavigationViewItem x:Name="AdherentDeroulant" Content="Adhérent" Icon="People" Visibility="Collapsed">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem x:Name="ajoutAdherent" Content="Ajouter Adhérent" Icon="Add"/>
-                        <NavigationViewItem x:Name="modifAdherent" Content="Modifier Adhérent" Icon="Setting"/>
-                        <NavigationViewItem x:Name="suppAdherent" Content="Supprimer Adhérent" Icon="Delete"/>
+                        <NavigationViewItem x:Name="gestionAdherent" Content="Gestion Adhérent" Icon="Delete"/>
                         <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload"/>
 
                     </NavigationViewItem.MenuItems>
@@ -36,8 +35,7 @@
                 <NavigationViewItem x:Name="ActiviteDeroulant" Content="Activite" Icon="ReportHacked" Visibility="Collapsed">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem x:Name="ajoutActivitee" Content="Ajouter Activite" Icon="Add" ToolTipService.ToolTip="Mail"/>
-                        <NavigationViewItem Name="modifActivite" Content="Modifier Activite" Icon="Setting" ToolTipService.ToolTip="Calendar"/>
-                        <NavigationViewItem x:Name="suppActivite" Content="Supprimer Activite" Icon="Delete" ToolTipService.ToolTip="Calendar"/>
+                        <NavigationViewItem x:Name="gestionActivite" Content="Gestion Activite" Icon="Delete" ToolTipService.ToolTip="Calendar"/>
                         <NavigationViewItem Content="Exportation CSV Activitées" x:Name="iCsvActivities" Icon="Upload"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>

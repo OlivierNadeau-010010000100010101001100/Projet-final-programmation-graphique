@@ -14,12 +14,15 @@
   <ItemGroup>
     <None Remove="ModalConnection.xaml" />
     <None Remove="PageActivites.xaml" />
+    <None Remove="PageAjoutActivite.xaml" />
     <None Remove="PageAjoutAdherent.xaml" />
     <None Remove="PageExportationActivite.xaml" />
     <None Remove="PageExportationAdherent.xaml" />
+    <None Remove="PageGestionActivite.xaml" />
+    <None Remove="PageGestionUsager.xaml" />
+    <None Remove="PageModifierActivite.xaml" />
+    <None Remove="PageModifierAdherent.xaml" />
     <None Remove="PageStatistiques.xaml" />
-    <None Remove="PageSupprimerActivite.xaml" />
-    <None Remove="PageSupprimerAdherent.xaml" />
     <None Remove="PageSupprimerSeance.xaml" />
     <None Remove="PageUser.xaml" />
   </ItemGroup>
@@ -50,6 +53,26 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="PageModifierActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageGestionActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageAjoutActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageModifierAdherent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="PageAjoutAdherent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -60,12 +83,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="PageSupprimerActivite.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="PageSupprimerAdherent.xaml">
+    <Page Update="PageGestionUsager.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

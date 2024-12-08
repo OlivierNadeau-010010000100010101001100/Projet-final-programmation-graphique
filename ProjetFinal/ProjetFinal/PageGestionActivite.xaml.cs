@@ -21,9 +21,10 @@ namespace ProjetFinal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PageSupprimerActivite : Page
+    public sealed partial class PageGestionActivite : Page
     {
-        public PageSupprimerActivite()
+        private static Activite activiteSelection;
+        public PageGestionActivite()
         {
             this.InitializeComponent();
             OnLoad();
@@ -40,13 +41,11 @@ namespace ProjetFinal
             try
             {
                 var button = (Button)sender;
-                var activite = (Activite)button.Tag;
+                activiteSelection = (Activite)button.Tag;
 
-                if (activite != null)
+                if (activiteSelection != null)
                 {
-                    Singleton.Instance().SupprimerActivite(activite.Activite_id);
-
-                    OnLoad();
+                   _ = ConfirmerSupprimer.ShowAsync();
                 }
             }
             catch (Exception ex)
@@ -55,6 +54,42 @@ namespace ProjetFinal
             }
         }
 
+        private void Button_Modifier(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = (Button)sender;
+                var activite = (Activite)button.Tag;
+
+                if (activite != null)
+                {
+                    this.Frame.Navigate(typeof(PageModifierActivite), activite);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                TestMessage.Text = ex.Message;
+            }
+        }
+
+        private void Confirmation_Button(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            {
+                Singleton.Instance().SupprimerActivite(activiteSelection.Activite_id);
+                OnLoad();
+            }
+        }
+
+
+        private void Cancel_Button(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            activiteSelection = null;
+        }
+
 
     }
+
 }
+

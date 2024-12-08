@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="ProjetFinal.PageModifierActivite"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock x:Name="MessageErreur" Foreground="Red"/>
+            <TextBlock Text="Nom de l'activité"/>
+            <TextBox x:Name="TextNomActivite" PlaceholderText="Nom activité" />
+            <TextBlock Text="Prix d'organisation"/>
+            <TextBox x:Name="PrixOrganisation" PlaceholderText="Prix organisation" />
+            <TextBlock Text="Prix de vente"/>
+            <TextBox x:Name="PrixVente" PlaceholderText="Prix de vente"/>
+            <ComboBox x:Name="CategoriesCombo" SelectionChanged="Categories_SelectionChanged" PlaceholderText="Selectionner Categorie"/>
+
+
+
+            <Button x:Name="Confirmer" Click="Confirmer_Click">Confirmer</Button>
+            <Button x:Name="Annuler" Click="Annuler_Click">Annuler</Button>
+        </StackPanel>
+    </Grid>
+</Page>

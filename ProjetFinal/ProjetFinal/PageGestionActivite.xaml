@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ProjetFinal.PageSupprimerActivite"
+    x:Class="ProjetFinal.PageGestionActivite"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ProjetFinal"
@@ -18,12 +18,18 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Activite_id}" Width="200" />
                             <TextBlock Text="{Binding Nom_activite}" Width="100" />
+                            <Button Content="Modifier" Click="Button_Modifier" Tag="{Binding}" Width="100"/>
                             <Button Content="Supprimer" Click="Button_Click" Tag="{Binding}" Width="100"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
-        
+
+        <ContentDialog x:Name="ConfirmerSupprimer" Title="Confirmer la supression" PrimaryButtonText="Supprimer"
+                       SecondaryButtonText="Annuler" PrimaryButtonClick="Confirmation_Button"  SecondaryButtonClick="Cancel_Button">
+            <TextBlock x:Name="ConfirmationMessage" Text="Êtes-vous certain de vouloir supprimer cette activité?" />
+        </ContentDialog>
+
     </Grid>
 </Page>
