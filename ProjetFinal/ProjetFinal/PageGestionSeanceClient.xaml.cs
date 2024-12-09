@@ -27,13 +27,17 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
 
-            LVMesSeances.ItemsSource = Singleton.Instance().GetMesSeance();
+            reload();
         }
 
         private void button_unsub_seance_Click(object sender, RoutedEventArgs e)
         {
             var seanceSelected = (Seance)LVMesSeances.SelectedItem;
             Singleton.Instance().DeleteInscription(seanceSelected.Id);
+            reload();
+
+            //button_confirm_rating.Visibility = Visibility.Collapsed;
+            //ComboBox_seance.Visibility = Visibility.Collapsed;
         }
 
         private void LVMesSeances_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,8 +46,24 @@ namespace ProjetFinal
             {
                 var seance = (Seance)LVMesSeances.SelectedItem;
                 button_unsub_seance.Visibility = Visibility.Visible;
-                
+                ComboBox_seance.Visibility = Visibility.Visible;
+                button_confirm_rating.Visibility = Visibility.Visible;
             }
+        }
+
+        private void button_confirm_rating_Click(object sender, RoutedEventArgs e)
+        {
+            var seance = (Seance)LVMesSeances.SelectedItem;
+            Singleton.Instance().UpdateRating(seance.Id, ComboBox_seance.SelectedIndex + 1);
+            ComboBox_seance.Visibility = Visibility.Collapsed;
+            button_confirm_rating.Visibility = Visibility.Collapsed;
+
+            reload();
+        }
+
+        private void reload()
+        {
+            LVMesSeances.ItemsSource = Singleton.Instance().GetMesSeance();
         }
     }
 }
