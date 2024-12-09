@@ -102,6 +102,7 @@ namespace ProjetFinal
                 deconnection.Visibility = Visibility.Visible;
                 tbl_bonjour.Visibility = Visibility.Visible;
                 tbl_email.Visibility = Visibility.Visible;
+                tbl_matricule.Visibility = Visibility.Visible;
                 
                 MainWindow.Instance().ConnectionXamlVisibilityModifications();
 
@@ -119,6 +120,7 @@ namespace ProjetFinal
             deconnection.Visibility = Visibility.Collapsed;
             tbl_bonjour.Visibility = Visibility.Collapsed;
             tbl_email.Visibility = Visibility.Collapsed;
+            tbl_matricule.Visibility = Visibility.Collapsed;
         }
 
         private void xamlAffichageLorsqueConnected()
@@ -127,6 +129,7 @@ namespace ProjetFinal
             deconnection.Visibility = Visibility.Visible;
             tbl_bonjour.Visibility = Visibility.Visible;
             tbl_email.Visibility = Visibility.Visible;
+            tbl_matricule.Visibility= Visibility.Visible;
         }
     }
 }

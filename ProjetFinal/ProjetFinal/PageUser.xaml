@@ -25,6 +25,10 @@
             <Run Text="Adresse mail : " />
             <Run Text="test@mail.com" />
             </TextBlock>
+            <TextBlock x:Name="tbl_matricule" Visibility="Collapsed" FontSize="20" Foreground="#666">
+                <Run Text="Matricule : " />      
+                <Run Text="" x:Name="matricule" />
+            </TextBlock>
             <TextBlock x:Name="MessageConn" Foreground="Red" FontWeight="Bold" FontSize="18" />
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Spacing="15">

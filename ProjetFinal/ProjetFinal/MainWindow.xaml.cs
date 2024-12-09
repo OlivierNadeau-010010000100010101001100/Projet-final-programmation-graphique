@@ -52,6 +52,9 @@ namespace ProjetFinal
                 case "iActivite":
                     mainFrame.Navigate(typeof(PageActivites));
                     break;
+                case "iSeance":
+                    mainFrame.Navigate(typeof(PageGestionSeanceClient));
+                    break;
                 case "iStat":
                     mainFrame.Navigate(typeof(PageStatistiques));
                     break;
@@ -113,6 +116,7 @@ namespace ProjetFinal
                 iCsvActivities.Visibility = Visibility.Collapsed;
                 iCsvUsers.Visibility = Visibility.Collapsed;
                 iStat.Visibility = Visibility.Collapsed;
+                iSeance.Visibility = Visibility.Collapsed;
 
             } 
             else if (userType == "admin")
@@ -126,12 +130,13 @@ namespace ProjetFinal
                 iCsvActivities.Visibility= Visibility.Visible;
                 iCsvUsers.Visibility = Visibility.Visible;
                 iStat.Visibility= Visibility.Visible;
+                iSeance.Visibility= Visibility.Visible;
 
             }
             else if (userType == "user")
             {
 
-                
+                iSeance.Visibility = Visibility.Visible ;
 
                 iCsvActivities.Visibility = Visibility.Collapsed;
                 iCsvUsers.Visibility = Visibility.Collapsed;

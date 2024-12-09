@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -21,6 +21,7 @@
     <None Remove="PageExportationActivite.xaml" />
     <None Remove="PageExportationAdherent.xaml" />
     <None Remove="PageGestionActivite.xaml" />
+    <None Remove="PageGestionSeanceClient.xaml" />
     <None Remove="PageGestionUsager.xaml" />
     <None Remove="PageModifierActivite.xaml" />
     <None Remove="PageModifierAdherent.xaml" />
@@ -50,6 +51,12 @@
 
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="PageGestionSeanceClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

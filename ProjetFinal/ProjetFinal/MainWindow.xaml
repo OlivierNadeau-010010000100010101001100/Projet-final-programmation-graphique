@@ -17,6 +17,7 @@
                 <NavigationViewItemSeparator />
                 
                 <NavigationViewItem Content="Liste Activitées" x:Name="iActivite" Icon="Library"/>
+                <NavigationViewItem Content="Mes Séances" x:Name="iSeance" Icon="Bookmarks"/>
                 
                 <NavigationViewItemHeader x:Name="HeaderAdmin" Content="Espace Administrateur" Visibility="Collapsed"/>
                 <NavigationViewItemSeparator x:Name="HeaderAdminLine" Visibility="Collapsed" />

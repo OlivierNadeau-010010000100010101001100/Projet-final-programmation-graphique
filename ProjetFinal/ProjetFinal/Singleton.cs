@@ -18,6 +18,7 @@ namespace ProjetFinal
         private static string _userType = "";
         private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         private static string _username = string.Empty;
+        private static string _userID = string.Empty;
         static Singleton instance = null;
         private TextBlock _message; //gestion des messages et messages d'erreur
         private string _connectionQuery;
@@ -501,14 +502,15 @@ namespace ProjetFinal
             return liste;
         }
 
-        public bool checkInscriptionSeance(int adherentId)
+        public bool checkInscriptionSeance(string adherentId, int seanceID)
         {
             var conn = Connection();
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId;", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId AND seance_id_FK = @seanceID;", conn);
                 cmd.Parameters.AddWithValue("@adherentId", adherentId);
+                cmd.Parameters.AddWithValue("@seanceID", seanceID);
 
                 conn.Open();
 
@@ -534,6 +536,40 @@ namespace ProjetFinal
                 conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
             }
         }
+
+        //public List<Seance> GetMesSeances()
+        //{
+        //    var conn = Connection();
+
+        //    try
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId AND seance_id_FK = @seanceID;", conn);
+        //        cmd.Parameters.AddWithValue("@adherentId", adherentId);
+
+        //        conn.Open();
+
+        //        var result = cmd.ExecuteScalar();
+
+        //        if (Convert.ToInt32(result) > 0)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // En cas d'erreur, afficher un message d'erreur
+        //        MessageErreur("Erreur base de données:", ex.Message);
+        //        return false;  // Retourne faux en cas d'erreur
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
+        //    }
+        //}
 
 
 
