@@ -22,7 +22,6 @@
 
 
             <Button x:Name="Confirmer" Click="Confirmer_Click">Confirmer</Button>
-            <Button x:Name="Annuler" Click="Annuler_Click">Annuler</Button>
         </StackPanel>
     </Grid>
 </Page>
