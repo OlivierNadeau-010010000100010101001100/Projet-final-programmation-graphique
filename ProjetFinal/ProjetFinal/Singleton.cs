@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
 using MySqlX.XDevAPI;
+using System.Diagnostics;
+using System.Reflection.PortableExecutable;
 
 namespace ProjetFinal
 {
@@ -554,40 +556,54 @@ namespace ProjetFinal
             }
         }
 
-        public bool GetInscriptionSeance()
+        
+
+        public List<Seance> GetMesSeance()
         {
+            List<Seance> liste = new();
+            Dictionary<int, int> rating = new();
             var conn = Connection();
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId AND seance_id_FK = @seanceID;", conn);
-                cmd.Parameters.AddWithValue("@adherentId", _userID);
+                MySqlCommand cmd = new("SELECT seance_id, date_seance, heure_seance, nbrPlaceDispo, activite_id_fk, note_appreciation FROM inscription_seance\r\nINNER JOIN a2024_420335ri_eq8.seance s on inscription_seance.seance_id_fk = s.seance_id\r\nWHERE adherent_id_fk = @userID;", conn);
+
+                cmd.Parameters.AddWithValue("@userID", _userID);
 
                 conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
 
-                var result = cmd.ExecuteScalar();
+                while (mySqlDataReader.Read())
+                {
+                    var e = new Seance
+                    {
+                        Id = mySqlDataReader.GetInt32(0),
+                        Date = mySqlDataReader.GetDateTime(1).ToString("yyyy-MM-dd"),
+                        Heure = mySqlDataReader.GetString(2),
+                        NbrPlaces = mySqlDataReader.GetInt32(3),
+                        ActiviteID = mySqlDataReader.GetInt32(4),
 
-                if (Convert.ToInt32(result) > 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    };
+                    
+
+                    liste.Add(e);
                 }
             }
             catch (Exception ex)
             {
-                // En cas d'erreur, afficher un message d'erreur
-                MessageErreur("Erreur base de données:", ex.Message);
-                return false;  // Retourne faux en cas d'erreur
+                MessageErreur("Erreur base de donnée:", ex.Message);
             }
             finally
             {
-                conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
+                conn.Close();
             }
+
+            
+
+            return liste;
         }
 
+        //public void UpdateRatingSeance
         //public List<Seance> GetMesSeances()
         //{
         //    var conn = Connection();

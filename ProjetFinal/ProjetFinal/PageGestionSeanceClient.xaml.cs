@@ -26,6 +26,18 @@ namespace ProjetFinal
         public PageGestionSeanceClient()
         {
             this.InitializeComponent();
+
+            LVMesSeances.ItemsSource = Singleton.Instance().GetMesSeance();
+        }
+
+        private void button_unsub_seance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LVMesSeances_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
