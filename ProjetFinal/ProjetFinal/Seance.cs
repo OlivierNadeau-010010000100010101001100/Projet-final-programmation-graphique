@@ -14,6 +14,7 @@ namespace ProjetFinal
         public int NbrPlaces { get; set; }
         public int ActiviteID { get; set; }
 
+        public int? Rating { get; set; }
         public string NomActivite { get; set; }
 
         public Seance() { }
@@ -25,6 +26,16 @@ namespace ProjetFinal
             Heure = heure;
             NbrPlaces = nbrPlaces;
             ActiviteID = activiteID;
+        }
+
+        public Seance(int id, string date, string heure, int nbrPlaces, int activiteID, int? rating)
+        {
+            Id = id;
+            Date = date;
+            Heure = heure;
+            NbrPlaces = nbrPlaces;
+            ActiviteID = activiteID;
+            Rating = rating;
         }
 
         public override string ToString()

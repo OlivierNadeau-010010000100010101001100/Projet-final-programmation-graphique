@@ -59,7 +59,7 @@ namespace ProjetFinal
             bool validation = true;
             string messageErreur = "";
 
-            string prenom = TextPrenom.Text?.Trim() ?? "";
+            string prenom = TextPrenom.Text?.Trim() ?? ""; //
             if (string.IsNullOrEmpty(prenom))
             {
                 messageErreur += "Il faut un prenom valide \n";

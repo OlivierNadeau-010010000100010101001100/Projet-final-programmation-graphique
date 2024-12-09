@@ -17,7 +17,7 @@ namespace ProjetFinal
     internal class Singleton
     {
         public static event Action UserConnectionChange; //evenement qui refresh le nom d'utilisateur quand il est invoke
-        private static string _userType = "admin";
+        private static string _userType = "";
         private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         private static string _username = string.Empty;
         private static string _userID = string.Empty;
@@ -582,6 +582,8 @@ namespace ProjetFinal
                         Heure = mySqlDataReader.GetString(2),
                         NbrPlaces = mySqlDataReader.GetInt32(3),
                         ActiviteID = mySqlDataReader.GetInt32(4),
+                        Rating = mySqlDataReader.IsDBNull(5) ? null : mySqlDataReader.GetInt32(5)
+
 
                     };
                     
