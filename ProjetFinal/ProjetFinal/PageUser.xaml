@@ -10,14 +10,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
 
-    <Grid x:Name="grid_user" Margin="20" Background="#F7F7F7">
+    <Grid x:Name="grid_user" Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Spacing="15">
-            <TextBlock x:Name="tbl_bonjour" Visibility="Collapsed" FontSize="26" FontWeight="Bold" Foreground="#333">
+            <TextBlock x:Name="tbl_bonjour" Visibility="Collapsed" FontSize="25" FontWeight="Bold" Foreground="#333">
             <Run Text="Bonjour " />
             <Run Text="" x:Name="nom_utilisateur_run" />
             </TextBlock>
