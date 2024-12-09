@@ -13,7 +13,7 @@
         <StackPanel>
             <TextBlock x:Name="MessageErreur" Foreground="Red"/>
             <TextBlock Text="Nom de la catégorie"/>
-            <TextBox x:Name="TextCategorie" PlaceholderText="Prenom" />
+            <TextBox x:Name="TextCategorie" PlaceholderText="Nom Categorie" />
 
 
             <Button x:Name="Confirmer" Click="Confirmer_Click">Confirmer</Button>
