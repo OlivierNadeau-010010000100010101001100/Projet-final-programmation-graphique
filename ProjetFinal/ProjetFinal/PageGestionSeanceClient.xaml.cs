@@ -36,8 +36,9 @@ namespace ProjetFinal
             Singleton.Instance().DeleteInscription(seanceSelected.Id);
             reload();
 
-            //button_confirm_rating.Visibility = Visibility.Collapsed;
-            //ComboBox_seance.Visibility = Visibility.Collapsed;
+            button_confirm_rating.Visibility = Visibility.Collapsed;
+            ComboBox_seance.Visibility = Visibility.Collapsed;
+            button_unsub_seance.Visibility = Visibility.Collapsed;
         }
 
         private void LVMesSeances_SelectionChanged(object sender, SelectionChangedEventArgs e)

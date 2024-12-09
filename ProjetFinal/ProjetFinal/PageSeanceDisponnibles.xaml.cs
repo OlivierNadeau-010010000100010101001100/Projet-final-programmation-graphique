@@ -77,16 +77,21 @@ namespace ProjetFinal
                 if (LVseances.SelectedItem != null)
                 {
                     var seance = (Seance)LVseances.SelectedItem;
-                    
-                    if (Singleton.Instance().checkInscriptionSeance(seance.Id))
+                    if(Singleton.GetUserType() == "user")
                     {
+                        if (Singleton.Instance().checkInscriptionSeance(seance.Id))
+                        {
 
-                        button_inscription_seance.Visibility = Visibility.Visible;
+                            button_inscription_seance.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            test_tbx.Text = "Vous êtes déja inscrit à cette séance";
+                        }
                     }
-                    else
-                    {
-                        test_tbx.Text = "Vous êtes déja inscrit à cette séance";
-                    }
+                    
+
+
 
 
                 }
