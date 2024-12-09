@@ -12,13 +12,11 @@
         <NavigationView PaneDisplayMode="Left" x:Name="nav_view" SelectionChanged="nav_view_SelectionChanged" IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Navigation"/>
-                <NavigationViewItemSeparator/>
+
+                <NavigationViewItemHeader Content="Espace Utilisateur"/>
+                <NavigationViewItemSeparator />
+                
                 <NavigationViewItem Content="Liste Activitées" x:Name="iActivite" Icon="Library"/>
-
-
-
-                <NavigationViewItemHeader x:Name="HeaderUser" Content="Espace Utilisateur" Visibility="Collapsed"/>
-                <NavigationViewItemSeparator x:Name="HeaderUserLine" Visibility="Collapsed" />
                 
                 <NavigationViewItemHeader x:Name="HeaderAdmin" Content="Espace Administrateur" Visibility="Collapsed"/>
                 <NavigationViewItemSeparator x:Name="HeaderAdminLine" Visibility="Collapsed" />
@@ -27,7 +25,7 @@
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem x:Name="ajoutAdherent" Content="Ajouter Adhérent" Icon="Add"/>
 
-                        <NavigationViewItem x:Name="gestionAdherent" Content="Gestion Adhérent" Icon="Delete"/>
+                        <NavigationViewItem x:Name="gestionAdherent" Content="Gestion Adhérent" Icon="List"/>
 
                         <NavigationViewItem Content="Exportation CSV Adhérents" x:Name="iCsvUsers" Icon="Upload"/>
                     </NavigationViewItem.MenuItems>
@@ -37,7 +35,7 @@
                     <NavigationViewItem.MenuItems>
 
                         <NavigationViewItem x:Name="ajoutActivitee" Content="Ajouter Activite" Icon="Add" ToolTipService.ToolTip="Mail"/>
-                        <NavigationViewItem x:Name="gestionActivite" Content="Gestion Activite" Icon="Delete" ToolTipService.ToolTip="Calendar"/>
+                        <NavigationViewItem x:Name="gestionActivite" Content="Gestion Activite" Icon="List" ToolTipService.ToolTip="Calendar"/>
 
                         <NavigationViewItem Content="Exportation CSV Activitées" x:Name="iCsvActivities" Icon="Upload"/>
                     </NavigationViewItem.MenuItems>

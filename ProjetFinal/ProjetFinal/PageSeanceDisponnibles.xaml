@@ -15,6 +15,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
@@ -28,12 +35,26 @@
                    x:Name="txt_block"/>
 
             <Button Grid.Row="1" Click="Button_Click">Retour</Button>
+
+            <TextBlock x:Name="tbx_inscription_seance" Text="Sélectionner et s'inscrire" Grid.Row="2" Visibility="Collapsed"></TextBlock>
+            <Button x:Name="button_inscription_seance" Grid.Row="3" Click="button_inscription_seance_Click" Content="S'inscrire" Width="150" Background="Green" Visibility="Collapsed"></Button>
+
+            <TextBlock x:Name="test_tbx"></TextBlock>
             
-            <TextBlock Grid.Row="2" HorizontalAlignment="Left">
+            <ComboBox Width="150" Grid.Row="4" Background="Blue" Text="Note d'appréciation" x:Name="ComboBox_seance" Visibility="Collapsed">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
+            </ComboBox>
+            
+            <TextBlock Grid.Row="5" HorizontalAlignment="Left">
                 <Run Text="Séances disponibles : " FontWeight="SemiBold" />
             </TextBlock>
+            
 
-            <ListView x:Name="LVseances" Grid.Row="3" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10">
+            <ListView x:Name="LVseances" Grid.Row="6" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10" SelectionChanged="LVseances_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Seance">
                         <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
@@ -50,6 +71,7 @@
                                 <Run Text="{x:Bind NbrPlaces}" />
                                 <Run Text=" places disponibles" />
                             </TextBlock>
+
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

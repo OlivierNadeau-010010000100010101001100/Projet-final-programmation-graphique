@@ -25,8 +25,12 @@ namespace ProjetFinal
     {
         public PageSeanceDisponnibles()
         {
-            this.InitializeComponent();
-            
+            this.InitializeComponent();  
+
+            if (Singleton.GetUserConnection()) 
+            {
+                tbx_inscription_seance.Visibility = Visibility.Visible;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -49,9 +53,38 @@ namespace ProjetFinal
                 txt_block.Text = $"Nom de l'activité: {nomActivite}";
                 LVseances.ItemsSource =  Singleton.Instance().GetSeanceCliquer(nomActivite);
 
-            }
 
-           
+                
+
+
+            }
+            
+
+
+        }
+        private void button_inscription_seance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LVseances_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Singleton.GetUserConnection())
+            {
+                tbx_inscription_seance.Visibility = Visibility.Visible;
+
+
+
+                if (LVseances.SelectedItem != null)
+                {
+                    var seance = (Seance)LVseances.SelectedItem;
+                    
+                    //if (Singleton.getCheckSiInscritSeance(seance.Id))
+
+
+                    button_inscription_seance.Visibility = Visibility.Visible;
+                }
+            }
         }
     }
 }

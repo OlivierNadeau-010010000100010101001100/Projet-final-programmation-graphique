@@ -12,46 +12,11 @@
     
     
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <!--<StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <ComboBox Margin="5" Width="200" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" x:Name="categorie_combo_box">
-
-                --><!--La manière comment j'ai créer la catégorie Ne me permet pas d'aller chercher toutes les caétogire automatiquements--><!--
-
-                <x:String>Tous les produits</x:String>
-                <x:String>Salle de bain</x:String>
-                <x:String>Cuisine</x:String>
-                <x:String>Matériel de construction</x:String>
-                <x:String>Électroménagers</x:String>
-            </ComboBox>
-
-
-
-            <TextBlock Margin="5"> Entre</TextBlock>
-            <TextBox 
-            x:Name="prix_min"
-            PlaceholderText="Prix minimum"
-            Margin="5"
-            Width="150"
-            TextChanged="prix_min_TextChanged"
-            
-        />
-            <TextBlock Margin="5">$ et</TextBlock>
-            <TextBox 
-            x:Name="prix_max"
-            PlaceholderText="Prix maximum"
-            Margin="5"
-            Width="150"
-            TextChanged="prix_max_TextChanged"
-        />
-            <TextBlock Margin="5">$</TextBlock>
-        </StackPanel>-->
-
 
         <TextBlock x:Name="MessageErreur" />
         <TextBlock x:Name="TextBlockTest"></TextBlock>
@@ -80,7 +45,6 @@
                                 <TextBlock x:Name="categorie_produit" Text="{x:Bind Categorie_activite, Mode=OneWay}" FontSize="15" />
                             </StackPanel>
 
-                            <!--<Button Tag="{Binding}" x:Name="suppression_produit" Content="Supprimer" Width="100" Height="30" Margin="5" VerticalAlignment="Center" Click="Suppression_Click" />-->
                         </StackPanel>
                     </Border>
 

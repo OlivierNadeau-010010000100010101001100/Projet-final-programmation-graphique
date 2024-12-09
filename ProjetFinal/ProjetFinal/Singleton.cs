@@ -15,7 +15,7 @@ namespace ProjetFinal
     internal class Singleton
     {
         public static event Action UserConnectionChange; //evenement qui refresh le nom d'utilisateur quand il est invoke
-        private static string _userType = "admin";
+        private static string _userType = "";
         private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         private static string _username = string.Empty;
         static Singleton instance = null;
@@ -474,6 +474,70 @@ namespace ProjetFinal
 
             return MoyennePrix;
         }
+
+        public List<MoyenneRatingParActivite> setInscriptionSeance()
+        {
+            List<MoyenneRatingParActivite> liste = new();
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("SELECT nom_activitee,FORMAT(AVG(note_appreciation),1) AS note_appreciation FROM activites\r\nJOIN seance s on activites.activite_id = s.activite_id_fk\r\nJOIN inscription_seance i on s.seance_id = i.seance_id_fk\r\nWHERE note_appreciation IS NOT NULL\r\nGROUP BY nom_activitee;", conn);
+                conn.Open();
+                MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+
+                while (mySqlDataReader.Read())
+                {
+                    var e = new MoyenneRatingParActivite
+                    {
+                        Nom_activite = mySqlDataReader.GetString(0),
+                        Rating_activite = mySqlDataReader.GetString(1),
+                    };
+                    liste.Add(e);
+                }
+            }
+            catch (Exception ex) { MessageErreur("Erreur base de donnée:", ex.Message); }
+            finally { conn.Close(); }
+
+            return liste;
+        }
+
+        public bool checkInscriptionSeance(int adherentId)
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId;", conn);
+                cmd.Parameters.AddWithValue("@adherentId", adherentId);
+
+                conn.Open();
+
+                var result = cmd.ExecuteScalar();
+
+                if (Convert.ToInt32(result) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // En cas d'erreur, afficher un message d'erreur
+                MessageErreur("Erreur base de données:", ex.Message);
+                return false;  // Retourne faux en cas d'erreur
+            }
+            finally
+            {
+                conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
+            }
+        }
+
+
+
+
 
         public bool AjoutAdherent(string prenom, string nom, string adresse, string date, string mdp)
         {

@@ -68,6 +68,7 @@ namespace ProjetFinal
                     Application.Current.Exit();
                     break;
 
+                    /* Listes de gestions des 3 nav itemz */
                 case "gestionAdherent":
                     mainFrame.Navigate(typeof(PageGestionUsager));
                     break;
@@ -79,6 +80,8 @@ namespace ProjetFinal
                     mainFrame.Navigate(typeof(PageSupprimerSeance));
                     break;
                 case "ajoutAdherent":
+
+                    /* Page d'ajout des 3 nav items */
                     mainFrame.Navigate(typeof(PageAjoutAdherent));
                     break;
                 case "ajoutActivitee":
@@ -102,7 +105,6 @@ namespace ProjetFinal
             if (userType == "")
             {
                 HeaderAdmin.Visibility = Visibility.Collapsed;
-                HeaderUser.Visibility = Visibility.Collapsed;
 
                 ActiviteDeroulant.Visibility = Visibility.Collapsed;
                 SeanceDeroulant.Visibility = Visibility.Collapsed;
@@ -116,7 +118,6 @@ namespace ProjetFinal
             else if (userType == "admin")
             {
                 HeaderAdmin.Visibility = Visibility.Visible;
-                HeaderUser.Visibility = Visibility.Visible;
 
                 ActiviteDeroulant.Visibility = Visibility.Visible;
                 SeanceDeroulant.Visibility = Visibility.Visible;
@@ -129,7 +130,6 @@ namespace ProjetFinal
             }
             else if (userType == "user")
             {
-                HeaderUser.Visibility = Visibility.Visible;
 
                 
 
