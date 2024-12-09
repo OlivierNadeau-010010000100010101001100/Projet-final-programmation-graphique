@@ -638,7 +638,56 @@ namespace ProjetFinal
         //    }
         //}
 
+        public bool AjoutInscription(int seanceID)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("INSERT INTO inscription_seance(adherent_id_fk, seance_id_fk) VALUE (@adherentID, @seanceID);)", conn);
+                conn.Open();
 
+                cmd.Parameters.AddWithValue("@adherentID", _userID);
+                cmd.Parameters.AddWithValue("@seanceID", seanceID);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool UpdateRating(int seanceID, int rating_user)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("UPDATE inscription_seance SET note_appreciation = @rating_user WHERE adherent_id_fk = @adherentID AND seance_id_fk = @seanceID;)", conn);
+                conn.Open();
+
+                cmd.Parameters.AddWithValue("@adherentID", _userID);
+                cmd.Parameters.AddWithValue("@seanceID", seanceID);
+                cmd.Parameters.AddWithValue("@rating_user", rating_user);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
 
 

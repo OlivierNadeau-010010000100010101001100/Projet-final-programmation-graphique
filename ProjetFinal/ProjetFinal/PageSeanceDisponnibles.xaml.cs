@@ -60,7 +60,8 @@ namespace ProjetFinal
         }
         private void button_inscription_seance_Click(object sender, RoutedEventArgs e)
         {
-            
+            var seance = (Seance)LVseances.SelectedItem;
+            Singleton.Instance().AjoutInscription(seance.Id);
         }
 
         private void LVseances_SelectionChanged(object sender, SelectionChangedEventArgs e)
