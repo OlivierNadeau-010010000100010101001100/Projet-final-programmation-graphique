@@ -55,7 +55,7 @@
             </TextBlock>
             
 
-            <ListView x:Name="LVseances" Grid.Row="7" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10" SelectionChanged="LVseances_SelectionChanged">
+            <ListView x:Name="LVseances" Grid.Row="7" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" SelectionChanged="LVseances_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Seance">
                         <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
