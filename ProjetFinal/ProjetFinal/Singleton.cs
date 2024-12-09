@@ -582,7 +582,7 @@ namespace ProjetFinal
                         Heure = mySqlDataReader.GetString(2),
                         NbrPlaces = mySqlDataReader.GetInt32(3),
                         ActiviteID = mySqlDataReader.GetInt32(4),
-                        Rating = mySqlDataReader.IsDBNull(5) ? null : mySqlDataReader.GetInt32(5)
+                        Rating = mySqlDataReader.IsDBNull(5) ? "Aucune note" : mySqlDataReader.GetInt32(5).ToString()
 
 
                     };
