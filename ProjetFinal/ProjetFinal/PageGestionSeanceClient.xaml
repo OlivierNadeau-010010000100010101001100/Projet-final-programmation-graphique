@@ -81,7 +81,6 @@
 
                            
                             </TextBlock>
-
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
