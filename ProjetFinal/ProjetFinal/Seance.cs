@@ -17,7 +17,7 @@ namespace ProjetFinal
         public string Rating { get; set; }
         public string NomActivite { get; set; }
 
-        public string RatingText { get; set; }
+        
 
         public Seance() { }
 
