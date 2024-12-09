@@ -32,7 +32,8 @@ namespace ProjetFinal
 
         private void button_unsub_seance_Click(object sender, RoutedEventArgs e)
         {
-
+            var seanceSelected = (Seance)LVMesSeances.SelectedItem;
+            Singleton.Instance().DeleteInscription(seanceSelected.Id);
         }
 
         private void LVMesSeances_SelectionChanged(object sender, SelectionChangedEventArgs e)
