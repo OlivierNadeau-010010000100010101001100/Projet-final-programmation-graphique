@@ -665,6 +665,31 @@ namespace ProjetFinal
             }
         }
 
+        public bool DeleteInscription(int seanceID)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM inscription_seance WHERE adherent_id_fk = @adherentID AND seance_id_fk = @seanceID;)", conn);
+                conn.Open();
+
+                cmd.Parameters.AddWithValue("@adherentID", _userID);
+                cmd.Parameters.AddWithValue("@seanceID", seanceID);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public bool UpdateRating(int seanceID, int rating_user)
         {
             var conn = Connection();
