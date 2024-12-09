@@ -21,7 +21,7 @@ namespace ProjetFinal
 {
     public sealed partial class ModalConnection : ContentDialog
     {
-        bool validation = false;
+        bool validation = true;
 
         public ModalConnection()
         {
@@ -35,8 +35,13 @@ namespace ProjetFinal
             string nomUtilisateur = tbx_utilisateur.Text;
             string mdp = tbx_password.Password;
             int combobox = user_type.SelectedIndex;
-
-            if (Singleton.Instance().UserConnection(nomUtilisateur, mdp, combobox))
+            if (Singleton.GetUserConnection())
+            {
+                MessageConn.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                MessageConn.Text = "Vous êtes deja connecté a une session";
+                validation = false;
+            }
+            else if(Singleton.Instance().UserConnection(nomUtilisateur, mdp, combobox))
             {
                 // si l'utilisateur est conencté
                 Singleton.SetUserConn(true);
@@ -47,8 +52,9 @@ namespace ProjetFinal
                 // s'il n'est pas connecté
                 tbx_password.Password = "";
                 Singleton.SetUserConn(false);
-                validation = false;
+                validation = true;
             }
+
 
         }
 
@@ -56,7 +62,7 @@ namespace ProjetFinal
         {
             if (args.Result == ContentDialogResult.Primary)
             {
-                if (Singleton.GetUserConnection())
+                if (Singleton.GetUserConnection() && validation)
                 {
                     args.Cancel = false;
                 }

@@ -7,8 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <ScrollViewer>
+        
         <Grid Margin="20" RowSpacing="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -39,7 +40,7 @@
             <TextBlock x:Name="tbx_inscription_seance" Text="Sélectionner et s'inscrire" Grid.Row="2" Visibility="Collapsed"></TextBlock>
             <Button x:Name="button_unsub_seance" Grid.Row="3" Click="button_unsub_seance_Click" Content="Se Désinscrire" Width="150" Background="Red" Visibility="Collapsed"></Button>
 
-            <TextBlock Grid.Row="4" HorizontalAlignment="Left">
+            <TextBlock Grid.Row="4" HorizontalAlignment="Left" x:Name="TextAnnoncement" Visibility="Collapsed">
                 <Run Text="Votre Opinion Sur l'activité sélectionner" FontWeight="SemiBold" />
             </TextBlock>
 
@@ -52,11 +53,14 @@
             </ComboBox>
 
             <Button x:Name="button_confirm_rating" Grid.Row="5" Grid.Column="1" Click="button_confirm_rating_Click" Content="Approuver" Width="150" Background="Green" Visibility="Collapsed"></Button>
-
-            <TextBlock Grid.Row="6" HorizontalAlignment="Left">
+            
+            <TextBlock Grid.Row="6" HorizontalAlignment="Left" Visibility="Visible" x:Name="OuiSeances">
                 <Run Text="Vos Séances : " FontWeight="SemiBold" />
             </TextBlock>
-
+            <TextBlock Grid.Row="6" HorizontalAlignment="Left" Visibility="Collapsed" x:Name="NonSeances">
+                <Run Text="AUCUNE SEANCES" FontWeight="SemiBold" />
+            </TextBlock>
+            
             <ListView x:Name="LVMesSeances" Grid.Row="7" MaxHeight="500" Grid.ColumnSpan="2" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10" SelectionChanged="LVMesSeances_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Seance">
@@ -83,6 +87,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+           
         </Grid>
     </ScrollViewer>
 </Page>

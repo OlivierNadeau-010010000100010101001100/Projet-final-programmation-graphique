@@ -59,15 +59,16 @@ namespace ProjetFinal
 
 
             Singleton.GetUserConnection();
-
             if (Singleton.GetUserConnection())
             {
                 ConnectionModifications(true);
 
-            } else
+            }
+            else
             {
                 ConnectionModifications(false);
             }
+
         }
 
         //public event PropertyChangedEventHandler PropertyChanged;
@@ -101,8 +102,6 @@ namespace ProjetFinal
                 connection.Visibility = Visibility.Collapsed;
                 deconnection.Visibility = Visibility.Visible;
                 tbl_bonjour.Visibility = Visibility.Visible;
-                tbl_email.Visibility = Visibility.Visible;
-                tbl_matricule.Visibility = Visibility.Visible;
                 
                 MainWindow.Instance().ConnectionXamlVisibilityModifications();
 
@@ -119,8 +118,6 @@ namespace ProjetFinal
             connection.Visibility = Visibility.Visible;
             deconnection.Visibility = Visibility.Collapsed;
             tbl_bonjour.Visibility = Visibility.Collapsed;
-            tbl_email.Visibility = Visibility.Collapsed;
-            tbl_matricule.Visibility = Visibility.Collapsed;
         }
 
         private void xamlAffichageLorsqueConnected()
@@ -128,8 +125,6 @@ namespace ProjetFinal
             connection.Visibility = Visibility.Collapsed;
             deconnection.Visibility = Visibility.Visible;
             tbl_bonjour.Visibility = Visibility.Visible;
-            tbl_email.Visibility = Visibility.Visible;
-            tbl_matricule.Visibility= Visibility.Visible;
         }
     }
 }

@@ -39,6 +39,8 @@ namespace ProjetFinal
             button_confirm_rating.Visibility = Visibility.Collapsed;
             ComboBox_seance.Visibility = Visibility.Collapsed;
             button_unsub_seance.Visibility = Visibility.Collapsed;
+            TextAnnoncement.Visibility = Visibility.Collapsed;
+            ComboBox_seance.SelectedIndex = -1;
         }
 
         private void LVMesSeances_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,7 +51,10 @@ namespace ProjetFinal
                 button_unsub_seance.Visibility = Visibility.Visible;
                 ComboBox_seance.Visibility = Visibility.Visible;
                 button_confirm_rating.Visibility = Visibility.Visible;
-            }
+                TextAnnoncement.Visibility = Visibility.Visible;
+                int valeurIndex = string.IsNullOrEmpty(seance.Rating) || !int.TryParse(seance.Rating, out int r) ? -1 : r - 1;
+                ComboBox_seance.SelectedIndex = valeurIndex;
+            } 
         }
 
         private void button_confirm_rating_Click(object sender, RoutedEventArgs e)
@@ -58,6 +63,9 @@ namespace ProjetFinal
             Singleton.Instance().UpdateRating(seance.Id, ComboBox_seance.SelectedIndex + 1);
             ComboBox_seance.Visibility = Visibility.Collapsed;
             button_confirm_rating.Visibility = Visibility.Collapsed;
+            TextAnnoncement.Visibility = Visibility.Collapsed;
+            button_unsub_seance.Visibility = Visibility.Collapsed;
+            ComboBox_seance.SelectedIndex = -1;
 
             reload();
         }
@@ -65,6 +73,18 @@ namespace ProjetFinal
         private void reload()
         {
             LVMesSeances.ItemsSource = Singleton.Instance().GetMesSeance();
+
+            if(LVMesSeances.Items.Count == 0)
+            {
+                LVMesSeances.Visibility = Visibility.Collapsed;
+                NonSeances.Visibility = Visibility.Visible;
+                OuiSeances.Visibility = Visibility.Collapsed;
+            } else
+            {
+                LVMesSeances.Visibility = Visibility.Visible;
+                NonSeances.Visibility = Visibility.Collapsed;
+                OuiSeances.Visibility = Visibility.Visible;
+            }
         }
     }
 }
