@@ -14,8 +14,10 @@ namespace ProjetFinal
         public int NbrPlaces { get; set; }
         public int ActiviteID { get; set; }
 
-        public int? Rating { get; set; }
+        public string Rating { get; set; }
         public string NomActivite { get; set; }
+
+        public string RatingText { get; set; }
 
         public Seance() { }
 
@@ -28,7 +30,7 @@ namespace ProjetFinal
             ActiviteID = activiteID;
         }
 
-        public Seance(int id, string date, string heure, int nbrPlaces, int activiteID, int? rating)
+        public Seance(int id, string date, string heure, int nbrPlaces, int activiteID, string rating)
         {
             Id = id;
             Date = date;
