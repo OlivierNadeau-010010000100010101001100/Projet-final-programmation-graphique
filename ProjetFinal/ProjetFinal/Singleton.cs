@@ -761,6 +761,7 @@ namespace ProjetFinal
                     cmd.Parameters.AddWithValue("@id", username);
                     string fullName = cmd.ExecuteScalar()?.ToString();
                     _username = fullName;
+                    _userID = username;
                     Message("Connection Réussi");
                     _userType="user";
                     return true;
@@ -798,6 +799,7 @@ namespace ProjetFinal
         public void ResetUserType() // modifie  le user à un "invité" dans le programme, comme cela quand qq1 se déconnecte, il ne voit plus la partie dédié aux users et admins
         {
             _userType = "";
+            _userID = "";
         }
         /* ********************************************************** GESTION DES MESSAGES D'ERREURS **************************************************** */
 
