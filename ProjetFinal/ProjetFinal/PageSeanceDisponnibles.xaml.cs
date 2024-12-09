@@ -63,7 +63,7 @@ namespace ProjetFinal
             var seance = (Seance)LVseances.SelectedItem;
             Singleton.Instance().AjoutInscription(seance.Id);
 
-            Frame.Navigate(typeof(PageGestionSeanceClient));
+            Frame.Navigate(typeof(PageActivites));
         }
 
         private void LVseances_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -27,8 +27,6 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-
-
             <TextBlock Text="Séances disponibles"
                    FontSize="24"
                    FontWeight="Bold"
@@ -39,14 +37,19 @@
             <TextBlock x:Name="tbx_inscription_seance" Text="Sélectionner et s'inscrire" Grid.Row="2" Visibility="Collapsed"></TextBlock>
             <Button x:Name="button_unsub_seance" Grid.Row="3" Click="button_unsub_seance_Click" Content="Se Désinscrire" Width="150" Background="Red" Visibility="Collapsed"></Button>
 
+            <TextBlock Grid.Row="4" HorizontalAlignment="Left">
+                <Run Text="Votre Opinion Sur l'activité sélectionner" FontWeight="SemiBold" />
+            </TextBlock>
 
-            <ComboBox Width="150" Grid.Row="4" Background="Blue" Text="Note d'appréciation" x:Name="ComboBox_seance" Visibility="Collapsed">
+            <ComboBox Width="150" Grid.Row="5" Grid.Column="0"  Background="Blue" Text="Note d'appréciation" x:Name="ComboBox_seance" Visibility="Collapsed">
                 <ComboBoxItem Content="1"/>
                 <ComboBoxItem Content="2"/>
                 <ComboBoxItem Content="3"/>
                 <ComboBoxItem Content="4"/>
                 <ComboBoxItem Content="5"/>
             </ComboBox>
+
+            <Button x:Name="button_confirm_rating" Grid.Row="5" Grid.Column="1" Click="button_confirm_rating_Click" Content="Approuver" Width="150" Background="Green" Visibility="Collapsed"></Button>
 
 
             <TextBlock Grid.Row="6" HorizontalAlignment="Left">

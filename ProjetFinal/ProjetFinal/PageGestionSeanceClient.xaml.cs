@@ -42,8 +42,17 @@ namespace ProjetFinal
             {
                 var seance = (Seance)LVMesSeances.SelectedItem;
                 button_unsub_seance.Visibility = Visibility.Visible;
-                
+                ComboBox_seance.Visibility = Visibility.Visible;
+                button_confirm_rating.Visibility = Visibility.Visible;
             }
+        }
+
+        private void button_confirm_rating_Click(object sender, RoutedEventArgs e)
+        {
+            var seance = (Seance)LVMesSeances.SelectedItem;
+            Singleton.Instance().UpdateRating(seance.Id, ComboBox_seance.SelectedIndex + 1);
+            ComboBox_seance.Visibility = Visibility.Collapsed;
+            button_confirm_rating.Visibility = Visibility.Collapsed;
         }
     }
 }
