@@ -38,24 +38,15 @@
 
             <TextBlock x:Name="tbx_inscription_seance" Text="Sélectionner et s'inscrire" Grid.Row="2" Visibility="Collapsed"></TextBlock>
             <Button x:Name="button_inscription_seance" Grid.Row="3" Click="button_inscription_seance_Click" Content="S'inscrire" Width="150" Background="Green" Visibility="Collapsed"></Button>
-
             
-            <ComboBox Width="150" Grid.Row="4" Background="Blue" Text="Note d'appréciation" x:Name="ComboBox_seance" Visibility="Collapsed">
-                <ComboBoxItem Content="1"/>
-                <ComboBoxItem Content="2"/>
-                <ComboBoxItem Content="3"/>
-                <ComboBoxItem Content="4"/>
-                <ComboBoxItem Content="5"/>
-            </ComboBox>
+            <TextBlock x:Name="test_tbx" FontFamily="20" Foreground="Red" Grid.Row="4"></TextBlock>
             
-            <TextBlock x:Name="test_tbx" FontFamily="20" Foreground="Red" Grid.Row="5"></TextBlock>
-            
-            <TextBlock Grid.Row="6" HorizontalAlignment="Left">
+            <TextBlock Grid.Row="5" HorizontalAlignment="Left">
                 <Run Text="Séances disponibles : " FontWeight="SemiBold" />
             </TextBlock>
             
 
-            <ListView x:Name="LVseances" Grid.Row="7" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" SelectionChanged="LVseances_SelectionChanged">
+            <ListView x:Name="LVseances" Grid.Row="6" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" SelectionChanged="LVseances_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:Seance">
                         <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
