@@ -17,14 +17,17 @@
     <None Remove="PageActivites.xaml" />
     <None Remove="PageAjoutActivite.xaml" />
     <None Remove="PageAjoutAdherent.xaml" />
+    <None Remove="PageAjoutCategorie.xaml" />
     <None Remove="PageAjoutSeance.xaml" />
     <None Remove="PageExportationActivite.xaml" />
     <None Remove="PageExportationAdherent.xaml" />
     <None Remove="PageGestionActivite.xaml" />
+    <None Remove="PageGestionCategorie.xaml" />
     <None Remove="PageGestionSeanceClient.xaml" />
     <None Remove="PageGestionUsager.xaml" />
     <None Remove="PageModifierActivite.xaml" />
     <None Remove="PageModifierAdherent.xaml" />
+    <None Remove="PageModifierCategorie.xaml" />
     <None Remove="PageModifierSeance.xaml" />
     <None Remove="PageSeanceDisponnibles.xaml" />
     <None Remove="PageStatistiques.xaml" />
@@ -51,6 +54,24 @@
 
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="PageModifierCategorie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="PageGestionCategorie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="PageAjoutCategorie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

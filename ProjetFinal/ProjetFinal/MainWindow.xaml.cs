@@ -93,6 +93,14 @@ namespace ProjetFinal
                 case "ajoutSeances":
                     mainFrame.Navigate(typeof(PageAjoutSeance));
                     break;
+
+                case "ajoutCategorie":
+                    mainFrame.Navigate(typeof(PageAjoutCategorie));
+                    break;
+                case "gestionCategorie":
+                    mainFrame.Navigate(typeof(PageGestionCategorie));
+                    break;
+
                 default:
                     break;
             }
@@ -112,6 +120,7 @@ namespace ProjetFinal
                 ActiviteDeroulant.Visibility = Visibility.Collapsed;
                 SeanceDeroulant.Visibility = Visibility.Collapsed;
                 AdherentDeroulant.Visibility= Visibility.Collapsed;
+                CategorieDeroulant.Visibility = Visibility.Collapsed;
 
                 iCsvActivities.Visibility = Visibility.Collapsed;
                 iCsvUsers.Visibility = Visibility.Collapsed;
@@ -126,11 +135,13 @@ namespace ProjetFinal
                 ActiviteDeroulant.Visibility = Visibility.Visible;
                 SeanceDeroulant.Visibility = Visibility.Visible;
                 AdherentDeroulant.Visibility= Visibility.Visible;
+                CategorieDeroulant.Visibility = Visibility.Visible;
 
                 iCsvActivities.Visibility= Visibility.Visible;
                 iCsvUsers.Visibility = Visibility.Visible;
                 iStat.Visibility= Visibility.Visible;
                 iSeance.Visibility= Visibility.Visible;
+
 
             }
             else if (userType == "user")
