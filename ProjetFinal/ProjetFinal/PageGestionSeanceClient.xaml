@@ -71,6 +71,11 @@
                                 <Run Text="{x:Bind NbrPlaces}" />
                                 <Run Text=" places disponibles" />
                             </TextBlock>
+
+                            <TextBlock Width="150" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="{x:Bind Rating}" />
+                                <Run Text=" places disponibles" />
+                            </TextBlock>
                             <!--<TextBlock Width="150" VerticalAlignment="Center" Foreground="Black">
                                 <Run Text="{x:Bind Rating}" />       
                                 <Run Text=" places disponibles" />
