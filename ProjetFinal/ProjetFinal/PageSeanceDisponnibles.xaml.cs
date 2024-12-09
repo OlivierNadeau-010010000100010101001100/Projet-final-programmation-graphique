@@ -53,10 +53,6 @@ namespace ProjetFinal
                 txt_block.Text = $"Nom de l'activité: {nomActivite}";
                 LVseances.ItemsSource =  Singleton.Instance().GetSeanceCliquer(nomActivite);
 
-
-                
-
-
             }
             
 
@@ -64,7 +60,7 @@ namespace ProjetFinal
         }
         private void button_inscription_seance_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void LVseances_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,10 +75,17 @@ namespace ProjetFinal
                 {
                     var seance = (Seance)LVseances.SelectedItem;
                     
-                    //if (Singleton.getCheckSiInscritSeance(seance.Id))
+                    if (Singleton.Instance().checkInscriptionSeance(seance.Id))
+                    {
+
+                        button_inscription_seance.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        test_tbx.Text = "Vous êtes déja inscrit à cette séance";
+                    }
 
 
-                    button_inscription_seance.Visibility = Visibility.Visible;
                 }
             }
         }

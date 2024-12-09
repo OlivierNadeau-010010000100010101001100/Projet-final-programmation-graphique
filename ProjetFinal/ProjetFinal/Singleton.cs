@@ -15,7 +15,7 @@ namespace ProjetFinal
     internal class Singleton
     {
         public static event Action UserConnectionChange; //evenement qui refresh le nom d'utilisateur quand il est invoke
-        private static string _userType = "";
+        private static string _userType = "admin";
         private static bool _isConnected = false; // vérifie si l'utilisateur est bien connecté
         private static string _username = string.Empty;
         private static string _userID = string.Empty;
@@ -502,14 +502,14 @@ namespace ProjetFinal
             return liste;
         }
 
-        public bool checkInscriptionSeance(string adherentId, int seanceID)
+        public bool checkInscriptionSeance(int seanceID)
         {
             var conn = Connection();
 
             try
             {
                 MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId AND seance_id_FK = @seanceID;", conn);
-                cmd.Parameters.AddWithValue("@adherentId", adherentId);
+                cmd.Parameters.AddWithValue("@adherentId", _userID);
                 cmd.Parameters.AddWithValue("@seanceID", seanceID);
 
                 conn.Open();
@@ -518,11 +518,45 @@ namespace ProjetFinal
 
                 if (Convert.ToInt32(result) > 0)
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // En cas d'erreur, afficher un message d'erreur
+                MessageErreur("Erreur base de données:", ex.Message);
+                return false;  // Retourne faux en cas d'erreur
+            }
+            finally
+            {
+                conn.Close();  // Assurez-vous de fermer la connexion dans le bloc finally
+            }
+        }
+
+        public bool GetInscriptionSeance()
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM inscription_seance WHERE adherent_id_fk = @adherentId AND seance_id_FK = @seanceID;", conn);
+                cmd.Parameters.AddWithValue("@adherentId", _userID);
+
+                conn.Open();
+
+                var result = cmd.ExecuteScalar();
+
+                if (Convert.ToInt32(result) > 0)
+                {
                     return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
             catch (Exception ex)
