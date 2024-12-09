@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ProjetFinal.PageAjoutSeance"
+    x:Class="ProjetFinal.PageModifierCategorie"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ProjetFinal"
@@ -9,19 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+
         <StackPanel>
             <TextBlock x:Name="MessageErreur" Foreground="Red"/>
-            <TextBlock Text="Date Seance"/>
-            <DatePicker x:Name="DateSeance" />
-            <TextBlock Text="Heure seance"/>
-            <TimePicker x:Name="HeureSeance"/>
-            <TextBlock Text="Nombre de places"/>
-            <TextBox x:Name="NbrPlaces" />
-            <ComboBox x:Name="ActiviteCombo" SelectionChanged="CategoriesCombo_SelectionChanged" PlaceholderText="Selectionner Activité"/>
-
+            <TextBlock Text="Nom de la catégorie"/>
+            <TextBox x:Name="TextCategorie" PlaceholderText="Prenom" />
 
 
             <Button x:Name="Confirmer" Click="Confirmer_Click">Confirmer</Button>
-        </StackPanel>
+            <Button x:Name="Annuler" Click="Annuler_Click">Annuler</Button>
+            </StackPanel>
     </Grid>
 </Page>

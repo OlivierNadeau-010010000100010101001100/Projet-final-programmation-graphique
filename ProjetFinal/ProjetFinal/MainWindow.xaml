@@ -48,6 +48,16 @@
                         <NavigationViewItem x:Name="listeSeance" Content="Liste des séances" Icon="List"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
+                
+                <NavigationViewItem x:Name="CategorieDeroulant" Content="Categorie" Icon="ReportHacked" Visibility="Collapsed">
+                    <NavigationViewItem.MenuItems>
+
+                        <NavigationViewItem x:Name="ajoutCategorie" Content="Ajouter Categorie" Icon="Add" ToolTipService.ToolTip="Mail"/>
+                        <NavigationViewItem x:Name="gestionCategorie" Content="Gestion Categorie" Icon="List" ToolTipService.ToolTip="Calendar"/>
+
+                        
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
 
 
             </NavigationView.MenuItems>

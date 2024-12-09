@@ -327,6 +327,23 @@ namespace ProjetFinal
             }
         }
 
+        public void SupprimerCategorie(int categorieID)     //suppression de seance, a revoir pour gestion correctement
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("DELETE FROM categorie WHERE categorie_id = @categorie", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@categorie", categorieID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("Erreur base de donnée", ex.Message);
+            }
+        }
+
         public List<Seance> GetSeanceCliquer(string nom_activite)
         {
             List<Seance> liste = new();
@@ -752,6 +769,27 @@ namespace ProjetFinal
             finally { conn.Close(); }
         }
 
+        public bool AjoutCategorie(string categorie)
+        {
+            var conn = Connection();
+            try
+            {
+                MySqlCommand cmd = new("INSERT INTO categorie (nom_categorie) VALUE (@categorie)", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@categorie", categorie);
+                
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+
         public bool ModifierSeance(int id, string date, string heure, int places, int idfk)
         {
             var conn = Connection();
@@ -770,6 +808,28 @@ namespace ProjetFinal
                 return true;
             }
             catch(Exception ex)
+            {
+                MessageErreur("", ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+
+        public bool ModifierCategorie(int id, string categorie)
+        {
+            var conn = Connection();
+
+            try
+            {
+                MySqlCommand cmd = new("UPDATE categorie SET nom_categorie = @categorie WHERE categorie_id = @id", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@categorie", categorie);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
             {
                 MessageErreur("", ex.Message);
                 return false;
