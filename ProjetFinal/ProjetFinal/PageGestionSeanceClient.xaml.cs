@@ -38,7 +38,12 @@ namespace ProjetFinal
 
         private void LVMesSeances_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (LVMesSeances.SelectedItem != null)
+            {
+                var seance = (Seance)LVMesSeances.SelectedItem;
+                button_unsub_seance.Visibility = Visibility.Visible;
+                
+            }
         }
     }
 }
