@@ -53,6 +53,8 @@ namespace ProjetFinal
             Singleton.Instance().UpdateRating(seance.Id, ComboBox_seance.SelectedIndex + 1);
             ComboBox_seance.Visibility = Visibility.Collapsed;
             button_confirm_rating.Visibility = Visibility.Collapsed;
+
+            LVMesSeances.ItemsSource = Singleton.Instance().GetMesSeance();
         }
     }
 }
