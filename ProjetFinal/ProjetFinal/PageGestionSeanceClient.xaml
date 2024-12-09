@@ -9,7 +9,78 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
 
-    </Grid>
+    <ScrollViewer>
+
+        <Grid Margin="20" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+
+
+            <TextBlock Text="Séances disponibles"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Grid.Row="0" 
+                   x:Name="txt_block"/>
+
+            <TextBlock x:Name="tbx_inscription_seance" Text="Sélectionner et s'inscrire" Grid.Row="2" Visibility="Collapsed"></TextBlock>
+            <Button x:Name="button_unsub_seance" Grid.Row="3" Click="button_unsub_seance_Click" Content="Se Désinscrire" Width="150" Background="Red" Visibility="Collapsed"></Button>
+
+
+            <ComboBox Width="150" Grid.Row="4" Background="Blue" Text="Note d'appréciation" x:Name="ComboBox_seance" Visibility="Collapsed">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
+            </ComboBox>
+
+
+            <TextBlock Grid.Row="6" HorizontalAlignment="Left">
+                <Run Text="Vos Séances : " FontWeight="SemiBold" />
+            </TextBlock>
+
+
+            <ListView x:Name="LVMesSeances" Grid.Row="7" MaxHeight="500" BorderBrush="#CCCCCC" BorderThickness="1" Padding="10" SelectionChanged="LVMesSeances_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Seance">
+                        <StackPanel Orientation="Horizontal" Margin="5" Padding="5" Background="WhiteSmoke" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5">
+                            <TextBlock Width="200" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="La date est : "></Run>
+                                <Run Text="{x:Bind Date}"></Run>
+                            </TextBlock>
+
+                            <TextBlock Width="200" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="Heure de la séance"></Run>
+                                <Run Text="{x:Bind Heure}"></Run>
+                            </TextBlock>
+                            <TextBlock Width="150" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="{x:Bind NbrPlaces}" />
+                                <Run Text=" places disponibles" />
+                            </TextBlock>
+                            <!--<TextBlock Width="150" VerticalAlignment="Center" Foreground="Black">
+                                <Run Text="{x:Bind Rating}" />       
+                                <Run Text=" places disponibles" />
+                            </TextBlock>-->
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+    </ScrollViewer>
 </Page>
