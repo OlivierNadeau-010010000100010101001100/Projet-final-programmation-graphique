@@ -31,7 +31,7 @@ namespace ProjetFinal
         private Singleton()
         {
             // String de connection remis sur lea dans le fichier Documentation.TXT
-            _connectionQuery = ""; //connection a la base de donnée
+            _connectionQuery = "Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq5;Uid=2267192;Pwd=2267192;"; //connection a la base de donnée
         }
 
         private MySqlConnection Connection()    //Methode pour la connection DB
