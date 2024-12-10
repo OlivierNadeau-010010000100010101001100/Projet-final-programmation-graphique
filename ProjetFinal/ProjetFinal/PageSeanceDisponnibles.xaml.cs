@@ -48,10 +48,10 @@ namespace ProjetFinal
             // Récupérer le paramètre passé via Frame.Navigate
             if (e.Parameter != null)
             {
-                string nomActivite = e.Parameter.ToString();
+                int idActivite = (int)e.Parameter;
                 // Utiliser nomActivite dans votre logique ici
-                txt_block.Text = $"Nom de l'activité: {nomActivite}";
-                LVseances.ItemsSource =  Singleton.Instance().GetSeanceCliquer(nomActivite);
+                txt_block.Text = $"ID de l'Activitée {idActivite}";
+                LVseances.ItemsSource =  Singleton.Instance().GetSeanceCliquer(idActivite);
 
             }
             
@@ -89,11 +89,6 @@ namespace ProjetFinal
                             test_tbx.Text = "Vous êtes déja inscrit à cette séance";
                         }
                     }
-                    
-
-
-
-
                 }
             }
         }

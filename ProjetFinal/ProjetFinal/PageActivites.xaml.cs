@@ -50,10 +50,10 @@ namespace ProjetFinal
             if (LVactivite.SelectedIndex != -1) 
             {
                 var activite = (Activite)LVactivite.SelectedItem;
-                string nomActivite = activite.Nom_activite;
+                int idActivite = activite.Activite_id;
                 string categorieActivite = activite.Categorie_activite;
-                TextBlockTest.Text = $"{nomActivite} : {categorieActivite}";
-                Frame.Navigate(typeof(PageSeanceDisponnibles), nomActivite);
+                TextBlockTest.Text = $"{idActivite} : {categorieActivite}";
+                Frame.Navigate(typeof(PageSeanceDisponnibles), idActivite);
             }
         }
 

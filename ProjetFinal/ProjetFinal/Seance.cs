@@ -12,7 +12,6 @@ namespace ProjetFinal
         public string Date { get; set; }
         public string Heure { get; set; }
         public int NbrPlaces { get; set; }
-        public int ActiviteID { get; set; }
 
         public string Rating { get; set; }
         public string NomActivite { get; set; }
@@ -21,28 +20,28 @@ namespace ProjetFinal
 
         public Seance() { }
 
-        public Seance(int id, string date, string heure, int nbrPlaces, int activiteID)
+        public Seance(int id, string date, string heure, int nbrPlaces, string nom_activite)
         {
             Id = id;
             Date = date;
             Heure = heure;
             NbrPlaces = nbrPlaces;
-            ActiviteID = activiteID;
+            NomActivite = nom_activite;
         }
 
-        public Seance(int id, string date, string heure, int nbrPlaces, int activiteID, string rating)
+        public Seance(int id, string date, string heure, int nbrPlaces, string nom_activite, string rating)
         {
             Id = id;
             Date = date;
             Heure = heure;
             NbrPlaces = nbrPlaces;
-            ActiviteID = activiteID;
+            NomActivite = nom_activite;
             Rating = rating;
         }
 
         public override string ToString()
         {
-            return $"Seance {Id}, Date: {Date}, Heure: {Heure}, NbrPlaces: {NbrPlaces}, ActiviteID: {ActiviteID}, Nom Activité: {NomActivite}";
+            return $"Seance {Id}, Date: {Date}, Heure: {Heure}, NbrPlaces: {NbrPlaces}, Nom Activité: {NomActivite}, Rating: {Rating}";
         }
     }
 }

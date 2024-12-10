@@ -30,7 +30,7 @@ namespace ProjetFinal
 
         private Singleton()
         {
-            _connectionQuery = "Server=cours.cegep3r.info;Database=a2024_420335ri_eq8;Uid=2011835;Pwd=2011835;"; //connection a la base de donnée
+            _connectionQuery = "Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq5;Uid=2267192;Pwd=2267192;"; //connection a la base de donnée
         }
 
         private MySqlConnection Connection()    //Methode pour la connection DB
@@ -137,7 +137,7 @@ namespace ProjetFinal
             var conn = Connection();
             try
             {
-                MySqlCommand cmd = new("SELECT * FROM seance", conn);
+                MySqlCommand cmd = new("SELECT seance_id,date_seance,heure_seance,nbrPlaceDispo,nom_activitee FROM seance\r\nINNER JOIN `a2024_420-345-ri_eq5`.activites a on seance.activite_id_fk = a.activite_id", conn);
                 conn.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
                 
@@ -149,8 +149,7 @@ namespace ProjetFinal
                         Date = reader.GetDateTime(1).ToString("yyyy-MM-dd"),
                         Heure = reader.GetString(2),
                         NbrPlaces = reader.GetInt32(3),
-                        ActiviteID = reader.GetInt32(4),
-                        NomActivite = activites.FirstOrDefault(a => a.Activite_id == reader.GetInt32(4))?.Nom_activite ?? "Inconnu"
+                        NomActivite = reader.GetString(4) // activites.FirstOrDefault(a => a.Activite_id == reader.GetInt32(4))?.Nom_activite ?? "Inconnu"
 
                     };
                     seances.Add(seance);
@@ -344,16 +343,16 @@ namespace ProjetFinal
             }
         }
 
-        public List<Seance> GetSeanceCliquer(string nom_activite)
+        public List<Seance> GetSeanceCliquer(int seanceID)
         {
             List<Seance> liste = new();
             var conn = Connection();
 
             try
             {
-                MySqlCommand cmd = new("SELECT seance_id, date_seance, heure_seance, nbrPlaceDispo, activite_id_fk FROM seance\r\nINNER JOIN a2024_420335ri_eq8.activites a on seance.activite_id_fk = a.activite_id\r\nWHERE nom_activitee = @nom_activite", conn);
+                MySqlCommand cmd = new("SELECT seance_id, date_seance, heure_seance, nbrPlaceDispo, nom_activitee FROM seance\r\nINNER JOIN `a2024_420-345-ri_eq5`.activites a on seance.activite_id_fk = a.activite_id\r\nWHERE seance_id = @seanceID;", conn);
 
-                cmd.Parameters.AddWithValue("@nom_activite", nom_activite);
+                cmd.Parameters.AddWithValue("@seanceID", seanceID);
 
                 conn.Open();
                 MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
@@ -366,7 +365,7 @@ namespace ProjetFinal
                         Date = mySqlDataReader.GetDateTime(1).ToString("yyyy-MM-dd"),
                         Heure = mySqlDataReader.GetString(2),
                         NbrPlaces = mySqlDataReader.GetInt32(3),
-                        ActiviteID = mySqlDataReader.GetInt32(4),
+                        NomActivite = mySqlDataReader.GetString(4),
                     };
                     liste.Add(e);
                 }
@@ -566,7 +565,7 @@ namespace ProjetFinal
 
             try
             {
-                MySqlCommand cmd = new("SELECT seance_id, date_seance, heure_seance, nbrPlaceDispo, activite_id_fk, note_appreciation FROM inscription_seance\r\nINNER JOIN a2024_420335ri_eq8.seance s on inscription_seance.seance_id_fk = s.seance_id\r\nWHERE adherent_id_fk = @userID;", conn);
+                MySqlCommand cmd = new("SELECT seance_id, date_seance, heure_seance, nbrPlaceDispo, nom_activitee, note_appreciation  FROM inscription_seance\r\nINNER JOIN `a2024_420-345-ri_eq5`.seance s on inscription_seance.seance_id_fk = s.seance_id\r\nINNER JOIN `a2024_420-345-ri_eq5`.activites a on s.activite_id_fk = a.activite_id\r\nWHERE adherent_id_fk = @userID;", conn);
 
                 cmd.Parameters.AddWithValue("@userID", _userID);
 
@@ -581,7 +580,7 @@ namespace ProjetFinal
                         Date = mySqlDataReader.GetDateTime(1).ToString("yyyy-MM-dd"),
                         Heure = mySqlDataReader.GetString(2),
                         NbrPlaces = mySqlDataReader.GetInt32(3),
-                        ActiviteID = mySqlDataReader.GetInt32(4),
+                        NomActivite = mySqlDataReader.GetString(4),
                         Rating = mySqlDataReader.IsDBNull(5) ? "Aucune note" : mySqlDataReader.GetInt32(5).ToString()
 
 
