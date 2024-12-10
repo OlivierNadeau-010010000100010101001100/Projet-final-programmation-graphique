@@ -50,7 +50,7 @@ namespace ProjetFinal
             {
                 int idActivite = (int)e.Parameter;
                 // Utiliser nomActivite dans votre logique ici
-                txt_block.Text = $"ID de l'Activitée {idActivite}";
+                txt_block.Text = $"Nom de l'Activitée {idActivite}";
                 LVseances.ItemsSource =  Singleton.Instance().GetSeanceCliquer(idActivite);
 
             }
